@@ -90,10 +90,9 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-          >
-            <span className="text-2xl font-bold text-indigo-600">NextSpace</span>
+          >            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">Affluentia</span>
             <p className="text-sm leading-6 text-gray-600">
-              Making the world a better place through innovative digital solutions.
+              Elevating luxury living through exquisite design and unparalleled craftsmanship.
             </p>
             <div className="flex space-x-6">
               {footerNavigation.social.map((item) => (

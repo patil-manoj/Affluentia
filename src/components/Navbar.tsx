@@ -29,7 +29,7 @@ export default function Navbar() {
             whileTap={{ scale: 0.95 }}
           >
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">
-              ArchSpace
+              Affluentia
             </span>
           </motion.a>
         </div>
@@ -118,7 +118,7 @@ export default function Navbar() {
                 whileTap={{ scale: 0.95 }}
               >
                 <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">
-                  ArchSpace
+                  Affluentia
                 </span>
               </motion.a>
               <motion.button

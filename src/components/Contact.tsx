@@ -48,9 +48,9 @@ export default function Contact() {
                   <BuildingOffice2Icon className="h-7 w-6 text-gray-400" aria-hidden="true" />
                 </dt>
                 <dd>
-                  545 Innovation Drive
+                  oa pg
                   <br />
-                  San Francisco, CA 94107
+                  Basavangudi, Bengaluru
                 </dd>
               </div>
               <div className="flex gap-x-4">
@@ -59,8 +59,8 @@ export default function Contact() {
                   <PhoneIcon className="h-7 w-6 text-gray-400" aria-hidden="true" />
                 </dt>
                 <dd>
-                  <a className="hover:text-gray-900" href="tel:+1 (555) 234-5678">
-                    +1 (555) 234-5678
+                  <a className="hover:text-gray-900" href="tel:+91 7353565671">
+                   7353565671
                   </a>
                 </dd>
               </div>
@@ -70,8 +70,8 @@ export default function Contact() {
                   <EnvelopeIcon className="h-7 w-6 text-gray-400" aria-hidden="true" />
                 </dt>
                 <dd>
-                  <a className="hover:text-gray-900" href="mailto:hello@nextspace.com">
-                    hello@nextspace.com
+                  <a className="hover:text-gray-900" href="mailto:hello@affluentia.com">
+                    hello@affluentia.com
                   </a>
                 </dd>
               </div>
