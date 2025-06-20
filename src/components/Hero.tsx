@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+// import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
