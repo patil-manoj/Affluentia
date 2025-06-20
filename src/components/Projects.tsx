@@ -1,5 +1,5 @@
-import { useState, useRef, useCallback } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { MagnifyingGlassIcon, FunnelIcon } from '@heroicons/react/24/outline';
 
 interface Project {
@@ -206,15 +206,9 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
   );
 };
 
-const Projects = () => {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+const Projects = () => {  const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
 
   const filteredProjects = projects.filter(project => {
     const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;

@@ -4,8 +4,6 @@ import {
   BuildingOffice2Icon, 
   PhoneIcon, 
   EnvelopeIcon,
-  MapPinIcon,
-  ClockIcon,
   CheckCircleIcon
 } from '@heroicons/react/24/outline';
 

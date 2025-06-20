@@ -4,7 +4,6 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
 
   const { scrollYProgress } = useScroll({
@@ -18,7 +17,6 @@ const Hero = () => {
 
   const springX = useSpring(0, { stiffness: 150, damping: 30 });
   const springY = useSpring(0, { stiffness: 150, damping: 30 });
-
   useEffect(() => {
     setIsLoaded(true);
     
@@ -30,7 +28,6 @@ const Hero = () => {
         const x = (e.clientX - centerX) / rect.width;
         const y = (e.clientY - centerY) / rect.height;
         
-        setMousePosition({ x, y });
         springX.set(x * 20);
         springY.set(y * 20);
       }
@@ -186,31 +183,6 @@ const Hero = () => {
                 </motion.span>
               </span>
             </motion.a>
-          </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.div 
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 1, 
-              delay: 2,
-              ease: [0.25, 0.46, 0.45, 0.94]
-            }}
-          >
-            <motion.div
-              className="flex flex-col items-center gap-2 text-stone-500"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ 
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <span className="text-sm font-medium tracking-wider uppercase">Scroll</span>
-              <ChevronDownIcon className="w-5 h-5" />
-            </motion.div>
           </motion.div>
         </div>
       </div>

@@ -36,44 +36,44 @@ const stats: Stat[] = [
 const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: 'Sarah Chen',
+    name: 'lol',
     role: 'Principal Architect',
-    bio: 'Sarah leads our design vision with over 15 years of experience in sustainable architecture. Her innovative approach has earned international recognition.',
+    bio: 'lol bio',
     image: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?auto=format&fit=crop&w=400&q=80',
-    education: ['M.Arch from MIT', 'LEED AP BD+C'],
+    education: ['lol from MIT', 'lol Certified'],
     specialties: ['Sustainable Design', 'Commercial Architecture', 'Urban Planning'],
     experience: '15+ years'
   },
-  {
-    id: 2,
-    name: 'Marcus Rodriguez',
-    role: 'Creative Director',
-    bio: 'Marcus brings artistic vision to every project, specializing in luxury residential design and innovative interior solutions.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80',
-    education: ['M.Design from Parsons', 'NCIDQ Certified'],
-    specialties: ['Interior Design', 'Luxury Residential', 'Custom Furniture'],
-    experience: '12+ years'
-  },
-  {
-    id: 3,
-    name: 'Elena Kowalski',
-    role: 'Project Manager',
-    bio: 'Elena ensures every project runs smoothly from conception to completion, with expertise in construction management and client relations.',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80',
-    education: ['MBA in Construction Management', 'PMP Certified'],
-    specialties: ['Project Management', 'Construction Administration', 'Client Relations'],
-    experience: '10+ years'
-  },
-  {
-    id: 4,
-    name: 'David Kim',
-    role: 'Technical Director',
-    bio: 'David oversees technical implementation and ensures all designs meet the highest engineering standards and building codes.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
-    education: ['M.Eng in Structural Engineering', 'PE Licensed'],
-    specialties: ['Structural Engineering', 'Building Systems', 'Code Compliance'],
-    experience: '13+ years'
-  }
+  // {
+  //   id: 2,
+  //   name: 'Marcus Rodriguez',
+  //   role: 'Creative Director',
+  //   bio: 'Marcus brings artistic vision to every project, specializing in luxury residential design and innovative interior solutions.',
+  //   image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80',
+  //   education: ['M.Design from Parsons', 'NCIDQ Certified'],
+  //   specialties: ['Interior Design', 'Luxury Residential', 'Custom Furniture'],
+  //   experience: '12+ years'
+  // },
+  // {
+  //   id: 3,
+  //   name: 'Elena Kowalski',
+  //   role: 'Project Manager',
+  //   bio: 'Elena ensures every project runs smoothly from conception to completion, with expertise in construction management and client relations.',
+  //   image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80',
+  //   education: ['MBA in Construction Management', 'PMP Certified'],
+  //   specialties: ['Project Management', 'Construction Administration', 'Client Relations'],
+  //   experience: '10+ years'
+  // },
+  // {
+  //   id: 4,
+  //   name: 'David Kim',
+  //   role: 'Technical Director',
+  //   bio: 'David oversees technical implementation and ensures all designs meet the highest engineering standards and building codes.',
+  //   image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+  //   education: ['M.Eng in Structural Engineering', 'PE Licensed'],
+  //   specialties: ['Structural Engineering', 'Building Systems', 'Code Compliance'],
+  //   experience: '13+ years'
+  // }
 ];
 
 const values = [
