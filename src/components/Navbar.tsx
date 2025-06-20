@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { Dialog } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react'
+import { Dialog } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 const navigation = [
   { name: 'Projects', href: '#projects' },
@@ -150,17 +150,7 @@ export default function Navbar() {
                     </motion.a>
                   ))}
                 </div>
-                <div className="py-6">
-                  <motion.a
-                    href="#contact"
-                    className="block rounded-lg bg-primary-600 px-6 py-3 text-center text-base font-medium text-white shadow-soft hover:bg-primary-700"
-                    onClick={() => setMobileMenuOpen(false)}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Get in Touch
-                  </motion.a>
-                </div>
+                
               </div>
             </div>
           </motion.div>

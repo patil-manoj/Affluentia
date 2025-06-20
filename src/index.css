@@ -1,6 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #171717;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+}
 
 @layer components {
   .max-container {
@@ -10,6 +35,50 @@
 
   .input {
     @apply sm:flex-1 max-sm:w-full text-base leading-normal text-neutral-600 pl-5 max-sm:p-5 outline-none sm:border-none border max-sm:border-neutral-200 max-sm:rounded-full;
+  }
+  
+  .luxury-gradient {
+    background: linear-gradient(135deg, #fafaf9 0%, #f5f5f4 100%);
+  }
+  
+  .accent-gradient {
+    background: linear-gradient(135deg, #d97d4a 0%, #ed721f 100%);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #d97d4a 0%, #ed721f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .luxury-card {
+    @apply bg-white/95 backdrop-blur-sm border border-stone-200/50 shadow-luxury rounded-2xl overflow-hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .luxury-card:hover {
+    @apply shadow-elegant transform translate-y-[-8px];
+  }
+  
+  .parallax-element {
+    will-change: transform;
+  }
+  
+  .reveal-animation {
+    @apply opacity-0 translate-y-8;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .reveal-animation.revealed {
+    @apply opacity-100 translate-y-0;
   }
 }
 

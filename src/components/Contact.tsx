@@ -1,148 +1,340 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
+import { 
+  BuildingOffice2Icon, 
+  PhoneIcon, 
+  EnvelopeIcon,
+  MapPinIcon,
+  ClockIcon,
+  CheckCircleIcon
+} from '@heroicons/react/24/outline';
 
-export default function Contact() {
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  projectType: string;
+  budget: string;
+  message: string;
+}
+
+const Contact = () => {
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    phone: '',
+    projectType: '',
+    budget: '',
+    message: ''
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission here
+    setIsSubmitted(true);
+    setTimeout(() => setIsSubmitted(false), 3000);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
   return (
-    <div className="relative isolate bg-white" id="contact">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
-        <motion.div 
-          className="relative px-6 pb-20 pt-24 sm:pt-32 lg:static lg:px-8"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
-            <div className="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-gray-100 ring-1 ring-gray-900/10 lg:w-1/2">
-              <svg
-                className="absolute inset-0 h-full w-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
-                aria-hidden="true"
-              >
-                <defs>
-                  <pattern
-                    id="83fd4e5a-9d52-42fc-97b6-718e5d7ee527"
-                    width={200}
-                    height={200}
-                    x="100%"
-                    y={-1}
-                    patternUnits="userSpaceOnUse"
-                  >
-                    <path d="M130 200V.5M.5 .5H200" fill="none" />
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" strokeWidth={0} fill="white" />
-                <svg x="100%" y={-1} className="overflow-visible fill-gray-50">
-                  <path d="M-470.5 0h201v201h-201Z" strokeWidth={0} />
-                </svg>
-                <rect width="100%" height="100%" strokeWidth={0} fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)" />
-              </svg>
+    <section className="relative isolate bg-gradient-to-b from-white to-stone-50" id="contact">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div 
+          className="w-full h-full"
+          style={{
+            backgroundImage: `linear-gradient(30deg, rgba(68,64,60,0.1) 12%, transparent 12.5%, transparent 87%, rgba(68,64,60,0.1) 87.5%, rgba(68,64,60,0.1)),
+                             linear-gradient(150deg, rgba(68,64,60,0.1) 12%, transparent 12.5%, transparent 87%, rgba(68,64,60,0.1) 87.5%, rgba(68,64,60,0.1)),
+                             linear-gradient(30deg, rgba(68,64,60,0.1) 12%, transparent 12.5%, transparent 87%, rgba(68,64,60,0.1) 87.5%, rgba(68,64,60,0.1)),
+                             linear-gradient(150deg, rgba(68,64,60,0.1) 12%, transparent 12.5%, transparent 87%, rgba(68,64,60,0.1) 87.5%, rgba(68,64,60,0.1))`,
+            backgroundSize: '80px 140px',
+            backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px'
+          }}
+        />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+        <div className="mx-auto max-w-2xl text-center mb-16">
+          <motion.h2 
+            className="font-serif text-4xl md:text-6xl font-bold text-stone-900 mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            Let's Create <span className="text-gradient">Together</span>
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-stone-600 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Ready to transform your vision into reality? We'd love to hear about your project 
+            and explore how we can bring your architectural dreams to life.
+          </motion.p>
+        </div>
+
+        <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Contact Information */}
+          <motion.div 
+            className="relative"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="luxury-card p-8">
+              <h3 className="font-serif text-2xl font-bold text-stone-900 mb-8">Get in Touch</h3>
+              
+              <div className="space-y-6">
+                <motion.div 
+                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-stone-50 transition-colors duration-300"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary-100 to-accent-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <BuildingOffice2Icon className="h-6 w-6 text-primary-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-stone-900 mb-1">Visit Our Studio</h4>
+                    <p className="text-stone-600">
+                      oa pg 
+                      <br />
+                      basavangudi, Bengaluru
+                    </p>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-stone-50 transition-colors duration-300"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary-100 to-accent-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <PhoneIcon className="h-6 w-6 text-primary-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-stone-900 mb-1">Call Us</h4>
+                    <p className="text-stone-600">
+                      +91 775645618<br />
+                      <span className="text-sm">Mon-Fri 9am-6pm IST</span>
+                    </p>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-stone-50 transition-colors duration-300"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary-100 to-accent-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <EnvelopeIcon className="h-6 w-6 text-primary-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-stone-900 mb-1">Email Us</h4>
+                    <p className="text-stone-600">
+                      affluentiainterior@gmail.com
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* <motion.div 
+                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-stone-50 transition-colors duration-300"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary-100 to-accent-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <ClockIcon className="h-6 w-6 text-primary-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-stone-900 mb-1">Office Hours</h4>
+                    <p className="text-stone-600">
+                      Monday - Friday: 9:00 AM - 6:00 PM<br />
+                      Saturday: 10:00 AM - 4:00 PM<br />
+                      Sunday: By appointment
+                    </p>
+                  </div>
+                </motion.div> */}
+              </div>
+
+              {/* Social Links */}
+              <div className="mt-8 pt-8 border-t border-stone-200">
+                <h4 className="font-semibold text-stone-900 mb-4">Follow Us</h4>
+                <div className="flex gap-3">
+                  {['Instagram', 'LinkedIn', 'Behance'].map((platform, index) => (
+                    <motion.a
+                      key={platform}
+                      href="#"
+                      className="w-10 h-10 bg-gradient-to-r from-primary-600 to-accent-600 rounded-lg flex items-center justify-center text-white text-sm font-medium hover:shadow-lg transition-all duration-300"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.9 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 + 0.5 }}
+                    >
+                      {platform[0]}
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900">Get in touch</h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Ready to transform your business? Let's talk about how we can help you achieve your goals.
-            </p>
-            <dl className="mt-10 space-y-4 text-base leading-7 text-gray-600">
-              <div className="flex gap-x-4">
-                <dt className="flex-none">
-                  <span className="sr-only">Address</span>
-                  <BuildingOffice2Icon className="h-7 w-6 text-gray-400" aria-hidden="true" />
-                </dt>
-                <dd>
-                  oa pg
-                  <br />
-                  Basavangudi, Bengaluru
-                </dd>
-              </div>
-              <div className="flex gap-x-4">
-                <dt className="flex-none">
-                  <span className="sr-only">Telephone</span>
-                  <PhoneIcon className="h-7 w-6 text-gray-400" aria-hidden="true" />
-                </dt>
-                <dd>
-                  <a className="hover:text-gray-900" href="tel:+91 7353565671">
-                   7353565671
-                  </a>
-                </dd>
-              </div>
-              <div className="flex gap-x-4">
-                <dt className="flex-none">
-                  <span className="sr-only">Email</span>
-                  <EnvelopeIcon className="h-7 w-6 text-gray-400" aria-hidden="true" />
-                </dt>
-                <dd>
-                  <a className="hover:text-gray-900" href="mailto:hello@affluentia.com">
-                    hello@affluentia.com
-                  </a>
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </motion.div>
-        <motion.form 
-          action="#" 
-          method="POST" 
-          className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48"
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
-            <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-              <div className="sm:col-span-2">
-                <label htmlFor="name" className="block text-sm font-semibold leading-6 text-gray-900">
-                  Name
-                </label>
-                <div className="mt-2.5">
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <form onSubmit={handleSubmit} className="luxury-card p-8 space-y-6">
+              <h3 className="font-serif text-2xl font-bold text-stone-900 mb-6">Start Your Project</h3>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-semibold text-stone-900 mb-2">
+                    Full Name *
+                  </label>
                   <input
                     type="text"
-                    name="name"
                     id="name"
-                    autoComplete="given-name"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300"
+                    placeholder="Your full name"
                   />
                 </div>
-              </div>
-              <div className="sm:col-span-2">
-                <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
-                  Email
-                </label>
-                <div className="mt-2.5">
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-semibold text-stone-900 mb-2">
+                    Email Address *
+                  </label>
                   <input
                     type="email"
-                    name="email"
                     id="email"
-                    autoComplete="email"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300"
+                    placeholder="your@email.com"
                   />
                 </div>
               </div>
-              <div className="sm:col-span-2">
-                <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
-                  Message
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-semibold text-stone-900 mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300"
+                    placeholder="+91 8123456789"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="projectType" className="block text-sm font-semibold text-stone-900 mb-2">
+                    Project Type *
+                  </label>
+                  <select
+                    id="projectType"
+                    name="projectType"
+                    required
+                    value={formData.projectType}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300"
+                  >
+                    <option value="">Select project type</option>
+                    <option value="residential">Residential Design</option>
+                    <option value="commercial">Commercial Space</option>
+                    <option value="interior">Interior Design</option>
+                    <option value="renovation">Renovation</option>
+                    <option value="consultation">Consultation</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="budget" className="block text-sm font-semibold text-stone-900 mb-2">
+                  Project Budget
                 </label>
-                <div className="mt-2.5">
-                  <textarea
-                    name="message"
-                    id="message"
-                    rows={4}
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    defaultValue={''}
-                  />
-                </div>
+                <select
+                  id="budget"
+                  name="budget"
+                  value={formData.budget}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300"
+                >
+                  <option value="">Select budget range</option>
+                  <option value="under-50k">Under $50,000</option>
+                  <option value="50k-100k">$50,000 - $100,000</option>
+                  <option value="100k-250k">$100,000 - $250,000</option>
+                  <option value="250k-500k">$250,000 - $500,000</option>
+                  <option value="500k-1m">$500,000 - $1,000,000</option>
+                  <option value="over-1m">Over $1,000,000</option>
+                </select>
               </div>
-            </div>
-            <div className="mt-8 flex justify-end">
-              <button
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-semibold text-stone-900 mb-2">
+                  Project Details *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={6}
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300 resize-none"
+                  placeholder="Tell us about your project, vision, timeline, and any specific requirements..."
+                />
+              </div>
+
+              <motion.button
                 type="submit"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                disabled={isSubmitted}
+                className={`w-full px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
+                  isSubmitted
+                    ? 'bg-green-600 text-white'
+                    : 'bg-gradient-to-r from-primary-600 to-accent-600 text-white hover:shadow-glow'
+                }`}
+                whileHover={{ scale: isSubmitted ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitted ? 1 : 0.98 }}
               >
-                Send message
-              </button>
-            </div>
-          </div>
-        </motion.form>
+                {isSubmitted ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <CheckCircleIcon className="w-6 h-6" />
+                    Message Sent Successfully!
+                  </span>
+                ) : (
+                  'Send Message'
+                )}
+              </motion.button>
+
+              <p className="text-sm text-stone-500 text-center">
+                We'll get back to you within 24 hours. For urgent inquiries, please call us directly.
+              </p>
+            </form>
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </section>
   );
-}
+};
+
+export default Contact;

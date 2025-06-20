@@ -171,7 +171,7 @@ export default function Footer() {
           transition={{ duration: 0.5, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <p className="text-xs leading-5 text-gray-500">&copy; 2025 NextSpace, Inc. All rights reserved.</p>
+          <p className="text-xs leading-5 text-gray-500">&copy; 2025 Affluentia, Inc. All rights reserved.</p>
         </motion.div>
       </div>
     </footer>
