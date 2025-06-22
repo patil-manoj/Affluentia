@@ -9,6 +9,7 @@ import ProjectsPage from './pages/ProjectsPage'
 import ServicesPage from './pages/ServicesPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
+import AdminPage from './pages/AdminPage'
 
 const App = () => {
   const { scrollYProgress } = useScroll();
@@ -18,14 +19,14 @@ const App = () => {
       <main className="relative overflow-x-hidden">
         {/* Navigation */}
         <Navbar />
-        
-        {/* Routes */}
+          {/* Routes */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
 
         {/* Footer */}
