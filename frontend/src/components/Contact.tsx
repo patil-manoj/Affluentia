@@ -87,9 +87,8 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
     
     setIsSubmitting(true);
     setSubmitError(null);
-    
-    try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://affluentia.onrender.com';
       
       // Create FormData for file upload
       const submitData = new FormData();
