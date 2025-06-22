@@ -1,50 +1,21 @@
 import express from 'express';
 import multer from 'multer';
-import rateLimit from 'express-rate-limit';
+import Contact from '../models/Contact.js';
 
 const router = express.Router();
 
-// Configure multer for file uploads (in-memory storage)
-const storage = multer.memoryStorage();
+// Configure multer for file uploads
 const upload = multer({
-  storage,
+  storage: multer.memoryStorage(),
   limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB limit
-    files: 10 // Maximum 10 files
+    fileSize: 5 * 1024 * 1024, // 5MB limit
+    files: 5 // Maximum 5 files
   },
   fileFilter: (req, file, cb) => {
-    const allowedTypes = [
-      'image/jpeg',
-      'image/jpg', 
-      'image/png',
-      'image/gif',
-      'application/pdf',
-      'application/msword',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    ];
-    
-    if (allowedTypes.includes(file.mimetype)) {
-      cb(null, true);
-    } else {
-      cb(new Error(`File type ${file.mimetype} is not allowed`), false);
-    }
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
+    cb(null, allowedTypes.includes(file.mimetype));
   }
 });
-
-// Rate limiting for contact form submissions
-const contactLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10, // Increased limit for demo
-  message: {
-    success: false,
-    message: 'Too many contact form submissions. Please try again later.'
-  },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-
-// In-memory storage for demo (replace with database in production)
-const contacts = [];
 
 // Simple validation middleware
 const validateContact = (req, res, next) => {
@@ -86,14 +57,13 @@ const validateContact = (req, res, next) => {
 // @route   POST /api/contact
 // @desc    Submit contact form (simplified version)
 // @access  Public
-router.post('/', contactLimiter, upload.array('files', 10), validateContact, async (req, res) => {
+router.post('/', upload.array('files', 10), validateContact, async (req, res) => {
   try {
     const { name, email, phone, projectType, budget, message } = req.body;
     const files = req.files || [];
 
-    // Create contact entry (in-memory for demo)
-    const contact = {
-      id: Date.now().toString(),
+    // Create contact entry in MongoDB
+    const contact = new Contact({
       name: name.trim(),
       email: email.trim().toLowerCase(),
       phone: phone.trim(),
@@ -105,37 +75,43 @@ router.post('/', contactLimiter, upload.array('files', 10), validateContact, asy
         size: file.size,
         mimetype: file.mimetype
       })),
-      status: 'new',
-      createdAt: new Date(),
-      ipAddress: req.ip || req.connection.remoteAddress
-    };
+      status: 'new',      ipAddress: req.ip || req.connection.remoteAddress
+    });// Save to database
+    const savedContact = await contact.save();
 
-    // Store in memory
-    contacts.push(contact);
-
-    console.log('📧 New contact form submission:', {
-      name: contact.name,
-      email: contact.email,
-      projectType: contact.projectType,
-      filesCount: files.length
+    console.log('📧 New contact:', {
+      id: savedContact._id,
+      name: savedContact.name,
+      email: savedContact.email,
+      projectType: savedContact.projectType
     });
 
     res.status(201).json({
       success: true,
       message: 'Contact form submitted successfully! We will get back to you within 24 hours.',
       data: {
-        id: contact.id,
-        name: contact.name,
-        email: contact.email,
-        projectType: contact.projectType,
-        status: contact.status,
-        createdAt: contact.createdAt,
+        id: savedContact._id,
+        name: savedContact.name,
+        email: savedContact.email,
+        projectType: savedContact.projectType,
+        status: savedContact.status,
+        createdAt: savedContact.createdAt,
         filesUploaded: files.length
       }
     });
 
   } catch (error) {
     console.error('Contact form submission error:', error);
+    
+    // Handle validation errors
+    if (error.name === 'ValidationError') {
+      const validationErrors = Object.values(error.errors).map(err => err.message);
+      return res.status(400).json({
+        success: false,
+        message: 'Validation errors',
+        errors: validationErrors
+      });
+    }
     
     res.status(500).json({
       success: false,
@@ -147,19 +123,72 @@ router.post('/', contactLimiter, upload.array('files', 10), validateContact, asy
 // @route   GET /api/contact
 // @desc    Get all contacts (for testing)
 // @access  Public
-router.get('/', (req, res) => {
-  res.json({
-    success: true,
-    data: contacts.map(contact => ({
-      id: contact.id,
-      name: contact.name,
-      email: contact.email,
-      projectType: contact.projectType,
-      status: contact.status,
-      createdAt: contact.createdAt,
-      filesCount: contact.files.length
-    }))
-  });
+router.get('/', async (req, res) => {
+  try {
+    const contacts = await Contact.find()
+      .sort({ createdAt: -1 })
+      .select('name email phone projectType status createdAt files')
+      .limit(50); // Limit to 50 most recent contacts
+
+    res.json({
+      success: true,
+      count: contacts.length,
+      data: contacts.map(contact => ({
+        id: contact._id,
+        name: contact.name,
+        email: contact.email,
+        phone: contact.phone,
+        projectType: contact.projectType,
+        status: contact.status,
+        createdAt: contact.createdAt,
+        filesCount: contact.files.length
+      }))
+    });
+  } catch (error) {
+    console.error('Error fetching contacts:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch contacts'
+    });
+  }
+});
+
+// @route   GET /api/contact/:id
+// @desc    Get contact by ID
+// @access  Public
+router.get('/:id', async (req, res) => {
+  try {
+    const contact = await Contact.findById(req.params.id);
+    
+    if (!contact) {
+      return res.status(404).json({
+        success: false,
+        message: 'Contact not found'
+      });
+    }
+
+    res.json({
+      success: true,
+      data: {
+        id: contact._id,
+        name: contact.name,
+        email: contact.email,
+        phone: contact.phone,
+        projectType: contact.projectType,        budget: contact.budget,
+        message: contact.message,
+        status: contact.status,
+        files: contact.files,
+        createdAt: contact.createdAt,
+        updatedAt: contact.updatedAt
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching contact:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch contact details'
+    });
+  }
 });
 
 export default router;
