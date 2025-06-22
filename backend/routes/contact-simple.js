@@ -1,5 +1,6 @@
 import express from 'express';
 import multer from 'multer';
+import mongoose from 'mongoose';
 import Contact from '../models/Contact.js';
 
 const router = express.Router();
@@ -62,6 +63,34 @@ router.post('/', upload.array('files', 10), validateContact, async (req, res) =>
     const { name, email, phone, projectType, budget, message } = req.body;
     const files = req.files || [];
 
+    // Check if MongoDB is connected
+    if (mongoose.connection.readyState !== 1) {
+      console.log('📝 Database not connected - contact form data:');
+      console.log({
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        projectType,
+        budget: budget || '',
+        message: message.trim(),
+        filesCount: files.length,
+        timestamp: new Date().toISOString()
+      });
+
+      return res.status(201).json({
+        success: true,
+        message: 'Contact form received! We will get back to you within 24 hours.',
+        note: 'Running in development mode',
+        data: {
+          name: name.trim(),
+          email: email.trim(),
+          projectType,
+          timestamp: new Date().toISOString(),
+          filesUploaded: files.length
+        }
+      });
+    }
+
     // Create contact entry in MongoDB
     const contact = new Contact({
       name: name.trim(),
@@ -75,8 +104,11 @@ router.post('/', upload.array('files', 10), validateContact, async (req, res) =>
         size: file.size,
         mimetype: file.mimetype
       })),
-      status: 'new',      ipAddress: req.ip || req.connection.remoteAddress
-    });// Save to database
+      status: 'new',
+      ipAddress: req.ip || req.connection.remoteAddress
+    });
+
+    // Save to database
     const savedContact = await contact.save();
 
     console.log('📧 New contact:', {
@@ -125,10 +157,19 @@ router.post('/', upload.array('files', 10), validateContact, async (req, res) =>
 // @access  Public
 router.get('/', async (req, res) => {
   try {
+    // Check if MongoDB is connected
+    if (mongoose.connection.readyState !== 1) {
+      return res.json({
+        success: true,
+        message: 'Database not connected - running in development mode',
+        data: []
+      });
+    }
+
     const contacts = await Contact.find()
       .sort({ createdAt: -1 })
       .select('name email phone projectType status createdAt files')
-      .limit(50); // Limit to 50 most recent contacts
+      .limit(50);
 
     res.json({
       success: true,

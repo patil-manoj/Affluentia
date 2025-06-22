@@ -28,14 +28,26 @@ app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true, limit: '5mb' }));
 
 // Database connection
-mongoose.connect(process.env.MONGO_URL, {
-  dbName: process.env.DB_NAME || 'affluentia_interior',
-})
-.then(() => console.log('✅ Connected to MongoDB'))
-.catch((error) => {
-  console.error('❌ MongoDB connection error:', error);
-  process.exit(1);
-});
+const connectDB = async () => {
+  try {
+    if (!process.env.MONGO_URL) {
+      console.log('⚠️ MONGO_URL not found in environment variables');
+      console.log('📝 Running in development mode without database');
+      return;
+    }
+
+    await mongoose.connect(process.env.MONGO_URL, {
+      dbName: process.env.DB_NAME || 'affluentia_interior',
+    });
+    console.log('✅ Connected to MongoDB');
+  } catch (error) {
+    console.error('❌ MongoDB connection error:', error.message);
+    console.log('📝 Continuing without database - check your MongoDB credentials');
+    console.log('🔍 Expected format: mongodb+srv://username:password@cluster.mongodb.net/');
+  }
+};
+
+connectDB();
 
 // Routes
 app.use('/api/contact', contactRoutes);
@@ -44,7 +56,29 @@ app.use('/api/contact', contactRoutes);
 app.get('/', (req, res) => {
   res.json({
     message: 'Affluentia Interior Design API',
-    version: '1.0.0'
+    version: '1.0.0',
+    database: {
+      connected: mongoose.connection.readyState === 1,
+      status: mongoose.connection.readyState,
+      // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
+      statusText: ['disconnected', 'connected', 'connecting', 'disconnecting'][mongoose.connection.readyState]
+    }
+  });
+});
+
+// Debug endpoint to check environment
+app.get('/api/debug', (req, res) => {
+  res.json({
+    success: true,
+    database: {
+      connected: mongoose.connection.readyState === 1,
+      status: mongoose.connection.readyState,
+      hasMongoUrl: !!process.env.MONGO_URL,
+      mongoUrlFormat: process.env.MONGO_URL ?
+        (process.env.MONGO_URL.startsWith('mongodb+srv://') ? 'Atlas format' : 'Standard format') :
+        'Not provided'
+    },
+    environment: process.env.NODE_ENV || 'development'
   });
 });
 
