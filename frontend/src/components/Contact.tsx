@@ -7,6 +7,7 @@ import {
   CheckCircleIcon,
   XMarkIcon
 } from '@heroicons/react/24/outline';
+import Toast from './ui/Toast';
 
 interface FormData {
   name: string;
@@ -93,6 +94,9 @@ const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState<'success' | 'error'>('success');
 
   // Client-side validation
   const validateField = (name: string, value: string | File[]): string | undefined => {
@@ -229,7 +233,7 @@ const Contact = () => {
         body: submitData,
       });      const result = await response.json();
       
-      console.log('API Response:', { status: response.status, data: result });if (response.ok && result.success) {
+      console.log('API Response:', { status: response.status, data: result });      if (response.ok && result.success) {
         setIsSubmitted(true);
         // Reset form and errors after successful submission
         setFormData({
@@ -243,7 +247,14 @@ const Contact = () => {
         });
         setFormErrors({});
         setSubmitError(null); // Clear any previous errors
-        setTimeout(() => setIsSubmitted(false), 8000); // Show success message for 8 seconds      } else {
+        setToastMessage('Message sent successfully! We\'ll get back to you soon.');
+        setToastType('success');
+        setShowToast(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setShowToast(false);
+        }, 8000); // Show success message for 8 seconds
+      } else {
         // Handle server validation errors
         let errorMsg = 'Failed to submit form. Please try again.';
         
@@ -269,8 +280,10 @@ const Contact = () => {
         } else if (response.status >= 500) {
           errorMsg = 'Server error. Please try again later or contact us directly.';
         }
-        
-        setSubmitError(errorMsg);
+          setSubmitError(errorMsg);
+        setToastMessage(errorMsg);
+        setToastType('error');
+        setShowToast(true);
         
         // If there are specific field errors from server, map them to form errors
         if (result.fieldErrors) {
@@ -297,8 +310,10 @@ const Contact = () => {
           errorMessage = error.message;
         }
       }
-      
-      setSubmitError(errorMessage);
+        setSubmitError(errorMessage);
+      setToastMessage(errorMessage);
+      setToastType('error');
+      setShowToast(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -356,9 +371,14 @@ const Contact = () => {
       files: fileError
     }));
   };
-
   return (
     <section className="relative isolate bg-gradient-to-b from-white to-stone-50" id="contact">
+      <Toast
+        message={toastMessage}
+        type={toastType}
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div 
@@ -478,26 +498,7 @@ const Contact = () => {
           >            <form onSubmit={handleSubmit} className="luxury-card p-8 space-y-6">
               <h3 className="font-serif text-2xl font-bold text-stone-900 mb-6">Start Your Project</h3>
               
-              {/* Form requirements info */}
-              <div className="p-4 bg-stone-50 border border-stone-200 rounded-xl">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <svg className="h-5 w-5 text-stone-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="ml-3">
-                    <h4 className="text-sm font-medium text-stone-800">Form Requirements:</h4>
-                    <ul className="mt-1 text-sm text-stone-600 space-y-1">
-                      <li>• Name must be at least 2 characters</li>
-                      <li>• Valid email address required</li>
-                      <li>• Phone number with at least 10 digits</li>
-                      <li>• Project details with at least 10 characters</li>
-                      <li>• Files: Max 10MB each, up to 10 files total</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+              
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">                <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-stone-900 mb-2">
@@ -701,105 +702,8 @@ const Contact = () => {
                     </div>
                   )}
                 </div>
-              </div>              {/* Form status summary */}
-              {(Object.keys(formErrors).length > 0 || submitError) && (
-                <div className="p-4 bg-gray-50 border border-gray-200 rounded-xl">
-                  <div className="flex">
-                    <div className="flex-shrink-0">
-                      <svg className="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div className="ml-3">
-                      <h4 className="text-sm font-medium text-gray-800">Form Status:</h4>
-                      <div className="mt-1 text-sm text-gray-600">
-                        {Object.keys(formErrors).length > 0 ? (
-                          <p className="text-amber-600"> {Object.keys(formErrors).length} field(s) need attention</p>
-                        ) : submitError ? (
-                          <p className="text-red-600"> Submission failed - see error below</p>
-                        ) : (
-                          <p className="text-green-600"> All fields are valid</p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Error messages */}
-              {submitError && (
-                <motion.div 
-                  className="p-4 bg-red-50 border border-red-200 rounded-xl"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="flex">
-                    <div className="flex-shrink-0">
-                      <XMarkIcon className="h-5 w-5 text-red-400" />
-                    </div>
-                    <div className="ml-3">
-                      <h3 className="text-sm font-medium text-red-800">
-                        Unable to Submit Form
-                      </h3>
-                      <p className="mt-1 text-sm text-red-700">{submitError}</p>
-                      <div className="mt-2">
-                        <p className="text-xs text-red-600">
-                          If this issue persists, you can reach us directly at:
-                        </p>
-                        <p className="text-xs text-red-600 mt-1">
-                          📞 +91 775645618 | 📧 affluentiainterior@gmail.com
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              )}{/* Field validation summary (when there are errors) */}
-              {Object.keys(formErrors).length > 0 && (
-                <motion.div 
-                  className="p-4 bg-amber-50 border border-amber-200 rounded-xl"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="flex">
-                    <div className="flex-shrink-0">
-                      <svg className="h-5 w-5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div className="ml-3">
-                      <h3 className="text-sm font-medium text-amber-800">
-                        Please fix the following issues:
-                      </h3>
-                      <ul className="mt-1 text-sm text-amber-700 list-disc list-inside space-y-1">
-                        {Object.entries(formErrors).map(([field, error]) => (
-                          error && <li key={field}>{error}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </motion.div>
-              )}              {/* Information about form submission */}
-              <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <svg className="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="ml-3">
-                    <h3 className="text-sm font-medium text-blue-800">Good to know:</h3>
-                    <ul className="mt-1 text-sm text-blue-700 space-y-1">
-                      <li>• You can submit multiple inquiries - each project gets individual attention</li>
-                      <li>• Files up to 10MB each are supported (PDF, Images, CAD files)</li>
-                      <li>• We respond to all inquiries within 24 hours</li>
-                      <li>• Your data is securely stored and never shared with third parties</li>
-                      <li>• Multiple submissions from same contact details are welcome</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+              </div>             
+                        
 
               <motion.button
                 type="submit"
