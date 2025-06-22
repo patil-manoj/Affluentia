@@ -5,69 +5,72 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      colors: {
+    extend: {      colors: {
+        // Architectural color palette
         primary: {
-          50: '#fdf8f3',
-          100: '#faeee1',
-          200: '#f4dbc2',
-          300: '#ecc198',
-          400: '#e19c6c',
-          500: '#d97d4a',
-          600: '#cb683f',
-          700: '#aa5235',
-          800: '#884132',
-          900: '#6e372b',
+          50: '#F3E9D2',    // Light cream
+          100: '#E4DED4',   // Warm off-white
+          200: '#C6CDB6',   // Soft sage
+          300: '#A8B29E',   // Muted olive
+          400: '#8A9686',   // Sage green
+          500: '#6C7A6E',   // Forest green
+          600: '#2A3625',   // Deep forest
+          700: '#1D251A',   // Dark green
+          800: '#101410',   // Very dark green
+          900: '#0A0D08',   // Almost black green
         },
         accent: {
-          50: '#fef7ee',
-          100: '#fdecd7',
-          200: '#fad5ae',
-          300: '#f6b77a',
-          400: '#f19144',
-          500: '#ed721f',
-          600: '#de5815',
-          700: '#b84214',
-          800: '#923618',
-          900: '#762f16',
+          50: '#F8F8F8',    // Pure light
+          100: '#F0F0F0',   // Light gray
+          200: '#E8E8E8',   // Soft gray
+          300: '#D0D0D0',   // Medium gray
+          400: '#A8A8A8',   // Gray
+          500: '#808080',   // Mid gray
+          600: '#404040',   // Dark gray
+          700: '#202020',   // Very dark gray
+          800: '#101010',   // Almost black
+          900: '#010101',   // Deep black
         },
         neutral: {
-          50: '#fafafa',
-          100: '#f5f5f5',
-          200: '#e5e5e5',
-          300: '#d4d4d4',
-          400: '#a3a3a3',
-          500: '#737373',
-          600: '#525252',
-          700: '#404040',
-          800: '#262626',
-          900: '#171717',
+          50: '#FAFAFA',    // White
+          100: '#F5F5F5',   // Light neutral
+          200: '#EEEEEE',   // Soft neutral
+          300: '#E0E0E0',   // Light gray
+          400: '#BDBDBD',   // Medium gray
+          500: '#9E9E9E',   // Gray
+          600: '#757575',   // Dark gray
+          700: '#616161',   // Darker gray
+          800: '#424242',   // Very dark gray
+          900: '#212121',   // Near black
         },
-        stone: {
-          50: '#fafaf9',
-          100: '#f5f5f4',
-          200: '#e7e5e4',
-          300: '#d6d3d1',
-          400: '#a8a29e',
-          500: '#78716c',
-          600: '#57534e',
-          700: '#44403c',
-          800: '#292524',
-          900: '#1c1917',
+        dark: {
+          50: '#1A1A1A',    // Dark surface
+          100: '#151515',   // Darker surface
+          200: '#101010',   // Very dark
+          300: '#0D0D0D',   // Almost black
+          400: '#080808',   // Deep black
+          500: '#050505',   // Deeper black
+          600: '#030303',   // Very deep black
+          700: '#020202',   // Near pure black
+          800: '#010101',   // Pure black variant
+          900: '#000000',   // Pure black
         }
-      },
-      fontFamily: {
-        'serif': ['Playfair Display', 'Georgia', 'serif'],
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
-        'display': ['Oswald', 'Impact', 'sans-serif'],
+      },      fontFamily: {
+        'serif': ['Lora', 'Georgia', 'serif'],
+        'sans': ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
+        'display': ['Montserrat', 'Poppins', 'sans-serif'],
+        'body': ['Open Sans', 'Inter', 'system-ui', 'sans-serif'],
       },      boxShadow: {
         'soft': '0px 2px 6px rgba(0, 0, 0, 0.05)',
         'medium': '0px 4px 12px rgba(0, 0, 0, 0.08)',
         'hard': '0px 8px 24px rgba(0, 0, 0, 0.12)',
-        'luxury': '0px 8px 32px rgba(0, 0, 0, 0.08)',
-        'glow': '0px 0px 50px rgba(217, 125, 74, 0.15)',
+        'architectural': '0px 8px 32px rgba(0, 0, 0, 0.06)',
+        'architectural-hover': '0px 16px 48px rgba(0, 0, 0, 0.12)',
+        'glow': '0px 0px 50px rgba(42, 54, 37, 0.15)',
         'glass': '0 0 15px rgba(255, 255, 255, 0.1)',
-        'elegant': '0 4px 20px rgba(0, 0, 0, 0.1)',
+        'elegant': '0 4px 20px rgba(0, 0, 0, 0.08)',
+        'deep': '0 12px 40px rgba(0, 0, 0, 0.15)',
+        'floating': '0 8px 30px rgba(0, 0, 0, 0.12)',
       },
       backdropBlur: {
         'xs': '2px',

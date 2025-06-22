@@ -36,6 +36,68 @@ const LazyImage = ({ src, alt, className, onLoad }: {
   );
 };
 
+
+
+// Enhanced gallery data with architectural focus
+const galleryImages = [
+  {
+    url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    title: 'Contemporary Residence',
+    category: 'Architecture',
+    description: 'Modern architectural design with clean lines and expansive glass facades'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    title: 'Elegant Living Space',
+    category: 'Interior',
+    description: 'Sophisticated interior design with premium finishes and curated furnishings'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    title: 'Structural Elegance',
+    category: 'Architecture',
+    description: 'Meticulous attention to architectural details and material selection'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    title: 'Culinary Excellence',
+    category: 'Kitchen',
+    description: 'A chef\'s kitchen designed for both functionality and aesthetic appeal'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    title: 'Urban Sophistication',
+    category: 'Interior',
+    description: 'Contemporary living space with thoughtful lighting and spatial flow'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1600563438938-a42d493abb63?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1600563438938-a42d493abb63?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    title: 'Serene Sanctuary',
+    category: 'Bedroom',
+    description: 'Tranquil bedroom retreat with natural materials and calming tones'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    title: 'Spa-Like Retreat',
+    category: 'Bathroom',
+    description: 'Luxurious bathroom design with premium fixtures and natural stone finishes'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1600566752734-d1d4e8b8e2f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1600566752734-d1d4e8b8e2f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    title: 'Urban Landmark',
+    category: 'Architecture',
+    description: 'Iconic building facade that defines the urban landscape'
+  },
+];
+
 // Define animation variants
 const imageVariants: Variants = {
   hover: {
@@ -59,66 +121,6 @@ const contentVariants: Variants = {
     opacity: 1
   }
 };
-
-// Enhanced gallery data with additional categories and optimized images
-const galleryImages = [
-  {
-    url: 'https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg?auto=compress&cs=tinysrgb&w=800',
-    thumbnailUrl: 'https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Modern Living Space',
-    category: 'Living Room',
-    description: 'Contemporary design with natural light and open layout'
-  },
-  {
-    url: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
-    thumbnailUrl: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Minimalist Kitchen',
-    category: 'Kitchen',
-    description: 'Clean lines and efficient workspace design'
-  },
-  {
-    url: 'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800',
-    thumbnailUrl: 'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Luxury Master Bedroom',
-    category: 'Bedroom',
-    description: 'Elegant comfort with premium finishes'
-  },
-  {
-    url: 'https://images.pexels.com/photos/3935350/pexels-photo-3935350.jpeg?auto=compress&cs=tinysrgb&w=800',
-    thumbnailUrl: 'https://images.pexels.com/photos/3935350/pexels-photo-3935350.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Contemporary Bathroom',
-    category: 'Bathroom',
-    description: 'Spa-like retreat with modern fixtures'
-  },
-  {
-    url: 'https://images.pexels.com/photos/6207827/pexels-photo-6207827.jpeg?auto=compress&cs=tinysrgb&w=800',
-    thumbnailUrl: 'https://images.pexels.com/photos/6207827/pexels-photo-6207827.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Elegant Dining Room',
-    category: 'Dining Room',
-    description: 'Sophisticated space for entertaining'
-  },
-  {
-    url: 'https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg?auto=compress&cs=tinysrgb&w=800',
-    thumbnailUrl: 'https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Modern Home Office',
-    category: 'Home Office',
-    description: 'Productive workspace with style'
-  },
-  {
-    url: 'https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=800',
-    thumbnailUrl: 'https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Cozy Reading Nook',
-    category: 'Living Room',
-    description: 'Intimate space for relaxation'
-  },
-  {
-    url: 'https://images.pexels.com/photos/6301168/pexels-photo-6301168.jpeg?auto=compress&cs=tinysrgb&w=800',
-    thumbnailUrl: 'https://images.pexels.com/photos/6301168/pexels-photo-6301168.jpeg?auto=compress&cs=tinysrgb&w=400',
-    title: 'Modern Kitchen Island',
-    category: 'Kitchen',
-    description: 'Social cooking space with clean aesthetics'
-  }
-];
 
 const categories = ['All', ...new Set(galleryImages.map(img => img.category))];
 

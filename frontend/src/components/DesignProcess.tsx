@@ -1,0 +1,242 @@
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import { 
+  ChatBubbleLeftRightIcon, 
+  PencilSquareIcon, 
+  WrenchScrewdriverIcon 
+} from '@heroicons/react/24/outline';
+
+const processSteps = [
+  {
+    step: 1,
+    title: "Consultation",
+    description: "We listen to your needs and preferences, understanding your vision to create a personalized design strategy.",
+    icon: ChatBubbleLeftRightIcon,
+    details: [
+      "Initial site visit and assessment",
+      "Design brief and requirements gathering",
+      "Budget and timeline discussion",
+      "Concept development"
+    ]
+  },
+  {
+    step: 2,
+    title: "Design",
+    description: "Our team crafts tailored design solutions for you, transforming concepts into detailed architectural plans.",
+    icon: PencilSquareIcon,
+    details: [
+      "Detailed architectural drawings",
+      "3D visualizations and renderings",
+      "Material and finish selections",
+      "Technical specifications"
+    ]
+  },
+  {
+    step: 3,
+    title: "Implementation",
+    description: "We bring your vision to life with precision, managing every detail from construction to final touches.",
+    icon: WrenchScrewdriverIcon,
+    details: [
+      "Project management and coordination",
+      "Quality control and inspections",
+      "Progress updates and communication",
+      "Final walkthrough and handover"
+    ]
+  }
+];
+
+const DesignProcess = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+
+  return (
+    <section 
+      className="relative py-24 overflow-hidden bg-gradient-to-br from-primary-50 to-primary-100"
+      ref={containerRef}
+    >
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 -z-10">
+        <motion.div
+          className="absolute inset-0 opacity-20"
+          style={{
+            background: "radial-gradient(circle at 25% 25%, rgba(42, 54, 37, 0.1) 0%, transparent 50%)",
+            y: backgroundY
+          }}
+        />
+        <motion.div
+          className="absolute inset-0 opacity-15"
+          style={{
+            background: "radial-gradient(circle at 75% 75%, rgba(29, 37, 26, 0.08) 0%, transparent 50%)",
+            y: useTransform(scrollYProgress, [0, 1], [0, 50])
+          }}
+        />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          className="mx-auto max-w-2xl lg:text-center relative"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2
+            className="text-base font-semibold leading-7 text-primary-600 font-display"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            Our Design Process
+          </motion.h2>
+          <motion.p
+            className="mt-2 text-4xl font-bold tracking-tight text-dark-800 sm:text-5xl font-display"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Our Simple Three-Step Design Process
+          </motion.p>
+          <motion.p
+            className="mt-6 text-lg leading-8 text-neutral-600 font-body"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            Transforming your space begins with understanding your vision. 
+            Our streamlined process ensures your ideas come to life seamlessly.
+          </motion.p>
+        </motion.div>
+
+        {/* Process Steps */}
+        <div className="mx-auto mt-16 max-w-7xl sm:mt-20">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={step.step}
+                className="group relative"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+              >                {/* Step Card */}
+                <div className="architectural-card p-10 h-full bg-white/98 backdrop-blur-sm border border-primary-200/30 group-hover:border-primary-300/50 transition-all duration-500">
+                  {/* Step Number with enhanced styling */}
+                  <motion.div 
+                    className="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 text-white font-bold text-xl mb-8 shadow-lg"
+                    whileHover={{ scale: 1.1, rotate: 8 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    {step.step}
+                    <motion.div 
+                      className="absolute -inset-1 bg-gradient-to-r from-primary-400 to-primary-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-300"
+                      initial={false}
+                    />
+                  </motion.div>
+
+                  {/* Icon with enhanced styling */}
+                  <motion.div 
+                    className="mb-8 relative"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="w-16 h-16 bg-primary-50 rounded-xl flex items-center justify-center group-hover:bg-primary-100 transition-colors duration-300">
+                      <step.icon className="w-8 h-8 text-primary-600" />
+                    </div>
+                  </motion.div>
+
+                  {/* Content with enhanced typography */}
+                  <div className="space-y-6">
+                    <h3 className="text-2xl font-bold text-dark-800 font-display leading-tight">
+                      Step {step.step}: {step.title}
+                    </h3>
+                    
+                    <p className="text-neutral-600 font-body leading-relaxed text-lg">
+                      {step.description}
+                    </p>
+
+                    {/* Details List with enhanced styling */}
+                    <div className="space-y-3 pt-4 border-t border-primary-100/50">
+                      {step.details.map((detail, detailIndex) => (
+                        <motion.div 
+                          key={detailIndex}
+                          className="flex items-start gap-4 text-sm text-neutral-600 font-body"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.5, delay: (index * 0.2) + (detailIndex * 0.1) }}
+                        >
+                          <span className="w-2 h-2 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full mt-2 flex-shrink-0 shadow-sm" />
+                          <span className="leading-relaxed">{detail}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Enhanced Hover Overlay */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-primary-50/80 to-primary-100/60 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
+                    initial={false}
+                  />
+                  
+                  {/* Subtle shadow enhancement on hover */}
+                  <motion.div
+                    className="absolute inset-0 rounded-xl shadow-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"
+                    style={{
+                      boxShadow: '0 25px 50px -12px rgba(42, 54, 37, 0.4)'
+                    }}
+                  />
+                </div>                {/* Enhanced Connection Line (between cards) */}
+                {index < processSteps.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-6 z-20">
+                    <motion.div 
+                      className="relative w-12 h-0.5"
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      transition={{ duration: 0.8, delay: (index + 1) * 0.2 }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary-300 via-primary-400 to-primary-500" />
+                      <motion.div
+                        className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-primary-500 rounded-full"
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        transition={{ duration: 0.4, delay: (index + 1) * 0.2 + 0.4 }}
+                      />
+                    </motion.div>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <motion.div
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <motion.button
+            className="inline-flex items-center gap-3 bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-architectural transition-all duration-300"
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0px 16px 40px rgba(42, 54, 37, 0.2)"
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Learn More About Our Process
+          </motion.button>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default DesignProcess;

@@ -1,48 +1,48 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   HomeIcon,
-  PaintBrushIcon,
-  LightBulbIcon,
   SparklesIcon,
+  BuildingOfficeIcon,
+  CubeIcon,
 } from '@heroicons/react/24/outline';
 import { useRef } from 'react';
 
 const features = [
   {
-    name: 'Custom Design',
+    name: 'Architectural Excellence',
     description:
-      'Tailored interior solutions that reflect your unique style and personality, creating spaces that truly feel like home.',
+      'Visionary architectural design that harmoniously blends form and function, creating structures that inspire and endure.',
+    icon: BuildingOfficeIcon,
+    image:
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    accent: 'from-primary-600 to-primary-700',
+  },
+  {
+    name: 'Interior Mastery',
+    description:
+      'Sophisticated interior environments that reflect your unique aesthetic while maximizing comfort and functionality.',
     icon: HomeIcon,
     image:
-      'https://images.pexels.com/photos/3932930/pexels-photo-3932930.jpeg',
-    accent: 'from-purple-600 to-blue-600',
+      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    accent: 'from-primary-500 to-primary-600',
   },
   {
-    name: 'Artistic Vision',
+    name: 'Spatial Innovation',
     description:
-      'We blend creativity with functionality, turning your ideas into stunning reality while maintaining practical livability.',
-    icon: PaintBrushIcon,
+      'Creative spatial solutions that transform ordinary spaces into extraordinary experiences through thoughtful design.',
+    icon: CubeIcon,
     image:
-      'https://images.pexels.com/photos/3255245/pexels-photo-3255245.jpeg',
-    accent: 'from-rose-600 to-orange-600',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    accent: 'from-primary-700 to-primary-800',
   },
   {
-    name: 'Smart Solutions',
+    name: 'Luxury Craftsmanship',
     description:
-      'Innovative design approaches that maximize space utilization and enhance the natural flow of your environment.',
-    icon: LightBulbIcon,
-    image:
-      'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg',
-    accent: 'from-emerald-600 to-teal-600',
-  },
-  {
-    name: 'Luxury Finishes',
-    description:
-      'Premium materials and exquisite details that elevate your space to new heights of sophistication.',
+      'Exquisite attention to detail with premium materials and finishes that define luxury living at its finest.',
     icon: SparklesIcon,
     image:
-      'https://images.pexels.com/photos/3926542/pexels-photo-3926542.jpeg',
-    accent: 'from-amber-600 to-yellow-600',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    accent: 'from-primary-400 to-primary-500',
   },
 ];
 
@@ -52,51 +52,57 @@ export default function Features() {
     target: containerRef,
     offset: ['start end', 'end start'],
   });
-
   return (
     <div
-      className="relative py-24 sm:py-32 overflow-hidden"
+      className="relative py-24 sm:py-32 overflow-hidden bg-gradient-to-br from-white via-primary-50/30 to-primary-100/40"
       id="features"
       ref={containerRef}
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 -z-10">
         <motion.div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0 opacity-20"
           style={{
             background:
-              'radial-gradient(circle at 50% 50%, rgba(99,102,241,0.1) 0%, transparent 50%)',
-            scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 0.5]),
-            opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]),
+              'radial-gradient(circle at 25% 25%, rgba(42, 54, 37, 0.1) 0%, transparent 50%)',
+            scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.1, 0.8]),
+            opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.1, 0.3, 0.1]),
+          }}
+        />
+        <motion.div
+          className="absolute inset-0 opacity-15"
+          style={{
+            background:
+              'radial-gradient(circle at 75% 75%, rgba(29, 37, 26, 0.08) 0%, transparent 50%)',
+            scale: useTransform(scrollYProgress, [0, 0.5, 1], [1.2, 0.9, 1.2]),
+            opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.05, 0.2, 0.05]),
           }}
         />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
-          className="mx-auto max-w-2xl lg:text-center relative"
+          className="mx-auto max-w-3xl lg:text-center relative"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-base font-semibold leading-7"
-            style={{
-              background: 'linear-gradient(to right, #4F46E5, #9333EA)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}
+            className="text-base font-semibold leading-7 text-primary-600 font-display"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
           >
-            Reimagine Your Space
+            Our Expertise
           </motion.h2>
           <motion.p
-            className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl"
+            className="mt-2 text-4xl font-bold tracking-tight text-dark-800 sm:text-5xl font-display"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Transform Your Vision Into Reality
+            Architectural Excellence Through Innovation
           </motion.p>
           <motion.p
             className="mt-6 text-lg leading-8 text-gray-600"

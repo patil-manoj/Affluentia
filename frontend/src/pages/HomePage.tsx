@@ -5,6 +5,7 @@ import { ArrowRightIcon, SparklesIcon, HomeIcon, BuildingOfficeIcon } from '@her
 
 // Lazy load components
 const Hero = lazy(() => import('../components/Hero'))
+const DesignProcess = lazy(() => import('../components/DesignProcess'))
 const Features = lazy(() => import('../components/Features'))
 const Gallery = lazy(() => import('../components/Gallery'))
 const Showcase = lazy(() => import('../components/Showcase'))
@@ -37,34 +38,36 @@ const HomePage = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   return (
-    <main className="relative overflow-x-hidden">
-      {/* Animated background */}
-      <div className="fixed inset-0 -z-10 opacity-30">
+    <main className="relative overflow-x-hidden">      {/* Animated background */}
+      <div className="fixed inset-0 -z-10 opacity-20">
         <motion.div
           className="absolute inset-0 luxury-gradient"
           style={{ y: backgroundY }}
         />
         <motion.div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-15"
           style={{
-            background: "radial-gradient(circle at 50% 50%, rgba(217,125,74,0.1) 0%, transparent 70%)",
+            background: "radial-gradient(circle at 50% 50%, rgba(42, 54, 37, 0.08) 0%, transparent 70%)",
             y: useTransform(scrollYProgress, [0, 1], ["0%", "-20%"])
           }}
         />
-      </div>
-
-      {/* Hero Section - Enhanced for homepage */}
+      </div>{/* Hero Section - Enhanced for homepage */}
       <Suspense fallback={<LoadingSpinner />}>
         <Hero />
       </Suspense>
 
+      {/* Design Process Section */}
+      <Suspense fallback={<LoadingSpinner />}>
+        <DesignProcess />
+      </Suspense>
+
       {/* Enhanced Features Section */}
       <motion.div
-        className="relative z-10 bg-white/80 backdrop-blur-sm"
+        className="relative z-10 bg-white/95 backdrop-blur-sm"
         style={{
-          clipPath: "polygon(0 5%, 100% 0, 100% 95%, 0 100%)",
-          marginTop: "-5vh",
-          paddingTop: "10vh"
+          clipPath: "polygon(0 3%, 100% 0, 100% 97%, 0 100%)",
+          marginTop: "-3vh",
+          paddingTop: "6vh"
         }}
       >
         <Suspense fallback={<LoadingSpinner />}>
