@@ -17,6 +17,16 @@ interface FormData {
   message: string;
   files: File[];
 }
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  phone?: string;
+  projectType?: string;
+  message?: string;
+  files?: string;
+  general?: string;
+}
 const social = [
     {
       name: 'Facebook',
@@ -68,7 +78,8 @@ const social = [
     },
   ];
 
-const Contact = () => {  const [formData, setFormData] = useState<FormData>({
+const Contact = () => {
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
@@ -78,44 +89,149 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
     files: []
   });
   
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);  const handleSubmit = async (e: React.FormEvent) => {
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  // Client-side validation
+  const validateField = (name: string, value: string | File[]): string | undefined => {
+    switch (name) {
+      case 'name':
+        if (!value || (typeof value === 'string' && value.trim().length < 2)) {
+          return 'Name must be at least 2 characters long';
+        }
+        if (typeof value === 'string' && value.trim().length > 100) {
+          return 'Name cannot exceed 100 characters';
+        }
+        break;
+      
+      case 'email':
+        if (!value || typeof value !== 'string') {
+          return 'Email is required';
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value.trim())) {
+          return 'Please enter a valid email address';
+        }
+        break;
+      
+      case 'phone':
+        if (!value || typeof value !== 'string') {
+          return 'Phone number is required';
+        }
+        const phoneRegex = /^[\+]?[\d\s\-\(\)]{10,}$/;
+        if (!phoneRegex.test(value.trim().replace(/\s/g, ''))) {
+          return 'Please enter a valid phone number (at least 10 digits)';
+        }
+        break;
+      
+      case 'projectType':
+        if (!value || typeof value !== 'string') {
+          return 'Project type is required';
+        }
+        break;
+      
+      case 'message':
+        if (!value || typeof value !== 'string') {
+          return 'Project details are required';
+        }
+        if (value.trim().length < 10) {
+          return 'Please provide more details about your project (at least 10 characters)';
+        }
+        if (value.trim().length > 2000) {
+          return 'Message cannot exceed 2000 characters';
+        }
+        break;
+      
+      case 'files':
+        if (Array.isArray(value)) {
+          if (value.length > 10) {
+            return 'Maximum 10 files allowed';
+          }
+          for (const file of value) {
+            if (file.size > 10 * 1024 * 1024) { // 10MB limit
+              return `File "${file.name}" is too large. Maximum size is 10MB per file`;
+            }
+          }
+          const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+          const allowedExtensions = ['.dwg', '.skp'];
+          
+          for (const file of value) {
+            const fileExtension = file.name.toLowerCase().substring(file.name.lastIndexOf('.'));
+            const isAllowed = allowedTypes.includes(file.type) || allowedExtensions.includes(fileExtension);
+            if (!isAllowed) {
+              return `File "${file.name}" has an unsupported format. Allowed: PDF, DOC, DOCX, JPG, PNG, GIF, DWG, SKP`;
+            }
+          }
+        }
+        break;
+    }
+  };
+
+  const validateForm = (): boolean => {
+    const errors: FormErrors = {};
+    
+    errors.name = validateField('name', formData.name);
+    errors.email = validateField('email', formData.email);
+    errors.phone = validateField('phone', formData.phone);
+    errors.projectType = validateField('projectType', formData.projectType);
+    errors.message = validateField('message', formData.message);
+    errors.files = validateField('files', formData.files);
+    
+    // Remove undefined errors
+    Object.keys(errors).forEach(key => {
+      if (errors[key as keyof FormErrors] === undefined) {
+        delete errors[key as keyof FormErrors];
+      }
+    });
+    
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (isSubmitting) return; // Prevent double submission
     
-    setIsSubmitting(true);
+    // Clear previous errors
     setSubmitError(null);
-      try {
+    setFormErrors({});
+    
+    // Validate form before submission
+    if (!validateForm()) {
+      setSubmitError('Please fix the errors above and try again.');
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
       const apiUrl = import.meta.env.VITE_API_URL || 'https://affluentia.onrender.com';
       
       // Create FormData for file upload
       const submitData = new FormData();
-      submitData.append('name', formData.name);
-      submitData.append('email', formData.email);
-      submitData.append('phone', formData.phone);
+      submitData.append('name', formData.name.trim());
+      submitData.append('email', formData.email.trim());
+      submitData.append('phone', formData.phone.trim());
       submitData.append('projectType', formData.projectType);
       if (formData.budget) {
         submitData.append('budget', formData.budget);
       }
-      submitData.append('message', formData.message);
+      submitData.append('message', formData.message.trim());
       
       // Append files
       formData.files.forEach(file => {
         submitData.append('files', file);
-      });      const response = await fetch(`${apiUrl}/api/contact`, {
-        method: 'POST',
-        body: submitData,
       });
 
-      const result = await response.json();
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: 'POST',
+        body: submitData,
+      });      const result = await response.json();
       
-      console.log('API Response:', { status: response.status, data: result });
-
-      if (response.ok && result.success) {
+      console.log('API Response:', { status: response.status, data: result });if (response.ok && result.success) {
         setIsSubmitted(true);
-        // Reset form after successful submission
+        // Reset form and errors after successful submission
         setFormData({
           name: '',
           email: '',
@@ -125,53 +241,119 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
           message: '',
           files: []
         });
+        setFormErrors({});
+        setSubmitError(null); // Clear any previous errors
         setTimeout(() => setIsSubmitted(false), 8000); // Show success message for 8 seconds      } else {
-        // Handle validation errors specifically
+        // Handle server validation errors
+        let errorMsg = 'Failed to submit form. Please try again.';
+        
         if (result.errors && Array.isArray(result.errors)) {
-          throw new Error(`Validation errors: ${result.errors.join(', ')}`);
+          // Handle validation errors from server
+          errorMsg = `Please fix the following issues: ${result.errors.join(', ')}`;
+        } else if (result.message) {
+          // Use server's error message
+          errorMsg = result.message;
         }
-        throw new Error(result.message || 'Failed to submit form');
-      }
-    } catch (error) {
+        
+        // Handle specific error cases
+        if (response.status === 400) {
+          if (result.message?.includes('File too large')) {
+            errorMsg = 'One or more files are too large. Please ensure each file is under 10MB.';
+          } else if (result.message?.includes('Too many files')) {
+            errorMsg = 'Too many files selected. Maximum 10 files allowed.';
+          } else if (result.message?.includes('File type')) {
+            errorMsg = 'Unsupported file type. Please use PDF, DOC, DOCX, JPG, PNG, GIF, DWG, or SKP files.';
+          }
+        } else if (response.status === 429) {
+          errorMsg = 'Too many requests. Please wait a few minutes before submitting again.';
+        } else if (response.status >= 500) {
+          errorMsg = 'Server error. Please try again later or contact us directly.';
+        }
+        
+        setSubmitError(errorMsg);
+        
+        // If there are specific field errors from server, map them to form errors
+        if (result.fieldErrors) {
+          setFormErrors(result.fieldErrors);
+        }
+      }} catch (error) {
       console.error('Form submission error:', error);
       
       // Handle different types of errors
-      let errorMessage = 'Failed to submit form. Please try again or contact us directly.';
+      let errorMessage = 'Unable to submit form. Please check your internet connection and try again.';
       
       if (error instanceof Error) {
-        errorMessage = error.message;
-      } else if (typeof error === 'string') {
-        errorMessage = error;
+        if (error.message.includes('Failed to fetch')) {
+          errorMessage = 'Network error. Please check your internet connection and try again.';
+        } else if (error.message.includes('timeout')) {
+          errorMessage = 'Request timed out. Please try again or contact us directly.';
+        } else if (error.message.includes('413')) {
+          errorMessage = 'Files are too large. Please reduce file sizes and try again.';
+        } else if (error.message.includes('429')) {
+          errorMessage = 'Too many requests. Please wait a few minutes before trying again.';
+        } else if (error.message.includes('500')) {
+          errorMessage = 'Server error. Please try again later or contact us directly.';
+        } else {
+          errorMessage = error.message;
+        }
       }
       
       setSubmitError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
-  };const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  };  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     if (e.target.type === 'file') {
       const fileInput = e.target as HTMLInputElement;
       if (fileInput.files) {
         const newFiles = Array.from(fileInput.files);
+        const updatedFiles = [...formData.files, ...newFiles];
+        
         setFormData(prev => ({
           ...prev,
-          files: [...prev.files, ...newFiles]
+          files: updatedFiles
         }));
+        
+        // Validate files immediately
+        const fileError = validateField('files', updatedFiles);
+        setFormErrors(prev => ({
+          ...prev,
+          files: fileError
+        }));
+        
         // Clear the input so the same file can be selected again if needed
         fileInput.value = '';
       }
     } else {
+      const { name, value } = e.target;
+      
       setFormData(prev => ({
         ...prev,
-        [e.target.name]: e.target.value
+        [name]: value
       }));
+      
+      // Real-time validation (only show errors after user starts typing)
+      if (value.trim() !== '' || formErrors[name as keyof FormErrors]) {
+        const error = validateField(name, value);
+        setFormErrors(prev => ({
+          ...prev,
+          [name]: error
+        }));
+      }
     }
   };
-
   const removeFile = (indexToRemove: number) => {
+    const updatedFiles = formData.files.filter((_, index) => index !== indexToRemove);
     setFormData(prev => ({
       ...prev,
-      files: prev.files.filter((_, index) => index !== indexToRemove)
+      files: updatedFiles
+    }));
+    
+    // Re-validate files after removal
+    const fileError = validateField('files', updatedFiles);
+    setFormErrors(prev => ({
+      ...prev,
+      files: fileError
     }));
   };
 
@@ -293,12 +475,31 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-          >
-            <form onSubmit={handleSubmit} className="luxury-card p-8 space-y-6">
+          >            <form onSubmit={handleSubmit} className="luxury-card p-8 space-y-6">
               <h3 className="font-serif text-2xl font-bold text-stone-900 mb-6">Start Your Project</h3>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
+              {/* Form requirements info */}
+              <div className="p-4 bg-stone-50 border border-stone-200 rounded-xl">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-stone-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <h4 className="text-sm font-medium text-stone-800">Form Requirements:</h4>
+                    <ul className="mt-1 text-sm text-stone-600 space-y-1">
+                      <li>• Name must be at least 2 characters</li>
+                      <li>• Valid email address required</li>
+                      <li>• Phone number with at least 10 digits</li>
+                      <li>• Project details with at least 10 characters</li>
+                      <li>• Files: Max 10MB each, up to 10 files total</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">                <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-stone-900 mb-2">
                     Full Name *
                   </label>
@@ -309,12 +510,17 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300"
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all duration-300 ${
+                      formErrors.name 
+                        ? 'border-red-300 focus:border-red-400 focus:ring-red-100' 
+                        : 'border-stone-200 focus:border-primary-400 focus:ring-primary-100'
+                    }`}
                     placeholder="Your full name"
                   />
-                </div>
-
-                <div>
+                  {formErrors.name && (
+                    <p className="mt-2 text-sm text-red-600">{formErrors.name}</p>
+                  )}
+                </div><div>
                   <label htmlFor="email" className="block text-sm font-semibold text-stone-900 mb-2">
                     Email Address *
                   </label>
@@ -325,9 +531,16 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300"
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all duration-300 ${
+                      formErrors.email 
+                        ? 'border-red-300 focus:border-red-400 focus:ring-red-100' 
+                        : 'border-stone-200 focus:border-primary-400 focus:ring-primary-100'
+                    }`}
                     placeholder="your@email.com"
                   />
+                  {formErrors.email && (
+                    <p className="mt-2 text-sm text-red-600">{formErrors.email}</p>
+                  )}
                 </div>
               </div>
 
@@ -342,12 +555,17 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300"
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all duration-300 ${
+                      formErrors.phone 
+                        ? 'border-red-300 focus:border-red-400 focus:ring-red-100' 
+                        : 'border-stone-200 focus:border-primary-400 focus:ring-primary-100'
+                    }`}
                     placeholder="+91 8123456789"
                   />
-                </div>
-
-                <div>
+                  {formErrors.phone && (
+                    <p className="mt-2 text-sm text-red-600">{formErrors.phone}</p>
+                  )}
+                </div>                <div>
                   <label htmlFor="projectType" className="block text-sm font-semibold text-stone-900 mb-2">
                     Project Type *
                   </label>
@@ -357,7 +575,11 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
                     required
                     value={formData.projectType}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300"
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all duration-300 ${
+                      formErrors.projectType 
+                        ? 'border-red-300 focus:border-red-400 focus:ring-red-100' 
+                        : 'border-stone-200 focus:border-primary-400 focus:ring-primary-100'
+                    }`}
                   >
                     <option value="">Select project type</option>                    <option value="residential">Residential Design</option>
                     <option value="commercial">Commercial Space</option>
@@ -367,6 +589,9 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
                     <option value="landscaping">Landscaping</option>
                     <option value="other">Other</option>
                   </select>
+                  {formErrors.projectType && (
+                    <p className="mt-2 text-sm text-red-600">{formErrors.projectType}</p>
+                  )}
                 </div>
               </div>
 
@@ -400,12 +625,20 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
                   rows={6}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300 resize-none"
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all duration-300 resize-none ${
+                    formErrors.message 
+                      ? 'border-red-300 focus:border-red-400 focus:ring-red-100' 
+                      : 'border-stone-200 focus:border-primary-400 focus:ring-primary-100'
+                  }`}
                   placeholder="Tell us about your project, vision, timeline, and any specific requirements..."
                 />
-              </div>
-
-              <div>
+                {formErrors.message && (
+                  <p className="mt-2 text-sm text-red-600">{formErrors.message}</p>
+                )}
+                <p className="mt-2 text-sm text-stone-500">
+                  {formData.message.length}/2000 characters
+                </p>
+              </div>              <div>
                 <label htmlFor="files" className="block text-sm font-semibold text-stone-900 mb-2">
                   Submit Requirements 
                 </label>
@@ -417,13 +650,22 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
                     multiple
                     accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.dwg,.skp"
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-stone-100 file:text-stone-700 hover:file:bg-stone-200"
-                  />                  <p className="mt-2 text-sm text-stone-500">
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all duration-300 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-stone-100 file:text-stone-700 hover:file:bg-stone-200 ${
+                      formErrors.files 
+                        ? 'border-red-300 focus:border-red-400 focus:ring-red-100' 
+                        : 'border-stone-200 focus:border-primary-400 focus:ring-primary-100'
+                    }`}
+                  />
+                  <p className="mt-2 text-sm text-stone-500">
                     Upload reference images, floor plans, inspiration photos, or any relevant documents. 
                     Accepted formats: PDF, DOC, DOCX, JPG, PNG, GIF, DWG, SKP (Max 10MB per file)
-                  </p>                  {formData.files && formData.files.length > 0 && (
+                  </p>
+                  {formErrors.files && (
+                    <p className="mt-2 text-sm text-red-600">{formErrors.files}</p>
+                  )}
+                  {formData.files && formData.files.length > 0 && (
                     <div className="mt-4 space-y-2">
-                      <p className="text-sm font-medium text-stone-700">Selected files:</p>
+                      <p className="text-sm font-medium text-stone-700">Selected files ({formData.files.length}/10):</p>
                       <div className="space-y-2">
                         {formData.files.map((file, index) => (
                           <div key={`${file.name}-${index}`} className="flex items-center justify-between p-3 bg-stone-50 rounded-lg border border-stone-200">
@@ -448,7 +690,10 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
                       </div>
                       <button
                         type="button"
-                        onClick={() => setFormData(prev => ({ ...prev, files: [] }))}
+                        onClick={() => {
+                          setFormData(prev => ({ ...prev, files: [] }));
+                          setFormErrors(prev => ({ ...prev, files: undefined }));
+                        }}
                         className="text-sm text-red-600 hover:text-red-700 font-medium"
                       >
                         Clear all files
@@ -456,12 +701,105 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
                     </div>
                   )}
                 </div>
-              </div>              {/* Error message */}
-              {submitError && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
-                  <p className="text-red-700 text-sm">{submitError}</p>
+              </div>              {/* Form status summary */}
+              {(Object.keys(formErrors).length > 0 || submitError) && (
+                <div className="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+                  <div className="flex">
+                    <div className="flex-shrink-0">
+                      <svg className="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <h4 className="text-sm font-medium text-gray-800">Form Status:</h4>
+                      <div className="mt-1 text-sm text-gray-600">
+                        {Object.keys(formErrors).length > 0 ? (
+                          <p className="text-amber-600"> {Object.keys(formErrors).length} field(s) need attention</p>
+                        ) : submitError ? (
+                          <p className="text-red-600"> Submission failed - see error below</p>
+                        ) : (
+                          <p className="text-green-600"> All fields are valid</p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
+
+              {/* Error messages */}
+              {submitError && (
+                <motion.div 
+                  className="p-4 bg-red-50 border border-red-200 rounded-xl"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="flex">
+                    <div className="flex-shrink-0">
+                      <XMarkIcon className="h-5 w-5 text-red-400" />
+                    </div>
+                    <div className="ml-3">
+                      <h3 className="text-sm font-medium text-red-800">
+                        Unable to Submit Form
+                      </h3>
+                      <p className="mt-1 text-sm text-red-700">{submitError}</p>
+                      <div className="mt-2">
+                        <p className="text-xs text-red-600">
+                          If this issue persists, you can reach us directly at:
+                        </p>
+                        <p className="text-xs text-red-600 mt-1">
+                          📞 +91 775645618 | 📧 affluentiainterior@gmail.com
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}{/* Field validation summary (when there are errors) */}
+              {Object.keys(formErrors).length > 0 && (
+                <motion.div 
+                  className="p-4 bg-amber-50 border border-amber-200 rounded-xl"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="flex">
+                    <div className="flex-shrink-0">
+                      <svg className="h-5 w-5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <h3 className="text-sm font-medium text-amber-800">
+                        Please fix the following issues:
+                      </h3>
+                      <ul className="mt-1 text-sm text-amber-700 list-disc list-inside space-y-1">
+                        {Object.entries(formErrors).map(([field, error]) => (
+                          error && <li key={field}>{error}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </motion.div>
+              )}              {/* Information about form submission */}
+              <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <h3 className="text-sm font-medium text-blue-800">Good to know:</h3>
+                    <ul className="mt-1 text-sm text-blue-700 space-y-1">
+                      <li>• You can submit multiple inquiries - each project gets individual attention</li>
+                      <li>• Files up to 10MB each are supported (PDF, Images, CAD files)</li>
+                      <li>• We respond to all inquiries within 24 hours</li>
+                      <li>• Your data is securely stored and never shared with third parties</li>
+                      <li>• Multiple submissions from same contact details are welcome</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
               <motion.button
                 type="submit"
