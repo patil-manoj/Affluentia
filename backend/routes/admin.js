@@ -1,5 +1,11 @@
 import express from 'express';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import Contact from '../models/Contact.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const router = express.Router();
 
@@ -298,6 +304,143 @@ router.post('/export', adminAuth, async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Failed to export contacts',
+      error: error.message
+    });
+  }
+});
+
+// GET /api/admin/files/:contactId/:filename - Download a file
+router.get('/files/:contactId/:filename', adminAuth, async (req, res) => {
+  try {
+    const { contactId, filename } = req.params;
+    
+    // Find the contact and verify the file belongs to it
+    const contact = await Contact.findById(contactId);
+    if (!contact) {
+      return res.status(404).json({
+        success: false,
+        message: 'Contact not found'
+      });
+    }
+
+    // Find the file in the contact's files array
+    const file = contact.files.find(f => f.filename === filename);
+    if (!file) {
+      return res.status(404).json({
+        success: false,
+        message: 'File not found'
+      });
+    }
+
+    // Check if file exists on disk
+    const filePath = path.join(__dirname, '../uploads', filename);
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({
+        success: false,
+        message: 'File not found on disk'
+      });
+    }
+
+    // Set appropriate headers for download
+    res.setHeader('Content-Disposition', `attachment; filename="${file.originalName}"`);
+    res.setHeader('Content-Type', file.mimetype || 'application/octet-stream');
+    res.setHeader('Content-Length', file.size);
+
+    // Stream the file
+    const fileStream = fs.createReadStream(filePath);
+    fileStream.pipe(res);
+
+  } catch (error) {
+    console.error('❌ Error downloading file:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to download file',
+      error: error.message
+    });
+  }
+});
+
+// PUT /api/admin/contacts/:id/status - Update contact status
+router.put('/contacts/:id/status', adminAuth, async (req, res) => {
+  try {
+    const { status } = req.body;
+    const validStatuses = ['new', 'contacted', 'completed'];
+
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid status. Must be one of: new, contacted, completed'
+      });
+    }
+
+    const contact = await Contact.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true, runValidators: true }
+    );
+
+    if (!contact) {
+      return res.status(404).json({
+        success: false,
+        message: 'Contact not found'
+      });
+    }
+
+    res.json({
+      success: true,
+      message: 'Contact status updated successfully',
+      data: contact
+    });
+
+  } catch (error) {
+    console.error('❌ Error updating contact status:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to update contact status',
+      error: error.message
+    });
+  }
+});
+
+// GET /api/admin/contacts/:id/export - Export single contact details
+router.get('/contacts/:id/export', adminAuth, async (req, res) => {
+  try {
+    const contact = await Contact.findById(req.params.id);
+    
+    if (!contact) {
+      return res.status(404).json({
+        success: false,
+        message: 'Contact not found'
+      });
+    }
+
+    // Create detailed export data
+    const exportData = {
+      'Contact ID': contact._id,
+      'Name': contact.name,
+      'Email': contact.email,
+      'Phone': contact.phone,
+      'Project Type': contact.projectType,
+      'Budget': contact.budget || 'Not specified',
+      'Status': contact.status,
+      'Message': contact.message,
+      'Files Count': contact.files ? contact.files.length : 0,
+      'Files': contact.files ? contact.files.map(f => f.originalName).join(', ') : 'None',
+      'IP Address': contact.ipAddress || 'Not recorded',
+      'Submitted Date': contact.createdAt ? new Date(contact.createdAt).toISOString() : '',
+      'Last Updated': contact.updatedAt ? new Date(contact.updatedAt).toISOString() : ''
+    };
+
+    res.json({
+      success: true,
+      data: exportData
+    });
+
+  } catch (error) {
+    console.error('❌ Error exporting contact:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to export contact',
       error: error.message
     });
   }

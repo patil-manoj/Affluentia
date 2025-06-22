@@ -33,11 +33,12 @@ const contactSchema = new mongoose.Schema({
     required: [true, 'Message is required'],
     trim: true,
     maxlength: [2000, 'Message cannot exceed 2000 characters']
-  },
-  files: [{
+  },  files: [{
     originalName: String,
+    filename: String,
     size: Number,
-    mimetype: String
+    mimetype: String,
+    path: String
   }],
   status: {
     type: String,

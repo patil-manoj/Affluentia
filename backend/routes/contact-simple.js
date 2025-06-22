@@ -1,17 +1,39 @@
 import express from 'express';
 import multer from 'multer';
 import mongoose from 'mongoose';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import Contact from '../models/Contact.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const router = express.Router();
 
-// Configure multer for file uploads
+// Ensure uploads directory exists
+const uploadsDir = path.join(__dirname, '../uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
+// Configure multer for file uploads with disk storage
 const upload = multer({
-  storage: multer.memoryStorage(),
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, uploadsDir);
+    },
+    filename: (req, file, cb) => {
+      // Generate unique filename
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      const originalName = file.originalname.replace(/[^a-zA-Z0-9.-]/g, '_');
+      cb(null, uniqueSuffix + '-' + originalName);
+    }
+  }),
   limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB limit
-    files: 5 // Maximum 5 files
-  },  fileFilter: (req, file, cb) => {
+    fileSize: 10 * 1024 * 1024, // 10MB limit
+    files: 10 // Maximum 10 files
+  },fileFilter: (req, file, cb) => {
     const allowedTypes = [
       'image/jpeg', 
       'image/png', 
@@ -156,9 +178,7 @@ router.post('/', (req, res, next) => {
           filesUploaded: files.length
         }
       });
-    }
-
-    // Create contact entry in MongoDB
+    }    // Create contact entry in MongoDB
     const contact = new Contact({
       name: name.trim(),
       email: email.trim().toLowerCase(),
@@ -168,8 +188,10 @@ router.post('/', (req, res, next) => {
       message: message.trim(),
       files: files.map(file => ({
         originalName: file.originalname,
+        filename: file.filename,
         size: file.size,
-        mimetype: file.mimetype
+        mimetype: file.mimetype,
+        path: file.path
       })),
       status: 'new',
       ipAddress: req.ip || req.connection.remoteAddress
