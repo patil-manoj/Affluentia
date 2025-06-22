@@ -137,7 +137,7 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2 }}
           className="max-w-4xl mx-auto"
         >          <motion.h1 
-            className="text-6xl md:text-7xl lg:text-9xl font-display font-bold text-white leading-[0.9] mb-8 tracking-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-[0.9] mb-8 tracking-tight"
             style={{
               textShadow: '0 8px 32px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.4)'
             }}

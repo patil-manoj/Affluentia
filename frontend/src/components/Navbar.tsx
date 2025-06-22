@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, AnimatePresence } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 
 const navigation = [
@@ -21,9 +21,9 @@ export default function Navbar() {
     });
     return () => unsubscribe();
   }, [scrollY]);
-  const navbarHeight = useTransform(scrollY, [0, 100], [88, 72]);
-  const navbarBackgroundOpacity = useTransform(scrollY, [0, 100], [0, 0.98]);
-  const navbarBlur = useTransform(scrollY, [0, 100], [0, 15]);
+  // const navbarHeight = useTransform(scrollY, [0, 100], [88, 72]);
+  // const navbarBackgroundOpacity = useTransform(scrollY, [0, 100], [0, 0.98]);
+  // const navbarBlur = useTransform(scrollY, [0, 100], [0, 15]);
 
   return (
     <motion.header 
