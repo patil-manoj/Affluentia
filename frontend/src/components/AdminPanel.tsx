@@ -642,24 +642,55 @@ const AdminPanel = () => {
                     </thead>
                     <tbody className="divide-y divide-stone-200">
                       {contacts.map((contact) => (
-                        <tr key={contact._id} className="hover:bg-stone-50">
-                          <td className="px-6 py-4">
+                        <tr key={contact._id} className="hover:bg-stone-50">                          <td className="px-6 py-4">
                             <div>
                               <div className="font-medium text-stone-900">{contact.name}</div>
-                              <div className="text-sm text-stone-600">{contact.email}</div>
-                              <div className="text-sm text-stone-500">{contact.phone}</div>
+                              <div className="text-sm text-stone-600">
+                                <a href={`mailto:${contact.email}`} className="hover:text-blue-600">
+                                  {contact.email}
+                                </a>
+                              </div>
+                              <div className="text-sm text-stone-500">
+                                <a href={`tel:${contact.phone}`} className="hover:text-green-600">
+                                  {contact.phone}
+                                </a>
+                              </div>
                             </div>
                           </td>
                           <td className="px-6 py-4">
-                            <span className="capitalize text-stone-700">{contact.projectType}</span>
-                            {contact.budget && (
-                              <div className="text-sm text-stone-500">{contact.budget}</div>
-                            )}
-                          </td>                          <td className="px-6 py-4 text-sm text-stone-600">
-                            {new Date(contact.createdAt).toLocaleDateString()}
+                            <div>
+                              <span className="capitalize text-stone-700 font-medium">{contact.projectType}</span>
+                              {contact.budget && (
+                                <div className="text-sm text-green-600 font-medium">💰 {contact.budget}</div>
+                              )}
+                              <div className="text-xs text-stone-500 mt-1">
+                                {contact.message.substring(0, 60)}
+                                {contact.message.length > 60 && '...'}
+                              </div>
+                            </div>
                           </td>
                           <td className="px-6 py-4 text-sm text-stone-600">
-                            {contact.files ? contact.files.length : 0} files
+                            <div>
+                              {new Date(contact.createdAt).toLocaleDateString()}
+                              <div className="text-xs text-stone-500">
+                                {Math.floor((Date.now() - new Date(contact.createdAt).getTime()) / (1000 * 60 * 60 * 24))} days ago
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 text-sm text-stone-600">
+                            <div className="flex items-center gap-2">
+                              {contact.files && contact.files.length > 0 ? (
+                                <div className="flex items-center gap-1">
+                                  <DocumentArrowDownIcon className="h-4 w-4 text-blue-600" />
+                                  <span className="font-medium text-blue-600">{contact.files.length}</span>
+                                  <span className="text-xs text-stone-500">
+                                    ({(contact.files.reduce((acc, file) => acc + file.size, 0) / 1024 / 1024).toFixed(1)}MB)
+                                  </span>
+                                </div>
+                              ) : (
+                                <span className="text-stone-400 text-xs">No files</span>
+                              )}
+                            </div>
                           </td>
                           <td className="px-6 py-4">
                             <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold border ${getStatusBadge(contact.status || 'new')}`}>
@@ -667,19 +698,33 @@ const AdminPanel = () => {
                               <span className="capitalize">{contact.status || 'new'}</span>
                             </span>
                           </td>
-                          <td className="px-6 py-4">
-                            <div className="flex items-center gap-2">
+                          <td className="px-6 py-4">                            <div className="flex items-center gap-2">
                               <button
                                 onClick={() => setSelectedContact(contact)}
                                 className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                                title="View Details"
+                                title="View Full Details & Download Files"
                               >
                                 <EyeIcon className="h-4 w-4" />
                               </button>
+                              {contact.files && contact.files.length > 0 && (
+                                <button
+                                  onClick={() => {
+                                    contact.files?.forEach((file, index) => {
+                                      setTimeout(() => {
+                                        downloadFile(contact._id, file.filename, file.originalName);
+                                      }, index * 500);
+                                    });
+                                  }}
+                                  className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                                  title={`Download all ${contact.files.length} files`}
+                                >
+                                  <ArrowDownTrayIcon className="h-4 w-4" />
+                                </button>
+                              )}
                               <button
                                 onClick={() => deleteContact(contact._id)}
                                 className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                                title="Delete"
+                                title="Delete Contact"
                               >
                                 <TrashIcon className="h-4 w-4" />
                               </button>
@@ -748,11 +793,12 @@ const AdminPanel = () => {
                       ID: {selectedContact._id.slice(-8)}
                     </span>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex items-center gap-2">
+                    <label className="text-sm font-medium text-stone-700">Change Status:</label>
                     <select
                       value={selectedContact.status}
                       onChange={(e) => updateContactStatus(selectedContact._id, e.target.value as 'new' | 'contacted' | 'completed')}
-                      className="text-sm border border-stone-300 rounded-lg px-3 py-1 focus:ring-2 focus:ring-blue-500"
+                      className="px-3 py-1 border border-stone-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     >
                       <option value="new">New</option>
                       <option value="contacted">Contacted</option>
@@ -761,39 +807,50 @@ const AdminPanel = () => {
                   </div>
                 </div>
                 
-                {selectedContact.ipAddress && (
-                  <p className="text-sm text-stone-600">
-                    <span className="font-medium">IP Address:</span> {selectedContact.ipAddress}
-                  </p>
-                )}
-                
-                <div className="grid grid-cols-2 gap-4 mt-3 text-sm">
+                {/* Submission Metadata */}
+                <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
                     <span className="font-medium text-stone-700">Submitted:</span>
-                    <br />
-                    <span className="text-stone-600">{new Date(selectedContact.createdAt).toLocaleString()}</span>
+                    <span className="ml-2 text-stone-600">
+                      {new Date(selectedContact.createdAt).toLocaleString()}
+                    </span>
                   </div>
+                  <div>
+                    <span className="font-medium text-stone-700">Days Ago:</span>
+                    <span className="ml-2 text-stone-600">
+                      {Math.floor((Date.now() - new Date(selectedContact.createdAt).getTime()) / (1000 * 60 * 60 * 24))} days
+                    </span>
+                  </div>
+                  {selectedContact.ipAddress && (
+                    <div>
+                      <span className="font-medium text-stone-700">IP Address:</span>
+                      <span className="ml-2 text-stone-600 font-mono text-xs">
+                        {selectedContact.ipAddress}
+                      </span>
+                    </div>
+                  )}
                   {selectedContact.updatedAt && (
                     <div>
                       <span className="font-medium text-stone-700">Last Updated:</span>
-                      <br />
-                      <span className="text-stone-600">{new Date(selectedContact.updatedAt).toLocaleString()}</span>
+                      <span className="ml-2 text-stone-600">
+                        {new Date(selectedContact.updatedAt).toLocaleString()}
+                      </span>
                     </div>
                   )}
                 </div>
               </div>
 
-              {/* Contact Information */}
+              {/* Contact Information Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-stone-700 mb-1">Full Name</label>
-                    <p className="text-stone-900 p-3 bg-stone-50 rounded-lg">{selectedContact.name}</p>
+                    <p className="text-stone-900 p-3 bg-stone-50 rounded-lg font-medium">{selectedContact.name}</p>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-stone-700 mb-1">Email Address</label>
                     <p className="text-stone-900 p-3 bg-stone-50 rounded-lg">
-                      <a href={`mailto:${selectedContact.email}`} className="text-blue-600 hover:text-blue-800">
+                      <a href={`mailto:${selectedContact.email}`} className="text-blue-600 hover:text-blue-800 hover:underline">
                         {selectedContact.email}
                       </a>
                     </p>
@@ -801,7 +858,7 @@ const AdminPanel = () => {
                   <div>
                     <label className="block text-sm font-medium text-stone-700 mb-1">Phone Number</label>
                     <p className="text-stone-900 p-3 bg-stone-50 rounded-lg">
-                      <a href={`tel:${selectedContact.phone}`} className="text-blue-600 hover:text-blue-800">
+                      <a href={`tel:${selectedContact.phone}`} className="text-green-600 hover:text-green-800 hover:underline">
                         {selectedContact.phone}
                       </a>
                     </p>
@@ -811,87 +868,186 @@ const AdminPanel = () => {
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-stone-700 mb-1">Project Type</label>
-                    <p className="text-stone-900 p-3 bg-stone-50 rounded-lg capitalize">{selectedContact.projectType}</p>
+                    <p className="text-stone-900 p-3 bg-stone-50 rounded-lg capitalize font-medium">
+                      {selectedContact.projectType}
+                      <span className="ml-2 text-xs text-stone-500 bg-stone-200 px-2 py-1 rounded-full">
+                        {selectedContact.projectType}
+                      </span>
+                    </p>
                   </div>
                   {selectedContact.budget && (
                     <div>
                       <label className="block text-sm font-medium text-stone-700 mb-1">Budget Range</label>
-                      <p className="text-stone-900 p-3 bg-stone-50 rounded-lg">{selectedContact.budget}</p>
+                      <p className="text-stone-900 p-3 bg-green-50 rounded-lg border border-green-200 font-medium">
+                        💰 {selectedContact.budget}
+                      </p>
                     </div>
                   )}
                   <div>
-                    <label className="block text-sm font-medium text-stone-700 mb-1">Message Length</label>
-                    <p className="text-stone-600 p-3 bg-stone-50 rounded-lg text-sm">
-                      {selectedContact.message.length} characters
-                    </p>
+                    <label className="block text-sm font-medium text-stone-700 mb-1">Message Statistics</label>
+                    <div className="p-3 bg-stone-50 rounded-lg">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-stone-600">Character Count:</span>
+                        <span className="font-medium text-stone-900">
+                          {selectedContact.message.length}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between text-sm mt-1">
+                        <span className="text-stone-600">Word Count:</span>
+                        <span className="font-medium text-stone-900">
+                          {selectedContact.message.trim().split(/\s+/).length}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between text-sm mt-1">
+                        <span className="text-stone-600">Urgency Level:</span>
+                        <span className={`font-medium ${selectedContact.message.toLowerCase().includes('urgent') || selectedContact.message.toLowerCase().includes('asap') || selectedContact.message.toLowerCase().includes('immediately') ? 'text-red-600' : selectedContact.message.toLowerCase().includes('soon') || selectedContact.message.toLowerCase().includes('quick') ? 'text-orange-600' : 'text-green-600'}`}>
+                          {selectedContact.message.toLowerCase().includes('urgent') || selectedContact.message.toLowerCase().includes('asap') || selectedContact.message.toLowerCase().includes('immediately') ? '🔴 High' : selectedContact.message.toLowerCase().includes('soon') || selectedContact.message.toLowerCase().includes('quick') ? '🟡 Medium' : '🟢 Normal'}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Project Details */}
               <div>
-                <label className="block text-sm font-medium text-stone-700 mb-2">Project Details & Requirements</label>
-                <div className="bg-stone-50 rounded-lg p-4 border border-stone-200">
+                <label className="block text-sm font-medium text-stone-700 mb-2">
+                  Project Details & Requirements
+                  <span className="ml-2 text-xs text-stone-500">
+                    ({selectedContact.message.length} characters, {selectedContact.message.trim().split(/\s+/).length} words)
+                  </span>
+                </label>
+                <div className="bg-stone-50 rounded-lg p-4 border border-stone-200 max-h-48 overflow-y-auto">
                   <p className="text-stone-900 whitespace-pre-wrap leading-relaxed">{selectedContact.message}</p>
+                </div>
+                
+                {/* Message Analysis */}
+                <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                  <div className="bg-blue-50 border border-blue-200 rounded p-2 text-center">
+                    <div className="font-medium text-blue-800">Keywords</div>
+                    <div className="text-blue-600">
+                      {selectedContact.message.toLowerCase().match(/\b(design|renovation|interior|modern|budget|timeline|consultation|space|room|kitchen|bathroom|living|bedroom)\b/g)?.length || 0}
+                    </div>
+                  </div>
+                  <div className="bg-green-50 border border-green-200 rounded p-2 text-center">
+                    <div className="font-medium text-green-800">Sentences</div>
+                    <div className="text-green-600">
+                      {selectedContact.message.split(/[.!?]+/).filter(s => s.trim().length > 0).length}
+                    </div>
+                  </div>
+                  <div className="bg-purple-50 border border-purple-200 rounded p-2 text-center">
+                    <div className="font-medium text-purple-800">Questions</div>
+                    <div className="text-purple-600">
+                      {(selectedContact.message.match(/\?/g) || []).length}
+                    </div>
+                  </div>
+                  <div className="bg-orange-50 border border-orange-200 rounded p-2 text-center">
+                    <div className="font-medium text-orange-800">Detail Level</div>
+                    <div className="text-orange-600">
+                      {selectedContact.message.length > 500 ? 'High' : selectedContact.message.length > 150 ? 'Medium' : 'Basic'}
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Attached Files */}
+              {/* Enhanced File Section */}
               {selectedContact.files && selectedContact.files.length > 0 && (
                 <div>
                   <label className="block text-sm font-medium text-stone-700 mb-3">
                     Attached Files ({selectedContact.files.length})
+                    <span className="ml-2 text-xs text-stone-500">
+                      Total Size: {(selectedContact.files.reduce((acc, file) => acc + file.size, 0) / 1024 / 1024).toFixed(2)} MB
+                    </span>
                   </label>
                   <div className="space-y-3">
                     {selectedContact.files.map((file, index) => (
-                      <div key={index} className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
+                      <div key={index} className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200 hover:from-blue-100 hover:to-indigo-100 transition-all duration-200">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <DocumentArrowDownIcon className="h-5 w-5 text-blue-600" />
+                          <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            {file.mimetype?.startsWith('image/') ? (
+                              <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                            ) : file.mimetype?.includes('pdf') ? (
+                              <svg className="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                              </svg>
+                            ) : (
+                              <DocumentArrowDownIcon className="h-6 w-6 text-blue-600" />
+                            )}
                           </div>
-                          <div>
-                            <p className="font-medium text-stone-900">{file.originalName}</p>
+                          <div className="flex-1">
+                            <p className="font-medium text-stone-900 mb-1">{file.originalName}</p>
                             <div className="flex items-center gap-4 text-sm text-stone-600">
-                              <span>{(file.size / 1024 / 1024).toFixed(2)} MB</span>
-                              <span className="capitalize">{file.mimetype?.split('/')[1] || 'Unknown'}</span>
+                              <span className="bg-stone-200 px-2 py-1 rounded text-xs font-mono">
+                                {(file.size / 1024 / 1024).toFixed(2)} MB
+                              </span>
+                              <span className="capitalize bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">
+                                {file.mimetype?.split('/')[1] || 'Unknown'}
+                              </span>
+                              <span className="text-xs text-stone-500">
+                                File #{index + 1}
+                              </span>
                             </div>
                           </div>
                         </div>
-                        <button
-                          onClick={() => downloadFile(selectedContact._id, file.filename, file.originalName)}
-                          className="flex items-center gap-2 px-4 py-2 text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg"
-                        >
-                          <ArrowDownTrayIcon className="h-4 w-4" />
-                          Download
-                        </button>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => downloadFile(selectedContact._id, file.filename, file.originalName)}
+                            className="flex items-center gap-2 px-4 py-2 text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
+                          >
+                            <ArrowDownTrayIcon className="h-4 w-4" />
+                            Download
+                          </button>
+                        </div>
                       </div>
                     ))}
                     
-                    {/* Bulk download all files */}
+                    {/* Enhanced Bulk Download */}
                     {selectedContact.files.length > 1 && (
-                      <div className="pt-2 border-t border-stone-200">
-                        <button
-                          onClick={() => {
-                            selectedContact.files?.forEach(file => {
-                              downloadFile(selectedContact._id, file.filename, file.originalName);
-                            });
-                          }}
-                          className="w-full flex items-center justify-center gap-2 px-4 py-3 text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors"
-                        >
-                          <ArrowDownTrayIcon className="h-4 w-4" />
-                          Download All Files ({selectedContact.files.length})
-                        </button>
+                      <div className="pt-3 border-t border-stone-200">
+                        <div className="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                              <svg className="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                            </div>
+                            <div>
+                              <p className="font-medium text-green-800">Bulk Download</p>
+                              <p className="text-sm text-green-600">
+                                Download all {selectedContact.files.length} files ({(selectedContact.files.reduce((acc, file) => acc + file.size, 0) / 1024 / 1024).toFixed(2)} MB total)
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            onClick={() => {
+                              selectedContact.files?.forEach((file, index) => {
+                                setTimeout(() => {
+                                  downloadFile(selectedContact._id, file.filename, file.originalName);
+                                }, index * 1000); // Stagger downloads by 1 second
+                              });
+                            }}
+                            className="flex items-center gap-2 px-6 py-3 text-green-700 bg-green-100 border border-green-300 rounded-lg hover:bg-green-200 hover:border-green-400 transition-all duration-200 font-medium"
+                          >
+                            <ArrowDownTrayIcon className="h-4 w-4" />
+                            Download All Files
+                          </button>
+                        </div>
                       </div>
                     )}
                   </div>
                 </div>
               )}
 
-              {/* No files message */}
+              {/* No files message with suggestions */}
               {(!selectedContact.files || selectedContact.files.length === 0) && (
-                <div className="text-center py-8 text-stone-500">
-                  <FolderIcon className="h-12 w-12 mx-auto mb-2 text-stone-300" />
-                  <p>No files were attached to this inquiry</p>
+                <div className="text-center py-12 bg-stone-50 rounded-lg border-2 border-dashed border-stone-200">
+                  <FolderIcon className="h-16 w-16 mx-auto mb-4 text-stone-300" />
+                  <p className="text-stone-500 font-medium mb-2">No files were attached to this inquiry</p>
+                  <p className="text-sm text-stone-400">
+                    The client may share files during the consultation process
+                  </p>
                 </div>
               )}
             </div>            <div className="p-6 border-t border-stone-200 bg-stone-50">
