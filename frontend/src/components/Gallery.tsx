@@ -182,16 +182,15 @@ const Gallery = () => {
         <motion.div 
           layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          <AnimatePresence mode="popLayout">
+        >          <AnimatePresence mode="popLayout">
             {filteredImages.map((image, index) => (
               <motion.div
                 key={image.url}
                 layout
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ 
-                  opacity: loadedImages.has(image.thumbnailUrl) ? 1 : 0,
-                  scale: loadedImages.has(image.thumbnailUrl) ? 1 : 0.8
+                  opacity: 1,
+                  scale: 1
                 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{

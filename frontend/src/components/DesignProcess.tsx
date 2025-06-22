@@ -116,100 +116,92 @@ const DesignProcess = () => {
         {/* Process Steps */}
         <div className="mx-auto mt-16 max-w-7xl sm:mt-20">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {processSteps.map((step, index) => (
-              <motion.div
+            {processSteps.map((step, index) => (              <motion.div
                 key={step.step}
                 className="group relative"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -8 }}
+                whileHover={{ 
+                  y: -8,
+                  transition: { type: "spring", stiffness: 300, damping: 30 }
+                }}
               >                {/* Step Card */}
-                <div className="architectural-card p-10 h-full bg-white/98 backdrop-blur-sm border border-primary-200/30 group-hover:border-primary-300/50 transition-all duration-500">
+                <div className="architectural-card p-10 h-full bg-white/98 backdrop-blur-sm border border-primary-200/30 group-hover:shadow-2xl transition-all duration-500 transform-gpu">
                   {/* Step Number with enhanced styling */}
                   <motion.div 
                     className="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 text-white font-bold text-xl mb-8 shadow-lg"
-                    whileHover={{ scale: 1.1, rotate: 8 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      transition: { type: "spring", stiffness: 400, damping: 25 }
+                    }}
                   >
                     {step.step}
-                    <motion.div 
-                      className="absolute -inset-1 bg-gradient-to-r from-primary-400 to-primary-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-300"
-                      initial={false}
-                    />
-                  </motion.div>
-
-                  {/* Icon with enhanced styling */}
+                  </motion.div>                  {/* Icon with enhanced styling */}
                   <motion.div 
                     className="mb-8 relative"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      transition: { type: "spring", stiffness: 400, damping: 25 }
+                    }}
                   >
-                    <div className="w-16 h-16 bg-primary-50 rounded-xl flex items-center justify-center group-hover:bg-primary-100 transition-colors duration-300">
-                      <step.icon className="w-8 h-8 text-primary-600" />
-                    </div>
-                  </motion.div>
-
-                  {/* Content with enhanced typography */}
-                  <div className="space-y-6">
-                    <h3 className="text-2xl font-bold text-dark-800 font-display leading-tight">
+                    <motion.div 
+                      className="w-16 h-16 bg-primary-50 rounded-xl flex items-center justify-center transition-all duration-500 shadow-lg"
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <step.icon className="w-8 h-8 text-primary-600 transition-colors duration-300" />
+                      </motion.div>
+                    </motion.div>
+                  </motion.div>                  {/* Content with enhanced typography */}
+                  <div className="space-y-6 relative z-10">
+                    <motion.h3 
+                      className="text-2xl font-bold text-dark-800 font-display leading-tight transition-colors duration-300"
+                      whileHover={{ x: 3 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
                       Step {step.step}: {step.title}
-                    </h3>
+                    </motion.h3>
                     
-                    <p className="text-neutral-600 font-body leading-relaxed text-lg">
+                    <motion.p 
+                      className="text-neutral-600 font-body leading-relaxed text-lg transition-colors duration-300"
+                      whileHover={{ x: 2 }}
+                      transition={{ type: "spring", stiffness: 300, delay: 0.05 }}
+                    >
                       {step.description}
-                    </p>
-
-                    {/* Details List with enhanced styling */}
-                    <div className="space-y-3 pt-4 border-t border-primary-100/50">
+                    </motion.p>                    {/* Details List with enhanced styling */}
+                    <motion.div 
+                      className="space-y-3 pt-4 border-t border-primary-100/50 transition-colors duration-300"
+                      whileHover={{ x: 1 }}
+                      transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
+                    >
                       {step.details.map((detail, detailIndex) => (
                         <motion.div 
                           key={detailIndex}
-                          className="flex items-start gap-4 text-sm text-neutral-600 font-body"
+                          className="flex items-start gap-4 text-sm text-neutral-600 font-body transition-colors duration-300"
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
+                          whileHover={{ 
+                            x: 4,
+                            transition: { type: "spring", stiffness: 400, delay: detailIndex * 0.02 }
+                          }}
                           transition={{ duration: 0.5, delay: (index * 0.2) + (detailIndex * 0.1) }}
                         >
-                          <span className="w-2 h-2 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full mt-2 flex-shrink-0 shadow-sm" />
+                          <motion.span 
+                            className="w-2 h-2 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full mt-2 flex-shrink-0 shadow-sm"
+                            whileHover={{ 
+                              scale: 1.2
+                            }}
+                            transition={{ type: "spring", stiffness: 400 }}
+                          />
                           <span className="leading-relaxed">{detail}</span>
                         </motion.div>
                       ))}
-                    </div>
-                  </div>
-
-                  {/* Enhanced Hover Overlay */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-primary-50/80 to-primary-100/60 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
-                    initial={false}
-                  />
-                  
-                  {/* Subtle shadow enhancement on hover */}
-                  <motion.div
-                    className="absolute inset-0 rounded-xl shadow-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"
-                    style={{
-                      boxShadow: '0 25px 50px -12px rgba(42, 54, 37, 0.4)'
-                    }}
-                  />
-                </div>                {/* Enhanced Connection Line (between cards) */}
-                {index < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-6 z-20">
-                    <motion.div 
-                      className="relative w-12 h-0.5"
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      transition={{ duration: 0.8, delay: (index + 1) * 0.2 }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary-300 via-primary-400 to-primary-500" />
-                      <motion.div
-                        className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-primary-500 rounded-full"
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        transition={{ duration: 0.4, delay: (index + 1) * 0.2 + 0.4 }}
-                      />
-                    </motion.div>
-                  </div>
-                )}
+                    </motion.div>                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -222,16 +214,36 @@ const DesignProcess = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-        >
-          <motion.button
-            className="inline-flex items-center gap-3 bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-architectural transition-all duration-300"
+        >          <motion.button
+            className="inline-flex items-center gap-3 bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-architectural transition-all duration-300 group"
             whileHover={{ 
               scale: 1.05,
-              boxShadow: "0px 16px 40px rgba(42, 54, 37, 0.2)"
+              y: -2,
+              boxShadow: "0px 20px 50px rgba(42, 54, 37, 0.3), 0px 10px 20px rgba(42, 54, 37, 0.2)",
+              background: "linear-gradient(135deg, rgb(42, 54, 37) 0%, rgb(29, 37, 26) 100%)",
+              transition: { type: "spring", stiffness: 300, damping: 25 }
             }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ 
+              scale: 0.95,
+              y: 0,
+              transition: { duration: 0.1 }
+            }}
           >
-            Learn More About Our Process
+            <motion.span
+              whileHover={{ x: 3 }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
+              Learn More About Our Process
+            </motion.span>
+            <motion.div
+              whileHover={{ x: 5, rotate: 15 }}
+              transition={{ type: "spring", stiffness: 400 }}
+              className="w-5 h-5"
+            >
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </motion.div>
           </motion.button>
         </motion.div>
       </div>
