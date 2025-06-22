@@ -15,49 +15,62 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const { scrollY } = useScroll();
-
   useEffect(() => {
     const unsubscribe = scrollY.onChange(latest => {
       setScrolled(latest > 50);
     });
     return () => unsubscribe();
   }, [scrollY]);
-
-  const navbarHeight = useTransform(scrollY, [0, 100], [80, 64]);
-  const navbarOpacity = useTransform(scrollY, [0, 100], [0.9, 0.98]);
+  const navbarHeight = useTransform(scrollY, [0, 100], [88, 72]);
+  const navbarBackgroundOpacity = useTransform(scrollY, [0, 100], [0, 0.98]);
+  const navbarBlur = useTransform(scrollY, [0, 100], [0, 15]);
 
   return (
     <motion.header 
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled 
-          ? 'bg-white/98 backdrop-blur-lg border-b border-primary-200/40 shadow-architectural' 
-          : 'bg-white/90 backdrop-blur-md border-b border-primary-100/20'
-      }`}
-      style={{ opacity: navbarOpacity }}
-    >
-      <motion.nav 
-        className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8"
-        style={{ height: navbarHeight }}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ type: "spring", stiffness: 50, damping: 20 }}
+      className="fixed inset-x-0 top-0 z-50"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 20,
+        duration: 0.8
+      }}
+      style={{ 
+        backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.98)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(15px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(42, 54, 37, 0.1)' : 'none',
+        boxShadow: scrolled ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
+        transition: 'all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+      }}
+    >      <motion.nav 
+        className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8 transition-all duration-700"
+        style={{ 
+          height: scrolled ? '72px' : '88px',
+          paddingTop: scrolled ? '0' : '8px',
+          paddingBottom: scrolled ? '0' : '8px'
+        }}
       >
         <div className="flex lg:flex-1">
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-          >
-            <Link to="/" className="-m-1.5 p-1.5">
-              <span className="text-2xl font-display font-bold text-gradient">
+          >            <Link to="/" className="-m-1.5 p-1.5">
+              <span className={`text-2xl font-display font-bold transition-all duration-300 ${
+                scrolled 
+                  ? 'text-primary-600' 
+                  : 'text-white drop-shadow-lg'
+              }`}>
                 Affluentia
               </span>
             </Link>
           </motion.div>
         </div>
-        <div className="flex lg:hidden">
-          <motion.button
+        <div className="flex lg:hidden">          <motion.button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-dark-700"
+            className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors duration-300 ${
+              scrolled ? 'text-primary-700' : 'text-white drop-shadow-lg'
+            }`}
             onClick={() => setMobileMenuOpen(true)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -80,19 +93,19 @@ export default function Navbar() {
                 scale: 1.05,
                 transition: { duration: 0.2 }
               }}
-            >
-              <Link
+            >              <Link
                 to={item.href}
-                className={`relative text-sm font-medium font-display transition-colors hover:text-primary-600 ${
+                className={`relative text-sm font-medium font-display transition-all duration-300 ${
                   location.pathname === item.href 
-                    ? 'text-primary-600' 
-                    : 'text-dark-700'
+                    ? (scrolled ? 'text-primary-600' : 'text-white font-semibold drop-shadow-lg')
+                    : (scrolled ? 'text-neutral-700 hover:text-primary-600' : 'text-white/90 hover:text-white drop-shadow-md')
                 }`}
               >
-                {item.name}
-                {location.pathname === item.href && (
+                {item.name}                {location.pathname === item.href && (
                   <motion.span
-                    className="absolute inset-x-0 -bottom-1 h-0.5 bg-primary-600"
+                    className={`absolute inset-x-0 -bottom-1 h-0.5 ${
+                      scrolled ? 'bg-primary-600' : 'bg-white shadow-lg'
+                    }`}
                     layoutId="navbar-indicator"
                   />
                 )}
@@ -109,10 +122,13 @@ export default function Navbar() {
               boxShadow: "0px 0px 20px rgba(42, 54, 37, 0.3)"
             }}
             whileTap={{ scale: 0.95 }}
-          >
-            <Link
+          >            <Link
               to="/contact"
-              className="relative inline-flex items-center gap-2 rounded-lg bg-primary-600 px-6 py-3 text-sm font-semibold font-display text-white shadow-architectural hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-300"
+              className={`relative inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold font-display shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                scrolled 
+                  ? 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500' 
+                  : 'bg-white/10 text-white backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/30 focus:ring-white/50'
+              }`}
             >
               Get in Touch
               <motion.span
@@ -127,28 +143,26 @@ export default function Navbar() {
         </div>
       </motion.nav>      <AnimatePresence>
         {mobileMenuOpen && (
-          <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-            <motion.div 
-              className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm"
+          <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>            <motion.div 
+              className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
             />
-            <Dialog.Panel>
-              <motion.div 
-                className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white/90 backdrop-blur-md px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-neutral-900/10"
+            <Dialog.Panel>              <motion.div 
+                className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white/95 backdrop-blur-lg px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-primary-200/30 sm:shadow-2xl"
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
-                transition={{ type: "spring", damping: 20 }}
+                transition={{ type: "spring", damping: 20, stiffness: 100 }}
               >
             <div className="flex items-center justify-between">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-              >
-                <Link to="/" className="-m-1.5 p-1.5">
-                  <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">
+              >                <Link to="/" className="-m-1.5 p-1.5">
+                  <span className="text-2xl font-bold text-primary-600">
                     Affluentia
                   </span>
                 </Link>
