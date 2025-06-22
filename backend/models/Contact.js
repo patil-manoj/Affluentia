@@ -18,11 +18,10 @@ const contactSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Phone number is required'],
     trim: true
-  },
-  projectType: {
+  },  projectType: {
     type: String,
     required: [true, 'Project type is required'],
-    enum: ['residential', 'commercial', 'interior', 'renovation', 'consultation', 'other']
+    enum: ['residential', 'commercial', 'interior', 'renovation', 'consultation', 'landscaping', 'other']
   },
   budget: {
     type: String,

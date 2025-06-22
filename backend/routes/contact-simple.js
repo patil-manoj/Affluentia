@@ -22,6 +22,15 @@ const upload = multer({
 const validateContact = (req, res, next) => {
   const { name, email, phone, projectType, message } = req.body;
   
+  // Debug logging
+  console.log('📝 Validating contact form data:', {
+    name: name ? `"${name}" (${name.trim().length} chars)` : 'missing',
+    email: email ? `"${email}"` : 'missing',
+    phone: phone ? `"${phone}" (${phone.trim().length} chars)` : 'missing',
+    projectType: projectType ? `"${projectType}"` : 'missing',
+    message: message ? `message (${message.trim().length} chars)` : 'missing'
+  });
+  
   const errors = [];
   
   if (!name || name.trim().length < 2) {
@@ -45,6 +54,7 @@ const validateContact = (req, res, next) => {
   }
   
   if (errors.length > 0) {
+    console.log('❌ Validation failed:', errors);
     return res.status(400).json({
       success: false,
       message: 'Validation errors',
@@ -52,6 +62,7 @@ const validateContact = (req, res, next) => {
     });
   }
   
+  console.log('✅ Validation passed');
   next();
 };
 

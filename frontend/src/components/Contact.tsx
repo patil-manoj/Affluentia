@@ -125,8 +125,11 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
           message: '',
           files: []
         });
-        setTimeout(() => setIsSubmitted(false), 8000); // Show success message for 8 seconds
-      } else {
+        setTimeout(() => setIsSubmitted(false), 8000); // Show success message for 8 seconds      } else {
+        // Handle validation errors specifically
+        if (result.errors && Array.isArray(result.errors)) {
+          throw new Error(`Validation errors: ${result.errors.join(', ')}`);
+        }
         throw new Error(result.message || 'Failed to submit form');
       }
     } catch (error) {
