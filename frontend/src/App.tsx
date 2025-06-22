@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { motion, useScroll } from 'framer-motion';
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'

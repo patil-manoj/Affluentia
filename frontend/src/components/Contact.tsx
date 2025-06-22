@@ -705,6 +705,12 @@ const Contact = () => {
               </div>             
                         
 
+              {submitError && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
+                  <p className="text-sm text-red-600">{submitError}</p>
+                </div>
+              )}
+
               <motion.button
                 type="submit"
                 disabled={isSubmitted || isSubmitting}
