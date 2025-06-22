@@ -85,23 +85,23 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
       </div>
 
       <div className="relative text-center z-10">
-        {/* Animated Logo */}
-        <motion.div 
+        {/* Animated Logo */}        <motion.div 
           className="mb-8"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <svg 
-            width="120" 
-            height="80" 
-            viewBox="0 0 120 80" 
+            width="140" 
+            height="100" 
+            viewBox="0 0 140 100" 
             className="mx-auto"
           >
-            {/* Letter A */}            <motion.path
-              d="M10 70 L25 20 L40 70 M18 50 L32 50"
+            {/* Architectural Logo - Modern Building Silhouette */}
+            <motion.path
+              d="M20 85 L20 45 L35 30 L50 45 L50 85"
               stroke="#F3E9D2"
-              strokeWidth="3"
+              strokeWidth="2.5"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -109,17 +109,17 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               initial="hidden"
               animate="visible"
               transition={{ 
-                duration: 2.5, 
+                duration: 2, 
                 ease: "easeInOut",
-                delay: 0.5 
+                delay: 0.3 
               }}
             />
             
-            {/* Letter F */}
+            {/* Second Building */}
             <motion.path
-              d="M50 70 L50 20 L80 20 M50 45 L75 45"
+              d="M45 85 L45 35 L65 20 L85 35 L85 85"
               stroke="#C6CDB6"
-              strokeWidth="3"
+              strokeWidth="2.5"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -127,17 +127,61 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               initial="hidden"
               animate="visible"
               transition={{ 
-                duration: 2.5, 
+                duration: 2, 
                 ease: "easeInOut",
-                delay: 0.8 
+                delay: 0.6 
+              }}
+            />
+            
+            {/* Third Building */}
+            <motion.path
+              d="M80 85 L80 50 L95 35 L110 50 L110 85"
+              stroke="#E4DED4"
+              strokeWidth="2.5"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              variants={logoVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ 
+                duration: 2, 
+                ease: "easeInOut",
+                delay: 0.9 
               }}
             />
 
-            {/* Decorative line */}
+            {/* Windows */}
+            <motion.rect
+              x="25" y="55" width="4" height="6"
+              fill="#2A3625"
+              opacity="0.7"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
+              transition={{ delay: 1.5, duration: 0.5 }}
+            />
+            <motion.rect
+              x="65" y="45" width="4" height="6"
+              fill="#2A3625"
+              opacity="0.7"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
+              transition={{ delay: 1.6, duration: 0.5 }}
+            />
+            <motion.rect
+              x="95" y="60" width="4" height="6"
+              fill="#2A3625"
+              opacity="0.7"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
+              transition={{ delay: 1.7, duration: 0.5 }}
+            />
+
+            {/* Foundation line */}
             <motion.path
-              d="M15 75 L85 75"
+              d="M15 85 L115 85"
               stroke="#2A3625"
-              strokeWidth="2"
+              strokeWidth="3"
               fill="none"
               strokeLinecap="round"
               variants={logoVariants}
@@ -149,15 +193,30 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 delay: 1.8 
               }}
             />
+            
+            {/* Brand text path */}
+            <motion.path
+              d="M10 95 L120 95"
+              stroke="#F3E9D2"
+              strokeWidth="1"
+              fill="none"
+              strokeLinecap="round"
+              variants={logoVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ 
+                duration: 1, 
+                ease: "easeInOut",
+                delay: 2.3 
+              }}
+            />
           </svg>
-        </motion.div>
-
-        {/* Company Name */}
+        </motion.div>        {/* Company Name */}
         <motion.h1 
           className="text-4xl font-display font-bold text-primary-50 mb-2"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          transition={{ duration: 0.8, delay: 2.5 }}
         >
           Affluentia
         </motion.h1>
@@ -166,17 +225,15 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           className="text-primary-200 font-body text-lg mb-12"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
+          transition={{ duration: 0.8, delay: 2.7 }}
         >
-          Architectural Excellence
-        </motion.p>
-
-        {/* Progress Bar */}
+          Architecture & Interior Design
+        </motion.p>        {/* Progress Bar */}
         <motion.div 
           className="w-64 mx-auto"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.8 }}
+          transition={{ duration: 0.8, delay: 2.9 }}
         >
           <div className="bg-primary-900/30 rounded-full h-1 mb-4">
             <motion.div 
