@@ -1,10 +1,10 @@
 import express from 'express';
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose'; // Temporarily disabled
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
-import contactRoutes from './routes/contact.js';
+import contactRoutes from './routes/contact-simple.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 // Load environment variables
@@ -45,17 +45,19 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Database connection
-mongoose.connect(process.env.MONGO_URL, {
-  dbName: process.env.DB_NAME || 'affluentia_interior',
-})
-.then(() => {
-  console.log('✅ Connected to MongoDB');
-})
-.catch((error) => {
-  console.error('❌ MongoDB connection error:', error);
-  process.exit(1);
-});
+// Database connection (temporarily disabled to prioritize frontend)
+// mongoose.connect(process.env.MONGO_URL, {
+//   dbName: process.env.DB_NAME || 'affluentia_interior',
+// })
+// .then(() => {
+//   console.log('✅ Connected to MongoDB');
+// })
+// .catch((error) => {
+//   console.error('❌ MongoDB connection error:', error);
+//   process.exit(1);
+// });
+
+console.log('📝 MongoDB temporarily disabled - using in-memory storage for demo');
 
 // Routes
 app.use('/api/contact', contactRoutes);
@@ -102,8 +104,9 @@ app.listen(PORT, () => {
 // Graceful shutdown
 process.on('SIGINT', async () => {
   console.log('\n🛑 Shutting down server...');
-  await mongoose.connection.close();
-  console.log('✅ Database connection closed');
+  // await mongoose.connection.close(); // Temporarily disabled
+  // console.log('✅ Database connection closed'); // Temporarily disabled
+  console.log('✅ Server shutdown complete');
   process.exit(0);
 });
 

@@ -79,8 +79,14 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
   });
   
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const handleSubmit = async (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (isSubmitting) return; // Prevent double submission
+    
+    setIsSubmitting(true);
+    setSubmitError(null);
     
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
@@ -120,13 +126,15 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
           message: '',
           files: []
         });
-        setTimeout(() => setIsSubmitted(false), 5000);
+        setTimeout(() => setIsSubmitted(false), 8000); // Show success message for 8 seconds
       } else {
         throw new Error(result.message || 'Failed to submit form');
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      alert('Failed to submit form. Please try again or contact us directly.');
+      setSubmitError(error instanceof Error ? error.message : 'Failed to submit form. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
     }
   };const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     if (e.target.type === 'file') {
@@ -339,13 +347,12 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300"
                   >
-                    <option value="">Select project type</option>
-                    <option value="residential">Residential Design</option>
+                    <option value="">Select project type</option>                    <option value="residential">Residential Design</option>
                     <option value="commercial">Commercial Space</option>
                     <option value="interior">Interior Styling</option>
                     <option value="renovation">Renovation</option>
                     <option value="consultation">Consultation</option>
-                    <option value="consultation">Landscaping</option>
+                    <option value="landscaping">Landscaping</option>
                     <option value="other">Other</option>
                   </select>
                 </div>
@@ -437,23 +444,38 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
                     </div>
                   )}
                 </div>
-              </div>
+              </div>              {/* Error message */}
+              {submitError && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
+                  <p className="text-red-700 text-sm">{submitError}</p>
+                </div>
+              )}
 
               <motion.button
                 type="submit"
-                disabled={isSubmitted}
+                disabled={isSubmitted || isSubmitting}
                 className={`w-full px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
                   isSubmitted
                     ? 'bg-green-600 text-white'
+                    : isSubmitting
+                    ? 'bg-stone-400 text-white cursor-not-allowed'
                     : 'bg-gradient-to-r from-primary-600 to-accent-600 text-white hover:shadow-glow'
                 }`}
-                whileHover={{ scale: isSubmitted ? 1 : 1.02 }}
-                whileTap={{ scale: isSubmitted ? 1 : 0.98 }}
+                whileHover={{ scale: isSubmitted || isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitted || isSubmitting ? 1 : 0.98 }}
               >
                 {isSubmitted ? (
                   <span className="flex items-center justify-center gap-2">
                     <CheckCircleIcon className="w-6 h-6" />
                     Message Sent Successfully!
+                  </span>
+                ) : isSubmitting ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending Message...
                   </span>
                 ) : (
                   'Send Message'
