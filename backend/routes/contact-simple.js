@@ -11,10 +11,27 @@ const upload = multer({
   limits: {
     fileSize: 5 * 1024 * 1024, // 5MB limit
     files: 5 // Maximum 5 files
-  },
-  fileFilter: (req, file, cb) => {
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
-    cb(null, allowedTypes.includes(file.mimetype));
+  },  fileFilter: (req, file, cb) => {
+    const allowedTypes = [
+      'image/jpeg', 
+      'image/png', 
+      'image/gif', 
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ];
+    
+    // Allow files with extensions even if MIME type is unknown
+    const allowedExtensions = ['.dwg', '.skp', '.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png', '.gif'];
+    const fileExtension = file.originalname.toLowerCase().substring(file.originalname.lastIndexOf('.'));
+    
+    const isAllowed = allowedTypes.includes(file.mimetype) || allowedExtensions.includes(fileExtension);
+    
+    if (!isAllowed) {
+      console.log(`❌ File rejected: ${file.originalname} (${file.mimetype})`);
+    }
+    
+    cb(null, isAllowed);
   }
 });
 
@@ -28,28 +45,34 @@ const validateContact = (req, res, next) => {
     email: email ? `"${email}"` : 'missing',
     phone: phone ? `"${phone}" (${phone.trim().length} chars)` : 'missing',
     projectType: projectType ? `"${projectType}"` : 'missing',
-    message: message ? `message (${message.trim().length} chars)` : 'missing'
+    message: message ? `message (${message.trim().length} chars)` : 'missing',
+    files: req.files ? `${req.files.length} files` : 'no files'
   });
   
   const errors = [];
   
-  if (!name || name.trim().length < 2) {
+  if (!name || typeof name !== 'string' || name.trim().length < 2) {
     errors.push('Name must be at least 2 characters long');
   }
   
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!email || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     errors.push('Please enter a valid email address');
   }
   
-  if (!phone || phone.trim().length < 10) {
-    errors.push('Please enter a valid phone number');
+  if (!phone || typeof phone !== 'string' || phone.trim().length < 10) {
+    errors.push('Please enter a valid phone number (at least 10 digits)');
   }
   
-  if (!projectType) {
+  if (!projectType || typeof projectType !== 'string') {
     errors.push('Project type is required');
+  } else {
+    const validProjectTypes = ['residential', 'commercial', 'interior', 'renovation', 'consultation', 'landscaping', 'other'];
+    if (!validProjectTypes.includes(projectType)) {
+      errors.push(`Invalid project type. Must be one of: ${validProjectTypes.join(', ')}`);
+    }
   }
   
-  if (!message || message.trim().length < 10) {
+  if (!message || typeof message !== 'string' || message.trim().length < 10) {
     errors.push('Message must be at least 10 characters long');
   }
   
@@ -69,7 +92,40 @@ const validateContact = (req, res, next) => {
 // @route   POST /api/contact
 // @desc    Submit contact form (simplified version)
 // @access  Public
-router.post('/', upload.array('files', 10), validateContact, async (req, res) => {
+router.post('/', (req, res, next) => {
+  upload.array('files', 10)(req, res, (err) => {
+    if (err instanceof multer.MulterError) {
+      console.log('❌ Multer error:', err.message);
+      if (err.code === 'LIMIT_FILE_SIZE') {
+        return res.status(400).json({
+          success: false,
+          message: 'File too large. Maximum file size is 5MB.',
+          errors: ['File size exceeds 5MB limit']
+        });
+      }
+      if (err.code === 'LIMIT_FILE_COUNT') {
+        return res.status(400).json({
+          success: false,
+          message: 'Too many files. Maximum 10 files allowed.',
+          errors: ['Maximum 10 files allowed']
+        });
+      }
+      return res.status(400).json({
+        success: false,
+        message: 'File upload error: ' + err.message,
+        errors: [err.message]
+      });
+    } else if (err) {
+      console.log('❌ Upload error:', err);
+      return res.status(400).json({
+        success: false,
+        message: 'File upload failed',
+        errors: [err.message || 'Unknown file upload error']
+      });
+    }
+    next();
+  });
+}, validateContact, async (req, res) => {
   try {
     const { name, email, phone, projectType, budget, message } = req.body;
     const files = req.files || [];

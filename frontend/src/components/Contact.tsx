@@ -104,16 +104,16 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
       // Append files
       formData.files.forEach(file => {
         submitData.append('files', file);
-      });
-
-      const response = await fetch(`${apiUrl}/api/contact`, {
+      });      const response = await fetch(`${apiUrl}/api/contact`, {
         method: 'POST',
         body: submitData,
       });
 
       const result = await response.json();
+      
+      console.log('API Response:', { status: response.status, data: result });
 
-      if (result.success) {
+      if (response.ok && result.success) {
         setIsSubmitted(true);
         // Reset form after successful submission
         setFormData({
@@ -134,7 +134,17 @@ const Contact = () => {  const [formData, setFormData] = useState<FormData>({
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      setSubmitError(error instanceof Error ? error.message : 'Failed to submit form. Please try again or contact us directly.');
+      
+      // Handle different types of errors
+      let errorMessage = 'Failed to submit form. Please try again or contact us directly.';
+      
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else if (typeof error === 'string') {
+        errorMessage = error;
+      }
+      
+      setSubmitError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
