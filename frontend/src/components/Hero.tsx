@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { Link } from 'react-router-dom';
 // import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 const Hero = () => {
@@ -97,8 +98,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: isLoaded ? 1 : 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-          >
-            <motion.h1 
+          >            <motion.h1 
               className="font-serif text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight text-stone-900 leading-none"
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -108,8 +108,11 @@ const Hero = () => {
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
-              <span className="block">Architecting</span>
-              <span className="block text-gradient">Dreams</span>
+              <span className="block">Crafting</span>
+              <span className="block bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
+                Dreams
+              </span>
+              <span className="block">Into Reality</span>
             </motion.h1>
           </motion.div>
 

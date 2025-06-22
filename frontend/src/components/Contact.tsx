@@ -4,7 +4,8 @@ import {
   BuildingOffice2Icon, 
   PhoneIcon, 
   EnvelopeIcon,
-  CheckCircleIcon
+  CheckCircleIcon,
+  XMarkIcon
 } from '@heroicons/react/24/outline';
 
 interface FormData {
@@ -14,6 +15,7 @@ interface FormData {
   projectType: string;
   budget: string;
   message: string;
+  files: File[];
 }
 const social = [
     {
@@ -66,29 +68,90 @@ const social = [
     },
   ];
 
-const Contact = () => {
-  const [formData, setFormData] = useState<FormData>({
+const Contact = () => {  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
     projectType: '',
     budget: '',
-    message: ''
+    message: '',
+    files: []
   });
   
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      
+      // Create FormData for file upload
+      const submitData = new FormData();
+      submitData.append('name', formData.name);
+      submitData.append('email', formData.email);
+      submitData.append('phone', formData.phone);
+      submitData.append('projectType', formData.projectType);
+      if (formData.budget) {
+        submitData.append('budget', formData.budget);
+      }
+      submitData.append('message', formData.message);
+      
+      // Append files
+      formData.files.forEach(file => {
+        submitData.append('files', file);
+      });
+
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: 'POST',
+        body: submitData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        // Reset form after successful submission
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          projectType: '',
+          budget: '',
+          message: '',
+          files: []
+        });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        throw new Error(result.message || 'Failed to submit form');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('Failed to submit form. Please try again or contact us directly.');
+    }
+  };const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    if (e.target.type === 'file') {
+      const fileInput = e.target as HTMLInputElement;
+      if (fileInput.files) {
+        const newFiles = Array.from(fileInput.files);
+        setFormData(prev => ({
+          ...prev,
+          files: [...prev.files, ...newFiles]
+        }));
+        // Clear the input so the same file can be selected again if needed
+        fileInput.value = '';
+      }
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [e.target.name]: e.target.value
+      }));
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const removeFile = (indexToRemove: number) => {
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      files: prev.files.filter((_, index) => index !== indexToRemove)
     }));
   };
 
@@ -248,15 +311,15 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">                <div>
                   <label htmlFor="phone" className="block text-sm font-semibold text-stone-900 mb-2">
-                    Phone Number
+                    Phone Number *
                   </label>
                   <input
                     type="tel"
                     id="phone"
                     name="phone"
+                    required
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300"
@@ -279,15 +342,16 @@ const Contact = () => {
                     <option value="">Select project type</option>
                     <option value="residential">Residential Design</option>
                     <option value="commercial">Commercial Space</option>
-                    <option value="interior">Interior Design</option>
+                    <option value="interior">Interior Styling</option>
                     <option value="renovation">Renovation</option>
                     <option value="consultation">Consultation</option>
+                    <option value="consultation">Landscaping</option>
                     <option value="other">Other</option>
                   </select>
                 </div>
               </div>
 
-              <div>
+              {/* <div>
                 <label htmlFor="budget" className="block text-sm font-semibold text-stone-900 mb-2">
                   Project Budget
                 </label>
@@ -306,9 +370,7 @@ const Contact = () => {
                   <option value="500k-1m">$500,000 - $1,000,000</option>
                   <option value="over-1m">Over $1,000,000</option>
                 </select>
-              </div>
-
-              <div>
+              </div> */}              <div>
                 <label htmlFor="message" className="block text-sm font-semibold text-stone-900 mb-2">
                   Project Details *
                 </label>
@@ -322,6 +384,59 @@ const Contact = () => {
                   className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300 resize-none"
                   placeholder="Tell us about your project, vision, timeline, and any specific requirements..."
                 />
+              </div>
+
+              <div>
+                <label htmlFor="files" className="block text-sm font-semibold text-stone-900 mb-2">
+                  Submit Requirements 
+                </label>
+                <div className="relative">
+                  <input
+                    type="file"
+                    id="files"
+                    name="files"
+                    multiple
+                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.dwg,.skp"
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-stone-100 file:text-stone-700 hover:file:bg-stone-200"
+                  />                  <p className="mt-2 text-sm text-stone-500">
+                    Upload reference images, floor plans, inspiration photos, or any relevant documents. 
+                    Accepted formats: PDF, DOC, DOCX, JPG, PNG, GIF, DWG, SKP (Max 10MB per file)
+                  </p>                  {formData.files && formData.files.length > 0 && (
+                    <div className="mt-4 space-y-2">
+                      <p className="text-sm font-medium text-stone-700">Selected files:</p>
+                      <div className="space-y-2">
+                        {formData.files.map((file, index) => (
+                          <div key={`${file.name}-${index}`} className="flex items-center justify-between p-3 bg-stone-50 rounded-lg border border-stone-200">
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium text-stone-700 truncate">
+                                {file.name}
+                              </p>
+                              <p className="text-xs text-stone-500">
+                                {(file.size / 1024 / 1024).toFixed(2)} MB
+                              </p>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => removeFile(index)}
+                              className="ml-3 p-1 text-stone-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors duration-200"
+                              title="Remove file"
+                            >
+                              <XMarkIcon className="w-4 h-4" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, files: [] }))}
+                        className="text-sm text-red-600 hover:text-red-700 font-medium"
+                      >
+                        Clear all files
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <motion.button
