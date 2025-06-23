@@ -1,9 +1,9 @@
 import { lazy, Suspense } from 'react'
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Services = lazy(() => import('../components/Services'))
 
-// Loading component
+// Enhanced loading component
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[400px]">
     <motion.div
@@ -27,8 +27,26 @@ const LoadingSpinner = () => (
 )
 
 const ServicesPage = () => {
+  const { scrollYProgress } = useScroll();
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
   return (
-    <main className="pt-20">
+    <main className="relative overflow-x-hidden">
+      {/* Animated background */}
+      <div className="fixed inset-0 -z-10 opacity-20">
+        <motion.div
+          className="absolute inset-0 luxury-gradient"
+          style={{ y: backgroundY }}
+        />
+        <motion.div
+          className="absolute inset-0 opacity-15"
+          style={{
+            background: "radial-gradient(circle at 50% 50%, rgba(42, 54, 37, 0.08) 0%, transparent 70%)",
+            y: useTransform(scrollYProgress, [0, 1], ["0%", "-20%"])
+          }}
+        />
+      </div>
+
       {/* Page Header */}
       <section className="relative bg-gradient-to-br from-primary-50 to-accent-50 py-16 overflow-hidden">
         <div className="absolute inset-0">
@@ -64,7 +82,8 @@ const ServicesPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-          >            <h1 className="font-serif text-5xl md:text-7xl font-bold text-stone-900 mb-6">
+          >
+            <h1 className="font-serif text-5xl md:text-7xl font-bold text-stone-900 mb-6">
               Our <span className="text-gradient">Services</span>
             </h1>
             <p className="text-xl text-stone-600 max-w-2xl mx-auto">
@@ -74,37 +93,55 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <Suspense fallback={<LoadingSpinner />}>
-        <Services />
-      </Suspense>
+      {/* Services Section - Enhanced */}
+      <motion.div
+        className="relative z-10 bg-white/95 backdrop-blur-sm"
+        style={{
+          clipPath: "polygon(0 3%, 100% 0, 100% 97%, 0 100%)",
+          marginTop: "-3vh",
+          paddingTop: "6vh"
+        }}
+      >
+        <Suspense fallback={<LoadingSpinner />}>
+          <Services />
+        </Suspense>
+      </motion.div>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-r from-stone-50 to-white">
-        <div className="max-w-4xl mx-auto text-center px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-stone-900 mb-6">
-              Ready to Get Started?
-            </h2>
-            <p className="text-lg text-stone-600 mb-8 max-w-2xl mx-auto">
-              Contact us today to discuss your project requirements and learn how our expert team can help you achieve your design goals.
-            </p>
-            <motion.a
-              href="/contact"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-medium rounded-full hover:shadow-luxury transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+      {/* Call to Action - Enhanced */}
+      <motion.div
+        className="relative z-10 bg-white/90 backdrop-blur-sm"
+        style={{
+          clipPath: "polygon(0 5%, 100% 0, 100% 100%, 0 95%)",
+          marginTop: "-5vh",
+          paddingTop: "10vh"
+        }}
+      >
+        <section className="py-16 bg-gradient-to-r from-stone-50 to-white">
+          <div className="max-w-4xl mx-auto text-center px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
             >
-              Contact Us Today
-            </motion.a>
-          </motion.div>
-        </div>
-      </section>
+              <h2 className="font-serif text-3xl md:text-5xl font-bold text-stone-900 mb-6">
+                Ready to Get Started?
+              </h2>
+              <p className="text-lg text-stone-600 mb-8 max-w-2xl mx-auto">
+                Contact us today to discuss your project requirements and learn how our expert team can help you achieve your design goals.
+              </p>
+              <motion.a
+                href="/contact"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-medium rounded-full hover:shadow-luxury transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Contact Us Today
+              </motion.a>
+            </motion.div>
+          </div>
+        </section>
+      </motion.div>
     </main>
   )
 }

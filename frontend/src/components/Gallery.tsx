@@ -125,19 +125,13 @@ const contentVariants: Variants = {
 const categories = ['All', ...new Set(galleryImages.map(img => img.category))];
 
 const Gallery = () => {
-  const galleryRef = useRef<HTMLDivElement>(null);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const galleryRef = useRef<HTMLDivElement>(null);  const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
   
   const { scrollYProgress } = useScroll({
     target: galleryRef,
     offset: ["start end", "end start"]
   });
-
-  const handleImageLoad = useCallback((imageUrl: string) => {
-    setLoadedImages(prev => new Set(prev).add(imageUrl));
-  }, []);
 
   const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
@@ -205,12 +199,10 @@ const Gallery = () => {
                 <motion.div
                   className="relative aspect-[4/5] overflow-hidden rounded-xl bg-neutral-200"
                   variants={imageVariants}
-                >
-                  <LazyImage
+                >                  <LazyImage
                     src={image.thumbnailUrl}
                     alt={image.title}
                     className="object-cover w-full h-full transform"
-                    onLoad={() => handleImageLoad(image.thumbnailUrl)}
                   />
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 opacity-0"

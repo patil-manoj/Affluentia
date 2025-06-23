@@ -1,9 +1,9 @@
 import { lazy, Suspense } from 'react'
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const About = lazy(() => import('../components/About'))
 
-// Loading component
+// Enhanced loading component
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[400px]">
     <motion.div
@@ -27,8 +27,26 @@ const LoadingSpinner = () => (
 )
 
 const AboutPage = () => {
+  const { scrollYProgress } = useScroll();
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
   return (
-    <main className="pt-20">
+    <main className="relative overflow-x-hidden">
+      {/* Animated background */}
+      <div className="fixed inset-0 -z-10 opacity-20">
+        <motion.div
+          className="absolute inset-0 luxury-gradient"
+          style={{ y: backgroundY }}
+        />
+        <motion.div
+          className="absolute inset-0 opacity-15"
+          style={{
+            background: "radial-gradient(circle at 50% 50%, rgba(42, 54, 37, 0.08) 0%, transparent 70%)",
+            y: useTransform(scrollYProgress, [0, 1], ["0%", "-20%"])
+          }}
+        />
+      </div>
+
       {/* Page Header */}
       <section className="relative bg-gradient-to-br from-accent-50 to-primary-50 py-16 overflow-hidden">
         <div className="absolute inset-0">
@@ -63,7 +81,8 @@ const AboutPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-          >            <h1 className="font-serif text-5xl md:text-7xl font-bold text-stone-900 mb-6">
+          >
+            <h1 className="font-serif text-5xl md:text-7xl font-bold text-stone-900 mb-6">
               About <span className="text-gradient">Affluentia</span>
             </h1>
             <p className="text-xl text-stone-600 max-w-2xl mx-auto">
@@ -73,51 +92,69 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <Suspense fallback={<LoadingSpinner />}>
-        <About />
-      </Suspense>
+      {/* About Section - Enhanced */}
+      <motion.div
+        className="relative z-10 bg-white/95 backdrop-blur-sm"
+        style={{
+          clipPath: "polygon(0 3%, 100% 0, 100% 97%, 0 100%)",
+          marginTop: "-3vh",
+          paddingTop: "6vh"
+        }}
+      >
+        <Suspense fallback={<LoadingSpinner />}>
+          <About />
+        </Suspense>
+      </motion.div>
 
-      {/* Mission & Values Section */}
-      <section className="py-16 bg-gradient-to-br from-white to-stone-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-serif text-4xl font-bold text-stone-900 mb-6">
-                Our Mission
-              </h2>
-              <p className="text-lg text-stone-600 leading-relaxed mb-6">
-                At Affluentia, we believe that exceptional design has the power to transform lives. Our mission is to create spaces that not only meet our clients' functional needs but also inspire and elevate their daily experiences.
-              </p>
-              <p className="text-lg text-stone-600 leading-relaxed">
-                We are committed to sustainable practices, innovative solutions, and collaborative partnerships that result in timeless architectural masterpieces.
-              </p>
-            </motion.div>
-            
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="aspect-square rounded-2xl overflow-hidden shadow-luxury">
-                <img
-                  src="https://images.pexels.com/photos/6585627/pexels-photo-6585627.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Our team at work"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl opacity-20 blur-xl"></div>
-            </motion.div>
+      {/* Mission & Values Section - Enhanced */}
+      <motion.div
+        className="relative z-10 bg-white/90 backdrop-blur-sm"
+        style={{
+          clipPath: "polygon(0 5%, 100% 0, 100% 100%, 0 95%)",
+          marginTop: "-5vh",
+          paddingTop: "10vh"
+        }}
+      >
+        <section className="py-16 bg-gradient-to-br from-white to-stone-50">
+          <div className="max-w-6xl mx-auto px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="font-serif text-4xl font-bold text-stone-900 mb-6">
+                  Our Mission
+                </h2>
+                <p className="text-lg text-stone-600 leading-relaxed mb-6">
+                  At Affluentia, we believe that exceptional design has the power to transform lives. Our mission is to create spaces that not only meet our clients' functional needs but also inspire and elevate their daily experiences.
+                </p>
+                <p className="text-lg text-stone-600 leading-relaxed">
+                  We are committed to sustainable practices, innovative solutions, and collaborative partnerships that result in timeless architectural masterpieces.
+                </p>
+              </motion.div>
+              
+              <motion.div
+                className="relative"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <div className="aspect-square rounded-2xl overflow-hidden shadow-luxury">
+                  <img
+                    src="https://images.pexels.com/photos/6585627/pexels-photo-6585627.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Our team at work"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl opacity-20 blur-xl"></div>
+              </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </motion.div>
     </main>
   )
 }

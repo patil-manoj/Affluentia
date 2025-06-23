@@ -1,9 +1,9 @@
 import { lazy, Suspense } from 'react'
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Projects = lazy(() => import('../components/Projects'))
 
-// Loading component
+// Enhanced loading component
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[400px]">
     <motion.div
@@ -27,8 +27,26 @@ const LoadingSpinner = () => (
 )
 
 const ProjectsPage = () => {
+  const { scrollYProgress } = useScroll();
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
   return (
-    <main className="pt-20">
+    <main className="relative overflow-x-hidden">
+      {/* Animated background */}
+      <div className="fixed inset-0 -z-10 opacity-20">
+        <motion.div
+          className="absolute inset-0 luxury-gradient"
+          style={{ y: backgroundY }}
+        />
+        <motion.div
+          className="absolute inset-0 opacity-15"
+          style={{
+            background: "radial-gradient(circle at 50% 50%, rgba(42, 54, 37, 0.08) 0%, transparent 70%)",
+            y: useTransform(scrollYProgress, [0, 1], ["0%", "-20%"])
+          }}
+        />
+      </div>
+
       {/* Page Header */}
       <section className="relative bg-gradient-to-br from-stone-50 to-white py-16 overflow-hidden">
         <div className="absolute inset-0">
@@ -51,7 +69,8 @@ const ProjectsPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-          >            <h1 className="font-serif text-5xl md:text-7xl font-bold text-stone-900 mb-6">
+          >
+            <h1 className="font-serif text-5xl md:text-7xl font-bold text-stone-900 mb-6">
               Our <span className="text-gradient">Projects</span>
             </h1>
             <p className="text-xl text-stone-600 max-w-2xl mx-auto">
@@ -60,52 +79,72 @@ const ProjectsPage = () => {
             </p>
           </motion.div>
         </div>
-      </section>      {/* Projects Section */}
-      <Suspense fallback={<LoadingSpinner />}>
-        <Projects />
-      </Suspense>
-
-      {/* Project Stats Section */}
-      <section className="py-16 bg-stone-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-4">
-              Project <span className="text-gradient">Excellence</span>
-            </h2>
-            <p className="text-lg text-stone-600 max-w-2xl mx-auto">
-              Every project we undertake is a testament to our dedication to quality and innovation.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { number: "500+", label: "Projects Completed" },
-              { number: "98%", label: "Client Satisfaction" },
-              { number: "50+", label: "Design Awards" },
-              { number: "15+", label: "Years of Excellence" }
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                className="text-center p-6 bg-white rounded-2xl shadow-soft"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="text-4xl font-bold text-primary-600 mb-2">{stat.number}</div>
-                <div className="text-stone-600 font-medium">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </section>
+
+      {/* Projects Section - Enhanced */}
+      <motion.div
+        className="relative z-10 bg-white/95 backdrop-blur-sm"
+        style={{
+          clipPath: "polygon(0 3%, 100% 0, 100% 97%, 0 100%)",
+          marginTop: "-3vh",
+          paddingTop: "6vh"
+        }}
+      >
+        <Suspense fallback={<LoadingSpinner />}>
+          <Projects />
+        </Suspense>
+      </motion.div>
+
+      {/* Project Stats Section - Enhanced */}
+      <motion.div
+        className="relative z-10 bg-white/90 backdrop-blur-sm"
+        style={{
+          clipPath: "polygon(0 5%, 100% 0, 100% 100%, 0 95%)",
+          marginTop: "-5vh",
+          paddingTop: "10vh"
+        }}
+      >
+        <section className="py-16 bg-stone-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <motion.div
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+                Project <span className="text-gradient">Excellence</span>
+              </h2>
+              <p className="text-lg text-stone-600 max-w-2xl mx-auto">
+                Every project we undertake is a testament to our dedication to quality and innovation.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                { number: "500+", label: "Projects Completed" },
+                { number: "98%", label: "Client Satisfaction" },
+                { number: "50+", label: "Design Awards" },
+                { number: "15+", label: "Years of Excellence" }
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  className="text-center p-6 bg-white rounded-2xl shadow-soft"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="text-4xl font-bold text-primary-600 mb-2">{stat.number}</div>
+                  <div className="text-stone-600 font-medium">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </motion.div>
     </main>
   )
 }
