@@ -13,7 +13,7 @@ const LoadingSpinner = () => (
       transition={{ duration: 0.5 }}
     >
       <motion.div
-        className="w-16 h-16 border-4 border-stone-200 border-t-primary-600 rounded-full"
+        className="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full"
         animate={{ rotate: 360 }}
         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
       />
@@ -48,18 +48,33 @@ const ProjectsPage = () => {
       </div>
 
       {/* Page Header */}
-      <section className="relative bg-gradient-to-br from-stone-50 to-white py-16 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200 py-16 overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
-            className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-r from-primary-200/20 to-accent-200/20 rounded-full blur-3xl"
+            className="absolute top-1/4 left-1/3 w-56 h-56 bg-gradient-to-r from-primary-200/40 to-accent-200/40 rounded-full blur-3xl"
             animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
+              x: [0, 80, 0],
+              y: [0, -40, 0],
+              scale: [1, 1.3, 1],
             }}
             transition={{
-              duration: 8,
+              duration: 18,
               repeat: Infinity,
               ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-1/4 right-1/3 w-72 h-72 bg-gradient-to-r from-accent-200/30 to-primary-200/30 rounded-full blur-3xl"
+            animate={{
+              x: [0, -60, 0],
+              y: [0, 50, 0],
+              scale: [1, 0.8, 1],
+            }}
+            transition={{
+              duration: 22,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
             }}
           />
         </div>
@@ -69,11 +84,10 @@ const ProjectsPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-          >
-            <h1 className="font-serif text-5xl md:text-7xl font-bold text-stone-900 mb-6">
+          >            <h1 className="font-serif text-5xl md:text-7xl font-bold text-primary-900 mb-6">
               Our <span className="text-gradient">Projects</span>
             </h1>
-            <p className="text-xl text-stone-600 max-w-2xl mx-auto">
+            <p className="text-xl text-primary-700 max-w-2xl mx-auto">
               Discover our portfolio of exceptional spaces that showcase our commitment to innovative design, 
               superior craftsmanship, and client satisfaction across residential and commercial projects.
             </p>
@@ -104,7 +118,7 @@ const ProjectsPage = () => {
           paddingTop: "10vh"
         }}
       >
-        <section className="py-16 bg-stone-50">
+        <section className="py-16 bg-gradient-to-br from-primary-50 to-primary-100">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <motion.div
               className="text-center mb-12"
@@ -112,11 +126,10 @@ const ProjectsPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-            >
-              <h2 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+            >              <h2 className="font-serif text-3xl md:text-4xl font-bold text-primary-900 mb-4">
                 Project <span className="text-gradient">Excellence</span>
               </h2>
-              <p className="text-lg text-stone-600 max-w-2xl mx-auto">
+              <p className="text-lg text-primary-700 max-w-2xl mx-auto">
                 Every project we undertake is a testament to our dedication to quality and innovation.
               </p>
             </motion.div>
@@ -138,7 +151,7 @@ const ProjectsPage = () => {
                   whileHover={{ y: -5 }}
                 >
                   <div className="text-4xl font-bold text-primary-600 mb-2">{stat.number}</div>
-                  <div className="text-stone-600 font-medium">{stat.label}</div>
+                  <div className="text-primary-700 font-medium">{stat.label}</div>
                 </motion.div>
               ))}
             </div>

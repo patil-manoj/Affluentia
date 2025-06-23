@@ -182,23 +182,21 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
 
       {/* Content */}
       <div className="p-6">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="font-serif text-xl font-bold text-stone-900 group-hover:text-primary-600 transition-colors">
+        <div className="flex items-center justify-between mb-3">          <h3 className="font-serif text-xl font-bold text-primary-900 group-hover:text-primary-600 transition-colors">
             {project.title}
           </h3>
-          <span className="text-sm text-stone-500">{project.year}</span>
+          <span className="text-sm text-primary-600">{project.year}</span>
         </div>
-        
-        <p className="text-stone-600 mb-4 line-clamp-2">{project.description}</p>
+          <p className="text-primary-700 mb-4 line-clamp-2">{project.description}</p>
         
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
-            <span className="text-stone-500">Location:</span>
-            <p className="font-medium text-stone-900">{project.location}</p>
+            <span className="text-primary-600">Location:</span>
+            <p className="font-medium text-primary-900">{project.location}</p>
           </div>
           <div>
-            <span className="text-stone-500">Area:</span>
-            <p className="font-medium text-stone-900">{project.area}</p>
+            <span className="text-primary-600">Area:</span>
+            <p className="font-medium text-primary-900">{project.area}</p>
           </div>
         </div>
       </div>
@@ -228,17 +226,15 @@ const Projects = () => {  const [selectedCategory, setSelectedCategory] = useSta
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-        >
-          <motion.h2 
-            className="font-serif text-4xl md:text-6xl font-bold text-stone-900 mb-6"
+        >          <motion.h2 
+            className="font-serif text-4xl md:text-6xl font-bold text-primary-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Our <span className="text-gradient">Portfolio</span>
-          </motion.h2>
-          <motion.p 
-            className="text-xl text-stone-600 max-w-3xl mx-auto"
+          </motion.h2>          <motion.p 
+            className="text-xl text-primary-700 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -278,7 +274,7 @@ const Projects = () => {  const [selectedCategory, setSelectedCategory] = useSta
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap ${
                   selectedCategory === category
                     ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-luxury'
-                    : 'bg-white text-stone-600 border border-stone-200 hover:border-primary-300 hover:text-primary-600'
+                    : 'bg-white text-primary-700 border border-primary-200 hover:border-primary-300 hover:text-primary-600'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -309,9 +305,8 @@ const Projects = () => {  const [selectedCategory, setSelectedCategory] = useSta
           >
             <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-stone-100 flex items-center justify-center">
               <MagnifyingGlassIcon className="w-12 h-12 text-stone-400" />
-            </div>
-            <h3 className="font-serif text-2xl font-bold text-stone-900 mb-3">No projects found</h3>
-            <p className="text-stone-600 mb-6">Try adjusting your search or filter criteria</p>
+            </div>            <h3 className="font-serif text-2xl font-bold text-primary-900 mb-3">No projects found</h3>
+            <p className="text-primary-700 mb-6">Try adjusting your search or filter criteria</p>
             <motion.button
               onClick={() => {
                 setSearchTerm('');

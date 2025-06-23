@@ -189,16 +189,15 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
 
           {/* Price */}
           <div className="absolute top-6 right-6 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full">
-            <span className="text-sm font-medium text-stone-900">{service.price}</span>
+            <span className="text-sm font-medium text-primary-900">{service.price}</span>
           </div>
         </div>
 
         {/* Content */}
-        <div className="p-6">
-          <h3 className="font-serif text-2xl font-bold text-stone-900 mb-3 group-hover:text-primary-600 transition-colors">
+        <div className="p-6">          <h3 className="font-serif text-2xl font-bold text-primary-900 mb-3 group-hover:text-primary-600 transition-colors">
             {service.title}
           </h3>
-          <p className="text-stone-600 mb-6 leading-relaxed">
+          <p className="text-primary-700 mb-6 leading-relaxed">
             {service.description}
           </p>
 
@@ -239,7 +238,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
                 className={`px-4 py-2 text-sm font-medium capitalize transition-colors border-b-2 ${
                   activeTab === tab
                     ? 'border-primary-600 text-primary-600'
-                    : 'border-transparent text-stone-500 hover:text-stone-700'
+                    : 'border-transparent text-primary-600 hover:text-primary-700'
                 }`}
               >
                 {tab}
@@ -317,17 +316,15 @@ const Services = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-        >
-          <motion.h2 
-            className="font-serif text-4xl md:text-6xl font-bold text-stone-900 mb-6"
+        >          <motion.h2 
+            className="font-serif text-4xl md:text-6xl font-bold text-primary-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Our <span className="text-gradient">Services</span>
-          </motion.h2>
-          <motion.p 
-            className="text-xl text-stone-600 max-w-3xl mx-auto"
+          </motion.h2>          <motion.p 
+            className="text-xl text-primary-700 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -352,11 +349,10 @@ const Services = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="max-w-3xl mx-auto p-8 rounded-3xl bg-gradient-to-r from-primary-50 to-accent-50 border border-primary-100">
-            <h3 className="font-serif text-3xl font-bold text-stone-900 mb-4">
+          <div className="max-w-3xl mx-auto p-8 rounded-3xl bg-gradient-to-r from-primary-50 to-accent-50 border border-primary-100">            <h3 className="font-serif text-3xl font-bold text-primary-900 mb-4">
               Ready to Start Your Project?
             </h3>
-            <p className="text-lg text-stone-600 mb-6">
+            <p className="text-lg text-primary-700 mb-6">
               Let's discuss how we can bring your architectural vision to life with our expertise and creativity.
             </p>
             <motion.a

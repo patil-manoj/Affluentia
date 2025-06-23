@@ -58,7 +58,7 @@ function classNames(...classes: string[]) {
 
 export default function Pricing() {
   return (
-    <div className="bg-gray-50 py-24 sm:py-32" id="plans">
+    <div className="bg-gradient-to-br from-primary-50 to-accent-50 py-24 sm:py-32" id="plans">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div 
           className="mx-auto max-w-4xl text-center"
@@ -66,12 +66,11 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-        >
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">Pricing</h2>
-          <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+        >          <h2 className="text-base font-semibold leading-7 text-primary-600">Pricing</h2>
+          <p className="mt-2 text-4xl font-bold tracking-tight text-primary-900 sm:text-5xl">
             Pricing plans for teams of all sizes
           </p>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-6 text-lg leading-8 text-primary-700">
             Choose the perfect plan to help your team succeed. All plans include 40+ integrations and access to our API.
           </p>
         </motion.div>
@@ -89,7 +88,7 @@ export default function Pricing() {
                 tier.featured ? 'lg:z-10 lg:rounded-b-none' : 'lg:mt-8',
                 tierIdx === 0 ? 'lg:rounded-r-none' : '',
                 tierIdx === tiers.length - 1 ? 'lg:rounded-l-none' : '',
-                'flex flex-col justify-between rounded-3xl bg-white p-8 ring-1 ring-gray-200 xl:p-10'
+                'flex flex-col justify-between rounded-3xl bg-white p-8 ring-1 ring-primary-200 xl:p-10'
               )}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -98,9 +97,8 @@ export default function Pricing() {
             >
               <div>
                 <div className="flex items-center justify-between gap-x-4">
-                  <h3
-                    className={classNames(
-                      tier.featured ? 'text-indigo-600' : 'text-gray-900',
+                  <h3                    className={classNames(
+                      tier.featured ? 'text-primary-600' : 'text-primary-900',
                       'text-lg font-semibold leading-8'
                     )}
                   >

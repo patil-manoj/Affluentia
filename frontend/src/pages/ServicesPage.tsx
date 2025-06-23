@@ -13,7 +13,7 @@ const LoadingSpinner = () => (
       transition={{ duration: 0.5 }}
     >
       <motion.div
-        className="w-16 h-16 border-4 border-stone-200 border-t-primary-600 rounded-full"
+        className="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full"
         animate={{ rotate: 360 }}
         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
       />
@@ -48,7 +48,7 @@ const ServicesPage = () => {
       </div>
 
       {/* Page Header */}
-      <section className="relative bg-gradient-to-br from-primary-50 to-accent-50 py-16 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200 py-16 overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
             className="absolute top-10 left-10 w-72 h-72 bg-gradient-to-r from-primary-200/30 to-accent-200/30 rounded-full blur-3xl"
@@ -82,11 +82,10 @@ const ServicesPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-          >
-            <h1 className="font-serif text-5xl md:text-7xl font-bold text-stone-900 mb-6">
+          >            <h1 className="font-serif text-5xl md:text-7xl font-bold text-primary-900 mb-6">
               Our <span className="text-gradient">Services</span>
             </h1>
-            <p className="text-xl text-stone-600 max-w-2xl mx-auto">
+            <p className="text-xl text-primary-700 max-w-2xl mx-auto">
               From concept to completion, we offer comprehensive design services that transform your vision into reality. Experience our full-service approach to exceptional design.
             </p>
           </motion.div>
@@ -116,18 +115,17 @@ const ServicesPage = () => {
           paddingTop: "10vh"
         }}
       >
-        <section className="py-16 bg-gradient-to-r from-stone-50 to-white">
+        <section className="py-16 bg-gradient-to-br from-primary-50 to-primary-100">
           <div className="max-w-4xl mx-auto text-center px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-            >
-              <h2 className="font-serif text-3xl md:text-5xl font-bold text-stone-900 mb-6">
+            >              <h2 className="font-serif text-3xl md:text-5xl font-bold text-primary-900 mb-6">
                 Ready to Get Started?
               </h2>
-              <p className="text-lg text-stone-600 mb-8 max-w-2xl mx-auto">
+              <p className="text-lg text-primary-700 mb-8 max-w-2xl mx-auto">
                 Contact us today to discuss your project requirements and learn how our expert team can help you achieve your design goals.
               </p>
               <motion.a

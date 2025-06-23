@@ -11,9 +11,8 @@ const LoadingSpinner = () => (
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-    >
-      <motion.div
-        className="w-16 h-16 border-4 border-stone-200 border-t-primary-600 rounded-full"
+    >      <motion.div
+        className="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full"
         animate={{ rotate: 360 }}
         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
       />
@@ -48,30 +47,33 @@ const AboutPage = () => {
       </div>
 
       {/* Page Header */}
-      <section className="relative bg-gradient-to-br from-accent-50 to-primary-50 py-16 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200 py-16 overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
-            className="absolute top-0 left-1/4 w-80 h-80 bg-gradient-to-r from-accent-200/25 to-primary-200/25 rounded-full blur-3xl"
+            className="absolute top-1/4 left-1/3 w-56 h-56 bg-gradient-to-r from-primary-200/40 to-accent-200/40 rounded-full blur-3xl"
             animate={{
-              rotate: [0, 360],
-              scale: [1, 1.1, 1],
+              x: [0, 80, 0],
+              y: [0, -40, 0],
+              scale: [1, 1.3, 1],
             }}
             transition={{
-              duration: 30,
+              duration: 18,
               repeat: Infinity,
-              ease: "linear"
+              ease: "easeInOut"
             }}
           />
           <motion.div
-            className="absolute bottom-0 right-1/4 w-64 h-64 bg-gradient-to-r from-primary-200/30 to-accent-200/30 rounded-full blur-3xl"
+            className="absolute bottom-1/4 right-1/3 w-72 h-72 bg-gradient-to-r from-accent-200/30 to-primary-200/30 rounded-full blur-3xl"
             animate={{
-              rotate: [360, 0],
-              scale: [1, 0.9, 1],
+              x: [0, -60, 0],
+              y: [0, 50, 0],
+              scale: [1, 0.8, 1],
             }}
             transition={{
-              duration: 25,
+              duration: 22,
               repeat: Infinity,
-              ease: "linear"
+              ease: "easeInOut",
+              delay: 2
             }}
           />
         </div>
@@ -81,11 +83,10 @@ const AboutPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-          >
-            <h1 className="font-serif text-5xl md:text-7xl font-bold text-stone-900 mb-6">
+          >            <h1 className="font-serif text-5xl md:text-7xl font-bold text-primary-900 mb-6">
               About <span className="text-gradient">Affluentia</span>
             </h1>
-            <p className="text-xl text-stone-600 max-w-2xl mx-auto">
+            <p className="text-xl text-primary-700 max-w-2xl mx-auto">
               Meet the passionate team behind exceptional design. Learn about our journey, values, and unwavering commitment to creating extraordinary spaces that inspire.
             </p>
           </motion.div>
@@ -115,7 +116,7 @@ const AboutPage = () => {
           paddingTop: "10vh"
         }}
       >
-        <section className="py-16 bg-gradient-to-br from-white to-stone-50">
+        <section className="py-16 bg-gradient-to-br from-primary-50 to-primary-100">
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div
@@ -123,14 +124,13 @@ const AboutPage = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-              >
-                <h2 className="font-serif text-4xl font-bold text-stone-900 mb-6">
+              >                <h2 className="font-serif text-4xl font-bold text-primary-900 mb-6">
                   Our Mission
                 </h2>
-                <p className="text-lg text-stone-600 leading-relaxed mb-6">
+                <p className="text-lg text-primary-700 leading-relaxed mb-6">
                   At Affluentia, we believe that exceptional design has the power to transform lives. Our mission is to create spaces that not only meet our clients' functional needs but also inspire and elevate their daily experiences.
                 </p>
-                <p className="text-lg text-stone-600 leading-relaxed">
+                <p className="text-lg text-primary-700 leading-relaxed">
                   We are committed to sustainable practices, innovative solutions, and collaborative partnerships that result in timeless architectural masterpieces.
                 </p>
               </motion.div>

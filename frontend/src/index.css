@@ -12,22 +12,21 @@
     scroll-behavior: smooth;
   }  body {
     font-family: 'Open Sans', system-ui, sans-serif;
-    color: #212121;
+    color: #1D251A;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #FAFAFA;
+    background-color: #F3E9D2;
     background-image: 
-      radial-gradient(circle at 25% 25%, rgba(243, 233, 210, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, rgba(198, 205, 182, 0.05) 0%, transparent 50%);
+      radial-gradient(circle at 25% 25%, rgba(243, 233, 210, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(198, 205, 182, 0.15) 0%, transparent 50%);
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: -0.025em;
-    color: #212121;
+    color: #1D251A;
   }
   
   .display-heading {

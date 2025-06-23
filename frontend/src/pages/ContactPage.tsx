@@ -13,7 +13,7 @@ const LoadingSpinner = () => (
       transition={{ duration: 0.5 }}
     >
       <motion.div
-        className="w-16 h-16 border-4 border-stone-200 border-t-primary-600 rounded-full"
+        className="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full"
         animate={{ rotate: 360 }}
         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
       />
@@ -48,7 +48,7 @@ const ContactPage = () => {
       </div>
 
       {/* Page Header */}
-      <section className="relative bg-gradient-to-br from-primary-50 via-white to-accent-50 py-16 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200 py-16 overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
             className="absolute top-1/4 left-1/3 w-56 h-56 bg-gradient-to-r from-primary-200/40 to-accent-200/40 rounded-full blur-3xl"
@@ -84,11 +84,10 @@ const ContactPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-          >
-            <h1 className="font-serif text-5xl md:text-7xl font-bold text-stone-900 mb-6">
+          >            <h1 className="font-serif text-5xl md:text-7xl font-bold text-primary-900 mb-6">
               Get in <span className="text-gradient">Touch</span>
             </h1>
-            <p className="text-xl text-stone-600 max-w-2xl mx-auto">
+            <p className="text-xl text-primary-700 max-w-2xl mx-auto">
               Ready to bring your vision to life? Let's start a conversation about your next project. We're here to help you create something extraordinary.
             </p>
           </motion.div>
@@ -118,7 +117,7 @@ const ContactPage = () => {
           paddingTop: "10vh"
         }}
       >
-        <section className="py-16 bg-gradient-to-r from-stone-50 to-white">
+        <section className="py-16 bg-gradient-to-br from-primary-50 to-primary-100">
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <motion.div
@@ -133,9 +132,8 @@ const ContactPage = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                </div>
-                <h3 className="font-serif text-xl font-bold text-stone-900 mb-2">Visit Our Studio</h3>
-                <p className="text-stone-600">Schedule a visit to our design studio to see our work up close and discuss your project in detail.</p>
+                </div>                <h3 className="font-serif text-xl font-bold text-primary-900 mb-2">Visit Our Studio</h3>
+                <p className="text-primary-700">Schedule a visit to our design studio to see our work up close and discuss your project in detail.</p>
               </motion.div>
 
               <motion.div
@@ -149,9 +147,8 @@ const ContactPage = () => {
                   <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                </div>
-                <h3 className="font-serif text-xl font-bold text-stone-900 mb-2">Quick Response</h3>
-                <p className="text-stone-600">We typically respond to all inquiries within 24 hours during business days.</p>
+                </div>                <h3 className="font-serif text-xl font-bold text-primary-900 mb-2">Quick Response</h3>
+                <p className="text-primary-700">We typically respond to all inquiries within 24 hours during business days.</p>
               </motion.div>
 
               <motion.div
@@ -165,9 +162,8 @@ const ContactPage = () => {
                   <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                </div>
-                <h3 className="font-serif text-xl font-bold text-stone-900 mb-2">Free Consultation</h3>
-                <p className="text-stone-600">Get started with a complimentary consultation to discuss your project goals and requirements.</p>
+                </div>                <h3 className="font-serif text-xl font-bold text-primary-900 mb-2">Free Consultation</h3>
+                <p className="text-primary-700">Get started with a complimentary consultation to discuss your project goals and requirements.</p>
               </motion.div>
             </div>
           </div>
