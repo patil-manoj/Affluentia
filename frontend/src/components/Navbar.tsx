@@ -3,6 +3,7 @@ import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { motion, useScroll, AnimatePresence } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
+import logo from '../assets/logo.png'
 
 const navigation = [
   { name: 'Projects', href: '/projects' },
@@ -50,12 +51,18 @@ export default function Navbar() {
           paddingTop: scrolled ? '0' : '8px',
           paddingBottom: scrolled ? '0' : '8px'
         }}
-      >
-        <div className="flex lg:flex-1">
+      >        <div className="flex lg:flex-1">
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-          >            <Link to="/" className="-m-1.5 p-1.5">
+          >            <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3">
+              <img 
+                src={logo} 
+                alt="Affluentia Logo" 
+                className={`h-10 w-auto transition-all duration-300 ${
+                  !scrolled ? 'drop-shadow-lg' : ''
+                }`}
+              />
               <span className={`text-2xl font-display font-bold transition-all duration-300 ${
                 scrolled 
                   ? 'text-primary-600' 
@@ -157,11 +164,15 @@ export default function Navbar() {
                 exit={{ x: "100%" }}
                 transition={{ type: "spring", damping: 20, stiffness: 100 }}
               >
-            <div className="flex items-center justify-between">
-              <motion.div
+            <div className="flex items-center justify-between">              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-              >                <Link to="/" className="-m-1.5 p-1.5">
+              >                <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3">
+                  <img 
+                    src={logo} 
+                    alt="Affluentia Logo" 
+                    className="h-8 w-auto"
+                  />
                   <span className="text-2xl font-bold text-primary-600">
                     Affluentia
                   </span>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import logo from '../assets/logo.png';
 import {
   UsersIcon,
   CalendarIcon,
@@ -377,11 +378,17 @@ const AdminPanel = () => {
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Header */}
-      <header className="bg-white border-b border-stone-200 px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-stone-900">Admin Panel</h1>
-            <p className="text-stone-600">Affluentia Interior Design</p>
+      <header className="bg-white border-b border-stone-200 px-6 py-4">        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <img 
+              src={logo} 
+              alt="Affluentia Logo" 
+              className="h-10 w-auto"
+            />
+            <div>
+              <h1 className="text-2xl font-bold text-stone-900">Admin Panel</h1>
+              <p className="text-stone-600">Affluentia Interior Design</p>
+            </div>
           </div>
           
           <div className="flex items-center gap-4">

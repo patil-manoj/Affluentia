@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 const footerNavigation = {
   services: [
@@ -96,9 +97,12 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Link to="/" className="flex items-center">
+            viewport={{ once: true }}          >            <Link to="/" className="flex items-center gap-3">
+              <img 
+                src={logo} 
+                alt="Affluentia Logo" 
+                className="h-12 w-auto"
+              />
               <span className="text-3xl font-display font-bold text-gradient bg-gradient-to-r from-primary-100 to-primary-200 bg-clip-text text-transparent">
                 Affluentia
               </span>
