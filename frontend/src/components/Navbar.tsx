@@ -54,8 +54,7 @@ export default function Navbar() {
       >        <div className="flex lg:flex-1">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >            <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3">
+            whileTap={{ scale: 0.95 }}          >            <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-1">
               <img 
                 src={logo} 
                 alt="Affluentia Logo" 
@@ -166,8 +165,7 @@ export default function Navbar() {
               >
             <div className="flex items-center justify-between">              <motion.div
                 whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >                <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3">
+                whileTap={{ scale: 0.95 }}              >                <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-1">
                   <img 
                     src={logo} 
                     alt="Affluentia Logo" 

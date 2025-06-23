@@ -97,7 +97,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}          >            <Link to="/" className="flex items-center gap-3">
+            viewport={{ once: true }}          >            <Link to="/" className="flex items-center gap-1">
               <img 
                 src={logo} 
                 alt="Affluentia Logo" 
