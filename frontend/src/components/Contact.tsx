@@ -659,7 +659,7 @@ const Contact = () => {
                   />
                   <p className="mt-2 text-sm text-stone-500">
                     Upload reference images, floor plans, inspiration photos, or any relevant documents. 
-                    Accepted formats: PDF, DOC, DOCX, JPG, PNG, GIF, DWG, SKP (Max 10MB per file)
+                    Accepted formats: PDF, DOC, DOCX, JPG, PNG, GIF, DWG, SKP (Max 100MB per file)
                   </p>
                   {formErrors.files && (
                     <p className="mt-2 text-sm text-red-600">{formErrors.files}</p>
