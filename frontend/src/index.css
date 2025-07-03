@@ -90,6 +90,10 @@
     @apply shadow-architectural-hover transform translate-y-[-8px] scale-[1.02];
   }
   
+  .luxury-card {
+    @apply bg-white/95 backdrop-blur-sm border border-stone-200/50 shadow-elegant rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-architectural-hover hover:border-stone-300/50;
+  }
+  
   .parallax-element {
     will-change: transform;
   }

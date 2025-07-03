@@ -380,7 +380,7 @@ const Contact = () => {
         onClose={() => setShowToast(false)}
       />
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div 
           className="w-full h-full"
           style={{
@@ -394,7 +394,7 @@ const Contact = () => {
         />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 py-24">
         <div className="mx-auto max-w-2xl text-center mb-16">
           <motion.h2 
             className="font-serif text-4xl md:text-6xl font-bold text-stone-900 mb-6"
@@ -495,7 +495,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-          >            <form onSubmit={handleSubmit} className="luxury-card p-8 space-y-6">
+          >            <form onSubmit={handleSubmit} className="luxury-card p-8 space-y-6 relative z-10">
               <h3 className="font-serif text-2xl font-bold text-stone-900 mb-6">Start Your Project</h3>
               
               
