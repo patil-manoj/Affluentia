@@ -154,8 +154,8 @@ const Contact = () => {
             return 'Maximum 10 files allowed';
           }
           for (const file of value) {
-            if (file.size > 10 * 1024 * 1024) { // 10MB limit
-              return `File "${file.name}" is too large. Maximum size is 10MB per file`;
+            if (file.size > 100 * 1024 * 1024) { // 100MB limit
+              return `File "${file.name}" is too large. Maximum size is 100MB per file`;
             }
           }
           const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
@@ -269,7 +269,7 @@ const Contact = () => {
         // Handle specific error cases
         if (response.status === 400) {
           if (result.message?.includes('File too large')) {
-            errorMsg = 'One or more files are too large. Please ensure each file is under 10MB.';
+            errorMsg = 'One or more files are too large. Please ensure each file is under 100MB.';
           } else if (result.message?.includes('Too many files')) {
             errorMsg = 'Too many files selected. Maximum 10 files allowed.';
           } else if (result.message?.includes('File type')) {
