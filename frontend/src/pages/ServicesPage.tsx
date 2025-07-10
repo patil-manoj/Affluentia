@@ -140,15 +140,21 @@ const ServicesPage = () => {
                   link: "/services/architecture"
                 },
                 {
-                  title: "Interior Design",
+                  title: "Building Planning",
                   description: "Transforming interiors into beautiful, comfortable, and functional spaces that reflect your unique style and needs.",
                   image: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800",
-                  link: "/services/interior"
+                  link: "/services/building-planning"
                 },
                 {
-                  title: "Landscape Design",
-                  description: "Creating harmonious outdoor environments that connect with nature while extending your living space beyond walls.",
-                  image: "https://images.pexels.com/photos/2736497/pexels-photo-2736497.jpeg?auto=compress&cs=tinysrgb&w=800",
+                  title: "Elevation",
+                  description: "Crafting stunning building facades and exteriors that make a bold statement through innovative materials and architectural details.",
+                  image: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800",
+                  link: "/services/elevation"
+                },
+                {
+                  title: "Landscaping",
+                  description: "Transforming outdoor spaces with lush gardens, water features, and sustainable designs that harmonize with the natural environment.",
+                  image: "https://images.pexels.com/photos/462235/pexels-photo-462235.jpeg?auto=compress&cs=tinysrgb&w=800",
                   link: "/services/landscaping"
                 }
               ].map((service, index) => (
