@@ -13,6 +13,12 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import AdminPage from './pages/AdminPage'
 
+// Import service detail pages
+import BuildingPlanningPage from './pages/services/BuildingPlanningPage'
+import ArchitecturePage from './pages/services/ArchitecturePage'
+import ElevationPage from './pages/services/ElevationPage'
+import LandscapingPage from './pages/services/LandscapingPage'
+
 const App = () => {
   const { scrollYProgress } = useScroll();
   const [isLoading, setIsLoading] = useState(true);
@@ -52,6 +58,12 @@ const App = () => {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/admin" element={<AdminPage />} />
+              
+              {/* Service detail pages */}
+              <Route path="/services/building-planning" element={<BuildingPlanningPage />} />
+              <Route path="/services/architecture" element={<ArchitecturePage />} />
+              <Route path="/services/elevation" element={<ElevationPage />} />
+              <Route path="/services/landscaping" element={<LandscapingPage />} />
             </Routes>
 
             {/* Footer */}

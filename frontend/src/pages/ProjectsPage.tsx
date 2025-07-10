@@ -47,11 +47,29 @@ const ProjectsPage = () => {
         />
       </div>
 
-      {/* Page Header */}
-      <section className="relative bg-gradient-to-br from-primary-50 via-primary-100 to-primary-200 py-16 overflow-hidden">
-        <div className="absolute inset-0">
+      {/* Page Header - Enhanced with parallax hero image */}
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+        {/* Hero background image with parallax effect */}
+        <div className="absolute inset-0 z-0">
+          <motion.div 
+            className="w-full h-full"
+            style={{
+              y: useTransform(scrollYProgress, [0, 0.5], ["0%", "20%"]),
+            }}
+          >
+            <div className="absolute inset-0 bg-black/50 z-10" />
+            <img 
+              src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1800" 
+              alt="Architecture showcase" 
+              className="w-full h-full object-cover object-center"
+            />
+          </motion.div>
+        </div>
+        
+        {/* Animated shapes */}
+        <div className="absolute inset-0 z-10">
           <motion.div
-            className="absolute top-1/4 left-1/3 w-56 h-56 bg-gradient-to-r from-primary-200/40 to-accent-200/40 rounded-full blur-3xl"
+            className="absolute top-1/4 left-1/3 w-56 h-56 bg-gradient-to-r from-primary-200/30 to-accent-200/30 rounded-full blur-3xl"
             animate={{
               x: [0, 80, 0],
               y: [0, -40, 0],
@@ -64,7 +82,7 @@ const ProjectsPage = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-1/4 right-1/3 w-72 h-72 bg-gradient-to-r from-accent-200/30 to-primary-200/30 rounded-full blur-3xl"
+            className="absolute bottom-1/4 right-1/3 w-72 h-72 bg-gradient-to-r from-accent-200/20 to-primary-200/20 rounded-full blur-3xl"
             animate={{
               x: [0, -60, 0],
               y: [0, 50, 0],
@@ -79,28 +97,49 @@ const ProjectsPage = () => {
           />
         </div>
         
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-6 lg:px-8">
+        <div className="relative z-20 max-w-4xl mx-auto text-center px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-          >            <h1 className="font-serif text-5xl md:text-7xl font-bold text-primary-900 mb-6">
-              Our <span className="text-gradient">Projects</span>
+          >
+            <h1 className="font-serif text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg">
+              Our <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-accent-300 to-accent-100">Projects</span>
             </h1>
-            <p className="text-xl text-primary-700 max-w-2xl mx-auto">
+            <p className="text-xl text-white/90 max-w-2xl mx-auto drop-shadow">
               Discover our portfolio of exceptional spaces that showcase our commitment to innovative design, 
               superior craftsmanship, and client satisfaction across residential and commercial projects.
             </p>
+            
+            {/* Added call-to-action buttons */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-white text-primary-800 font-medium rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
+              >
+                Explore All Projects
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-transparent text-white font-medium rounded-full border border-white/50 hover:bg-white/10 transition-all duration-300"
+              >
+                Contact Us
+              </motion.button>
+            </div>
           </motion.div>
         </div>
       </section>
 
+      
+
       {/* Projects Section - Enhanced */}
       <motion.div
-        className="relative z-10 bg-white/95 backdrop-blur-sm"
+        className="relative z-10 bg-primary-50/80 backdrop-blur-sm"
         style={{
           clipPath: "polygon(0 3%, 100% 0, 100% 97%, 0 100%)",
-          marginTop: "-3vh",
+          marginTop: "0",
           paddingTop: "6vh"
         }}
       >
