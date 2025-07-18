@@ -3,7 +3,6 @@ import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { motion, useScroll, AnimatePresence } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
-import logo from '../assets/logo.png'
 
 const navigation = [
   { name: 'Projects', href: '/projects' },
@@ -67,18 +66,11 @@ export default function Navbar() {
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}          >            <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-1">
-              <img 
-                src={logo} 
-                alt="Affluentia Logo" 
-                className={`h-10 w-auto transition-all duration-300 ${
-                  !scrolled && isHome && !isServiceDetailPage ? 'drop-shadow-lg' : ''
-                }`}
-              />
-              <span className={`text-2xl font-display font-bold transition-all duration-300 ${
+              <span className={`text-2xl font-bold transition-all duration-300 ${
                 scrolled || !isHome || isServiceDetailPage
                   ? 'text-primary-600' 
                   : 'text-white drop-shadow-lg'
-              }`}>
+              }`} style={{ fontFamily: '"Tan Pearl", serif' }}>
                 Affluentia
               </span>
             </Link>
@@ -178,12 +170,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between">              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}              >                <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-1">
-                  <img 
-                    src={logo} 
-                    alt="Affluentia Logo" 
-                    className="h-8 w-auto"
-                  />
-                  <span className="text-2xl font-bold text-primary-600">
+                  <span className="text-2xl font-bold text-primary-600" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
                     Affluentia
                   </span>
                 </Link>

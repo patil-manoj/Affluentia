@@ -1,7 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -203,22 +202,7 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.2 }}
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center text-white/80"
-        >
-          <span className="text-sm font-medium mb-2 text-primary-100">Scroll to explore</span>
-          <ChevronDownIcon className="w-6 h-6" />
-        </motion.div>
-      </motion.div>      {/* Floating Elements */}
+      {/* Floating Elements */}
       <motion.div
         className="absolute top-1/4 left-10 w-2 h-2 bg-primary-100 rounded-full z-5"
         animate={{

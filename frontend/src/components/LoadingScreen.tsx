@@ -213,7 +213,8 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           </svg>
         </motion.div>        {/* Company Name */}
         <motion.h1 
-          className="text-4xl font-display font-bold text-primary-50 mb-2"
+          className="text-4xl font-bold text-primary-50 mb-2"
+          style={{ fontFamily: '"Tan Pearl", serif' }}
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 2.5 }}

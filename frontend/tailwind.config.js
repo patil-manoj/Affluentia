@@ -60,6 +60,7 @@ export default {
         'sans': ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
         'display': ['Montserrat', 'Poppins', 'sans-serif'],
         'body': ['Open Sans', 'Inter', 'system-ui', 'sans-serif'],
+        'playfair': ['Playfair Display', 'serif'],
       },      boxShadow: {
         'soft': '0px 2px 6px rgba(0, 0, 0, 0.05)',
         'medium': '0px 4px 12px rgba(0, 0, 0, 0.08)',
