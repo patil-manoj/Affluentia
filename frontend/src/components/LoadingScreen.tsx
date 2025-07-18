@@ -93,13 +93,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         >
           <svg 
             width="140" 
-            height="100" 
+            height="200" 
             viewBox="0 0 140 100" 
             className="mx-auto"
           >
-            {/* Architectural Logo - Modern Building Silhouette */}
+            {/* Architectural Logo - Single Stroke Design */}
             <motion.path
-              d="M20 85 L20 45 L35 30 L50 45 L50 85"
+              d="M20 85 L20 -5 L0 -5 L0 5 L56.57 -30 L113.14 5 L113.14 -5 L43.14 -5 L43.14 85 L53.14 85 L53.14 55 L70 55 L70 85 L100 85 L100 15"
               stroke="#F3E9D2"
               strokeWidth="2.5"
               fill="none"
@@ -109,88 +109,9 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               initial="hidden"
               animate="visible"
               transition={{ 
-                duration: 2, 
+                duration: 3, 
                 ease: "easeInOut",
                 delay: 0.3 
-              }}
-            />
-            
-            {/* Second Building */}
-            <motion.path
-              d="M45 85 L45 35 L65 20 L85 35 L85 85"
-              stroke="#C6CDB6"
-              strokeWidth="2.5"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              variants={logoVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ 
-                duration: 2, 
-                ease: "easeInOut",
-                delay: 0.6 
-              }}
-            />
-            
-            {/* Third Building */}
-            <motion.path
-              d="M80 85 L80 50 L95 35 L110 50 L110 85"
-              stroke="#E4DED4"
-              strokeWidth="2.5"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              variants={logoVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ 
-                duration: 2, 
-                ease: "easeInOut",
-                delay: 0.9 
-              }}
-            />
-
-            {/* Windows */}
-            <motion.rect
-              x="25" y="55" width="4" height="6"
-              fill="#2A3625"
-              opacity="0.7"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.7 }}
-              transition={{ delay: 1.5, duration: 0.5 }}
-            />
-            <motion.rect
-              x="65" y="45" width="4" height="6"
-              fill="#2A3625"
-              opacity="0.7"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.7 }}
-              transition={{ delay: 1.6, duration: 0.5 }}
-            />
-            <motion.rect
-              x="95" y="60" width="4" height="6"
-              fill="#2A3625"
-              opacity="0.7"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.7 }}
-              transition={{ delay: 1.7, duration: 0.5 }}
-            />
-
-            {/* Foundation line */}
-            <motion.path
-              d="M15 85 L115 85"
-              stroke="#2A3625"
-              strokeWidth="3"
-              fill="none"
-              strokeLinecap="round"
-              variants={logoVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ 
-                duration: 1.5, 
-                ease: "easeInOut",
-                delay: 1.8 
               }}
             />
             
