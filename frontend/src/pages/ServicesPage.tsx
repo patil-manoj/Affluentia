@@ -131,7 +131,7 @@ const ServicesPage = () => {
               </p>
             </motion.div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {[
                 {
                   title: "Architecture Design",
@@ -167,7 +167,7 @@ const ServicesPage = () => {
                   viewport={{ once: true }}
                   whileHover={{ y: -8, transition: { duration: 0.2 } }}
                 >
-                  <div className="relative h-64 overflow-hidden">
+                  <div className="relative h-64 md:h-80 overflow-hidden">
                     <img 
                       src={service.image} 
                       alt={service.title} 
