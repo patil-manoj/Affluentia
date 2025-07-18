@@ -98,12 +98,8 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}          >            <Link to="/" className="flex items-center gap-1">
-              <img 
-                src={logo} 
-                alt="Affluentia Logo" 
-                className="h-12 w-auto"
-              />
-              <span className="text-3xl font-display font-bold text-gradient bg-gradient-to-r from-primary-100 to-primary-200 bg-clip-text text-transparent">
+              
+              <span className="text-3xl font-bold text-gradient bg-gradient-to-r from-primary-100 to-primary-200 bg-clip-text text-transparent" style={{ fontFamily: '"Tan Pearl", serif' }}>
                 Affluentia
               </span>
             </Link>
@@ -212,7 +208,7 @@ export default function Footer() {
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-xs leading-5 text-primary-300 font-body">
-              &copy; 2024 Affluentia Architecture. All rights reserved.
+              &copy; 2025 Affluentia Architecture. All rights reserved.
             </p>
             <div className="mt-4 md:mt-0 flex items-center gap-4">
               <span className="text-xs text-primary-300 font-body">
