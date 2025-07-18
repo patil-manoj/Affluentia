@@ -194,84 +194,13 @@ const ServicesPage = () => {
             </div>
           </div>
         </section>
-      
         
-        {/* Featured Services Showcase */}
+        {/* Design Process Section */}
         <section className="py-16 bg-primary-50/70">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-serif text-3xl md:text-5xl font-bold text-primary-900 mb-4">
-                Our <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-600">Featured</span> Services
-              </h2>
-              <p className="text-lg text-primary-700 max-w-2xl mx-auto">
-                Discover our most sought-after design solutions that have transformed spaces and delighted clients.
-              </p>
-            </motion.div>
-            
-            {/* Featured Service Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
-              <motion.div
-                className="relative rounded-2xl shadow-luxury overflow-hidden"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <img 
-                  src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1200" 
-                  alt="Building planning service" 
-                  className="w-full h-80 object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
-                  <h3 className="font-serif text-3xl font-bold text-white mb-2">Building Planning</h3>
-                  <p className="text-white/90 mb-4">Comprehensive planning services that turn your vision into detailed, executable blueprints.</p>
-                  <motion.a
-                    href="/services/building-planning"
-                    className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white rounded-lg px-4 py-2 font-medium hover:bg-white/30 transition-all"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Explore Service
-                  </motion.a>
-                </div>
-              </motion.div>
-              
-              <motion.div
-                className="relative rounded-2xl shadow-luxury overflow-hidden"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <img 
-                  src="https://images.pexels.com/photos/1769392/pexels-photo-1769392.jpeg?auto=compress&cs=tinysrgb&w=1200" 
-                  alt="Elevation design service" 
-                  className="w-full h-80 object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
-                  <h3 className="font-serif text-3xl font-bold text-white mb-2">Elevation Design</h3>
-                  <p className="text-white/90 mb-4">Creating stunning facades that combine aesthetics with structural integrity for lasting impressions.</p>
-                  <motion.a
-                    href="/services/elevation"
-                    className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white rounded-lg px-4 py-2 font-medium hover:bg-white/30 transition-all"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Explore Service
-                  </motion.a>
-                </div>
-              </motion.div>
-            </div>
-            
             {/* Process Highlight */}
             <motion.div
-              className="mt-24 bg-white rounded-3xl shadow-soft p-8 md:p-12"
+              className="bg-white rounded-3xl shadow-soft p-8 md:p-12"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
