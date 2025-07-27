@@ -14,7 +14,7 @@ const features = [
       'Visionary architectural design that harmoniously blends form and function, creating structures that inspire and endure.',
     icon: BuildingOfficeIcon,
     image:
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753626162/image-1_b7lyhv.jpg',
     accent: 'from-primary-600 to-primary-700',
   },
   {
@@ -23,7 +23,7 @@ const features = [
       'Sophisticated interior environments that reflect your unique aesthetic while maximizing comfort and functionality.',
     icon: HomeIcon,
     image:
-      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      'https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934243/living_1_1_qni1a3.png',
     accent: 'from-primary-500 to-primary-600',
   },
   {
@@ -32,7 +32,7 @@ const features = [
       'Creative spatial solutions that transform ordinary spaces into extraordinary experiences through thoughtful design.',
     icon: CubeIcon,
     image:
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      'https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934184/11_dsnnlr.png',
     accent: 'from-primary-700 to-primary-800',
   },
   {
@@ -41,7 +41,7 @@ const features = [
       'Exquisite attention to detail with premium materials and finishes that define luxury living at its finest.',
     icon: SparklesIcon,
     image:
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753627174/salman-saqib-GHlwOXqb8SU-unsplash_1_ecrtz6.jpg',
     accent: 'from-primary-400 to-primary-500',
   },
 ];

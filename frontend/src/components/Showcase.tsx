@@ -37,8 +37,8 @@ const showcaseProjects = [
   {
     title: "Modern Minimalist Villa",
     description: "A stunning blend of contemporary design and natural elements, featuring open spaces and seamless indoor-outdoor living.",
-    image: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800",
-    thumbnailUrl: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934535/WhatsApp_Image_2024-10-05_at_10.20.46_AM_1_nagwz3.jpg",
+    thumbnailUrl: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934535/WhatsApp_Image_2024-10-05_at_10.20.46_AM_1_nagwz3.jpg",
     stats: [
       { label: "Area", value: "3,500 sq ft" },
       { label: "Duration", value: "4 months" },
@@ -54,8 +54,8 @@ const showcaseProjects = [
   {
     title: "Urban Loft Renovation",
     description: "Converting industrial space into luxurious living quarters while preserving the building's historic character.",
-    image: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800",
-    thumbnailUrl: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934625/lissete-laverde-KqClq7f8ofw-unsplash_oieofa.jpg",
+    thumbnailUrl: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934625/lissete-laverde-KqClq7f8ofw-unsplash_oieofa.jpg",
     stats: [
       { label: "Area", value: "2,200 sq ft" },
       { label: "Duration", value: "3 months" },
@@ -71,8 +71,8 @@ const showcaseProjects = [
   {
     title: "Coastal Retreat",
     description: "Harmonizing indoor comfort with oceanfront views, creating a perfect balance of luxury and natural beauty.",
-    image: "https://images.pexels.com/photos/3935350/pexels-photo-3935350.jpeg?auto=compress&cs=tinysrgb&w=800",
-    thumbnailUrl: "https://images.pexels.com/photos/3935350/pexels-photo-3935350.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934572/allison-huang-_u8KhAZRGHs-unsplash_vjlr7n.jpg",
+    thumbnailUrl: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934572/allison-huang-_u8KhAZRGHs-unsplash_vjlr7n.jpg",
     stats: [
       { label: "Area", value: "4,800 sq ft" },
       { label: "Duration", value: "6 months" },

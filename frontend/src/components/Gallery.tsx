@@ -41,60 +41,60 @@ const LazyImage = ({ src, alt, className, onLoad }: {
 // Enhanced gallery data with architectural focus
 const galleryImages = [
   {
-    url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628689/eve2_jphdna.jpg',
+    thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628689/eve2_jphdna.jpg',
     title: 'Contemporary Residence',
     category: 'Architecture',
     description: 'Modern architectural design with clean lines and expansive glass facades'
   },
   {
-    url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628972/image_25_tvbaf8.jpg',
+    thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628972/image_25_tvbaf8.jpg',
     title: 'Elegant Living Space',
-    category: 'Interior',
+    category: 'Kitchen',
     description: 'Sophisticated interior design with premium finishes and curated furnishings'
   },
   {
-    url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628926/jules-gouwy-CiVGQ66hFaE-unsplash_2_jgdaq8.jpg',
+    thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628926/jules-gouwy-CiVGQ66hFaE-unsplash_2_jgdaq8.jpg',
     title: 'Structural Elegance',
-    category: 'Architecture',
+    category: 'Dining',
     description: 'Meticulous attention to architectural details and material selection'
   },
   {
-    url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628934/gonzz-ndG1YdTQBOk-unsplash_1_aehjjr.jpg',
+    thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628934/gonzz-ndG1YdTQBOk-unsplash_1_aehjjr.jpg',
     title: 'Culinary Excellence',
-    category: 'Kitchen',
+    category: 'Balcony',
     description: 'A chef\'s kitchen designed for both functionality and aesthetic appeal'
   },
   {
-    url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628926/david-kristianto-MuOcGaHm2bg-unsplash_1_1_nxwet4.jpg',
+    thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628926/david-kristianto-MuOcGaHm2bg-unsplash_1_1_nxwet4.jpg',
     title: 'Urban Sophistication',
     category: 'Interior',
     description: 'Contemporary living space with thoughtful lighting and spatial flow'
   },
   {
-    url: 'https://images.unsplash.com/photo-1600563438938-a42d493abb63?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1600563438938-a42d493abb63?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628925/sherzod-gulomov-tYUvvMen08M-unsplash_1_yeqcae.jpg',
+    thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628925/sherzod-gulomov-tYUvvMen08M-unsplash_1_yeqcae.jpg',
     title: 'Serene Sanctuary',
-    category: 'Bedroom',
+    category: 'Office Spaces',
     description: 'Tranquil bedroom retreat with natural materials and calming tones'
   },
   {
-    url: 'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
-    title: 'Spa-Like Retreat',
-    category: 'Bathroom',
-    description: 'Luxurious bathroom design with premium fixtures and natural stone finishes'
+    url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934536/WhatsApp_Image_2024-10-05_at_10.20.46_AM_2_hktpsi.jpg',
+    thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934536/WhatsApp_Image_2024-10-05_at_10.20.46_AM_2_hktpsi.jpg',
+    title: 'Cozy Retreat',
+    category: 'Bedroom',
+    description: 'Luxurious bedroom design with premium fixtures and natural stone finishes'
   },
   {
-    url: 'https://images.unsplash.com/photo-1600566752734-d1d4e8b8e2f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1600566752734-d1d4e8b8e2f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+    url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934591/hammer-group-bEBLQQPhqi8-unsplash_rhax5w.jpg',
+    thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934591/hammer-group-bEBLQQPhqi8-unsplash_rhax5w.jpg',
     title: 'Urban Landmark',
     category: 'Architecture',
-    description: 'Iconic building facade that defines the urban landscape'
+    description: 'Iconic Commercial design with innovative use of space and materials'
   },
 ];
 
