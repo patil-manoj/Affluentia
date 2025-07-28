@@ -177,7 +177,7 @@ const HomePage = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="text-3xl font-bold text-primary-600 mb-2">500+</div>
+                <div className="text-3xl font-bold text-primary-600 mb-2">50+</div>
                 <div className="text-stone-600 text-sm">Projects Completed</div>
               </motion.div>
               <motion.div
@@ -187,8 +187,8 @@ const HomePage = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <div className="text-3xl font-bold text-primary-600 mb-2">50+</div>
-                <div className="text-stone-600 text-sm">Happy Clients</div>
+                <div className="text-3xl font-bold text-primary-600 mb-2">98%</div>
+                <div className="text-stone-600 text-sm">Clients Satisfaction</div>
               </motion.div>
               <motion.div
                 className="text-center"
@@ -197,7 +197,7 @@ const HomePage = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                <div className="text-3xl font-bold text-primary-600 mb-2">15+</div>
+                <div className="text-3xl font-bold text-primary-600 mb-2">5+</div>
                 <div className="text-stone-600 text-sm">Years Experience</div>
               </motion.div>
               <motion.div
@@ -207,7 +207,7 @@ const HomePage = () => {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <div className="text-3xl font-bold text-primary-600 mb-2">10+</div>
+                <div className="text-3xl font-bold text-primary-600 mb-2">8+</div>
                 <div className="text-stone-600 text-sm">Awards Won</div>
               </motion.div>
             </div>

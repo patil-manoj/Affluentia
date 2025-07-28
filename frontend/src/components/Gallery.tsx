@@ -45,56 +45,56 @@ const galleryImages = [
     thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628689/eve2_jphdna.jpg',
     title: 'Contemporary Residence',
     category: 'Architecture',
-    description: 'Modern architectural design with clean lines and expansive glass facades'
+    description: 'Step into the future of urban living. Our contemporary residences seamlessly blend innovative design with unparalleled comfort, creating spaces that truly elevate your lifestyle.'
   },
   {
     url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628972/image_25_tvbaf8.jpg',
     thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628972/image_25_tvbaf8.jpg',
     title: 'Elegant Living Space',
     category: 'Kitchen',
-    description: 'Sophisticated interior design with premium finishes and curated furnishings'
+    description: 'Craft your culinary dreams in a kitchen designed for both beauty and function. Our elegant living spaces combine luxurious finishes with smart layouts, making every meal an experience.'
   },
   {
     url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628926/jules-gouwy-CiVGQ66hFaE-unsplash_2_jgdaq8.jpg',
     thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628926/jules-gouwy-CiVGQ66hFaE-unsplash_2_jgdaq8.jpg',
     title: 'Structural Elegance',
     category: 'Dining',
-    description: 'Meticulous attention to architectural details and material selection'
+    description: 'Host unforgettable gatherings in dining spaces crafted for sophistication. We design environments that blend aesthetic grace with supreme comfort, perfect for intimate dinners or grand celebrations.'
   },
   {
     url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628934/gonzz-ndG1YdTQBOk-unsplash_1_aehjjr.jpg',
     thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628934/gonzz-ndG1YdTQBOk-unsplash_1_aehjjr.jpg',
     title: 'Culinary Excellence',
     category: 'Balcony',
-    description: 'A chef\'s kitchen designed for both functionality and aesthetic appeal'
+    description: 'Expand your horizon with a balcony designed for serene escapes. Enjoy breathtaking views and tranquil moments in an outdoor space that perfectly complements your indoor sanctuary.'
   },
   {
     url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628926/david-kristianto-MuOcGaHm2bg-unsplash_1_1_nxwet4.jpg',
     thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628926/david-kristianto-MuOcGaHm2bg-unsplash_1_1_nxwet4.jpg',
     title: 'Urban Sophistication',
     category: 'Interior',
-    description: 'Contemporary living space with thoughtful lighting and spatial flow'
+    description: 'Transform city life into an art form. Our urban interior designs infuse sleek aesthetics with ultimate comfort, creating sophisticated havens in the heart of the bustling metropolis.'
   },
   {
     url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628925/sherzod-gulomov-tYUvvMen08M-unsplash_1_yeqcae.jpg',
     thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628925/sherzod-gulomov-tYUvvMen08M-unsplash_1_yeqcae.jpg',
     title: 'Serene Sanctuary',
     category: 'Office Spaces',
-    description: 'Tranquil bedroom retreat with natural materials and calming tones'
+    description: 'Reimagine productivity in an office space that inspires calm and collaboration. We design serene sanctuaries that balance modern efficiency with an atmosphere of tranquility, fostering focus and innovation.'
   },
   {
     url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934536/WhatsApp_Image_2024-10-05_at_10.20.46_AM_2_hktpsi.jpg',
     thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934536/WhatsApp_Image_2024-10-05_at_10.20.46_AM_2_hktpsi.jpg',
     title: 'Cozy Retreat',
     category: 'Bedroom',
-    description: 'Luxurious bedroom design with premium fixtures and natural stone finishes'
+    description: 'Unwind in a personalized haven of comfort. Our bedroom designs are crafted to be your ultimate retreat, combining warm textures and thoughtful details for a truly peaceful and inviting escape.'
   },
   {
     url: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934591/hammer-group-bEBLQQPhqi8-unsplash_rhax5w.jpg',
     thumbnailUrl: 'https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934591/hammer-group-bEBLQQPhqi8-unsplash_rhax5w.jpg',
     title: 'Urban Landmark',
     category: 'Architecture',
-    description: 'Iconic Commercial design with innovative use of space and materials'
+    description: 'Shape tomorrows skylines with visionary urban architecture. Our designs integrate cutting-edge techniques with sustainable practices, crafting iconic structures that redefine city living.'
   },
 ];
 
