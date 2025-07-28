@@ -18,6 +18,7 @@ import BuildingPlanningPage from './pages/services/BuildingPlanningPage'
 import ArchitecturePage from './pages/services/ArchitecturePage'
 import ElevationPage from './pages/services/ElevationPage'
 import LandscapingPage from './pages/services/LandscapingPage'
+import BuildingConstructionPage from './pages/services/BuildingConstructionPage';
 
 const App = () => {
   const { scrollYProgress } = useScroll();
@@ -64,6 +65,7 @@ const App = () => {
               <Route path="/services/architecture" element={<ArchitecturePage />} />
               <Route path="/services/elevation" element={<ElevationPage />} />
               <Route path="/services/landscaping" element={<LandscapingPage />} />
+              <Route path="/services/building-construction" element={<BuildingConstructionPage />} />
             </Routes>
 
             {/* Footer */}

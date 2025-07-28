@@ -141,7 +141,7 @@ const ServicesPage = () => {
                 },
                 {
                   title: "Building Planning",
-                  description: "Transforming interiors into beautiful, comfortable, and functional spaces that reflect your unique style and needs.",
+                  description: "Transforming your space with thoughtful building planning that blends style, comfort, and functionality.",
                   image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934184/11_dsnnlr.png",
                   link: "/services/building-planning"
                 },
@@ -154,7 +154,7 @@ const ServicesPage = () => {
                 {
                   title: "Landscaping",
                   description: "Transforming outdoor spaces with lush gardens, water features, and sustainable designs that harmonize with the natural environment.",
-                  image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934679/naksha-banwao-QSXDXnYE8WQ-unsplash_uozaql.jpg",
+                  image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
                   link: "/services/landscaping"
                 }
               ].map((service, index) => (
@@ -197,9 +197,9 @@ const ServicesPage = () => {
               {[
                 {
                   title: "Building Construction",
-                  description: "Creating stunning, functional spaces that blend aesthetics with practicality for residential and commercial projects.",
-                  image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
-                  link: "/services/architecture"
+                  description: "Building construction that combines visual appeal with practical design for lasting residential and commercial spaces.",
+                  image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934679/naksha-banwao-QSXDXnYE8WQ-unsplash_uozaql.jpg",
+                  link: "/services/building-construction"
                 },
               ].map((service, index) => (
                 <motion.div 
