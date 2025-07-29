@@ -11,38 +11,34 @@ const features = [
   {
     name: 'Architectural Excellence',
     description:
-      'Visionary architectural design that harmoniously blends form and function, creating structures that inspire and endure.',
+      'Where visionary ideas become iconic structures that inspire and endure.',
     icon: BuildingOfficeIcon,
     image:
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-    accent: 'from-primary-600 to-primary-700',
+      'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753626162/image-1_b7lyhv.jpg',
   },
   {
     name: 'Interior Mastery',
     description:
-      'Sophisticated interior environments that reflect your unique aesthetic while maximizing comfort and functionality.',
+      'Step inside sophistication—tailored interiors that elevate every moment.',
     icon: HomeIcon,
     image:
-      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-    accent: 'from-primary-500 to-primary-600',
+      'https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934243/living_1_1_qni1a3.png',
   },
   {
     name: 'Spatial Innovation',
     description:
-      'Creative spatial solutions that transform ordinary spaces into extraordinary experiences through thoughtful design.',
+      'Discover the extraordinary in every corner with creative spatial solutions that spark delight.',
     icon: CubeIcon,
     image:
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-    accent: 'from-primary-700 to-primary-800',
+      'https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934184/11_dsnnlr.png',
   },
   {
     name: 'Luxury Craftsmanship',
     description:
-      'Exquisite attention to detail with premium materials and finishes that define luxury living at its finest.',
+      'Experience opulence redefined—luxury crafted with precision in every detail.',
     icon: SparklesIcon,
     image:
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-    accent: 'from-primary-400 to-primary-500',
+      'https://res.cloudinary.com/dwvh4dmer/image/upload/v1753627174/salman-saqib-GHlwOXqb8SU-unsplash_1_ecrtz6.jpg',
   },
 ];
 
@@ -64,7 +60,7 @@ export default function Features() {
           className="absolute inset-0 opacity-20"
           style={{
             background:
-              'radial-gradient(circle at 25% 25%, rgba(42, 54, 37, 0.1) 0%, transparent 50%)',
+              'radial-gradient(circle at 25% 25%, rgba(42, 54, 37, 0.1) 0%, transparent 100%)',
             scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.1, 0.8]),
             opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.1, 0.3, 0.1]),
           }}
@@ -135,7 +131,7 @@ export default function Features() {
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${feature.accent} opacity-70 mix-blend-multiply transition-opacity duration-300 group-hover:opacity-75`}
+                    className={`absolute inset-0 bg-gradient-to-br opacity-70 mix-blend-multiply transition-opacity duration-300 group-hover:opacity-75`}
                   />
 
                   {/* Content Overlay */}

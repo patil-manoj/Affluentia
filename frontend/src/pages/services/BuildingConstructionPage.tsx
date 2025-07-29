@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { BuildingOfficeIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
 
-const ArchitecturePage = () => {
+const BuildingConstructionPage = () => {
   return (
     <main className="pt-24 pb-16 relative overflow-hidden">
       {/* Background pattern */}
@@ -49,11 +49,11 @@ const ArchitecturePage = () => {
               <span className="font-medium">Architecture</span>
             </div>
             <h1 className="font-serif text-5xl font-bold text-primary-900 mb-6">
-              Creative Architectural Design
+              Expert Building Construction Services
             </h1>
             <p className="text-xl text-primary-700 mb-8 leading-relaxed">
-              Comprehensive architectural services from concept to construction, blending creativity, 
-              functionality, and sustainability to create spaces that inspire and endure.
+              From the first brick to the final finish, 
+              we take care of the entire construction process with a focus on strength, quality, and long-term value.
             </p>
             <div className="flex flex-wrap gap-4">
               <motion.button
@@ -78,7 +78,7 @@ const ArchitecturePage = () => {
           >
             <div className="aspect-[4/3] overflow-hidden rounded-2xl shadow-luxury">
               <img 
-                src="https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                src="https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628934/gonzz-ndG1YdTQBOk-unsplash_1_aehjjr.jpg" 
                 alt="Architecture Service" 
                 className="w-full h-full object-cover"
               />
@@ -100,20 +100,20 @@ const ArchitecturePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Conceptual Design",
-                description: "Innovative design concepts that translate your vision into spatial experiences, reflecting your unique requirements and aesthetic preferences."
+                title: "End-to-End Project Management",
+                description: "We handle every stage of the construction process, from site preparation to final handover, ensuring everything runs smoothly and stays on schedule."
               },
               {
-                title: "3D Visualization",
-                description: "Realistic 3D renderings and walkthroughs that allow you to experience your space before construction begins, ensuring alignment with your vision."
+                title: "Strong and Reliable Structures",
+                description: "Our construction methods focus on safety and longevity, using high-quality materials and proven engineering practices."
               },
               {
-                title: "Construction Drawings",
-                description: "Detailed technical drawings and specifications that ensure accurate construction execution and compliance with quality standards."
+                title: "Skilled Workforce",
+                description: "Experienced professionals and trained workers bring craftsmanship and attention to detail to every part of the build."
               },
               {
-                title: "Material Selection",
-                description: "Expert guidance on selecting materials that balance aesthetics, durability, sustainability, and budget considerations."
+                title: "Cost-Effective Solutions",
+                description: "We offer smart construction planning and material selection that keeps quality high while staying within your budget."
               },
               {
                 title: "Sustainable Solutions",
@@ -154,28 +154,28 @@ const ArchitecturePage = () => {
             {[
               {
                 step: "01",
-                title: "Visioning & Briefing",
-                description: "Collaborative discussions to define project goals, functional requirements, aesthetic preferences, and budget parameters."
+                title: "Planning & Site Assessment",
+                description: "We begin with site visits and discussions to understand your vision, assess the land, and plan the best construction approach based on your goals and budget."
               },
               {
                 step: "02",
-                title: "Design Exploration",
-                description: "Creation and refinement of design concepts through sketches, models, and 3D visualizations to explore spatial possibilities."
+                title: "Design Coordination",
+                description: "We work closely with architects and engineers to finalize practical, safe, and efficient building designs that suit your needs and comply with local regulations."
               },
               {
                 step: "03",
-                title: "Detailed Drawings",
-                description: "Development of comprehensive construction documentation including plans, elevations, sections, and detailed specifications."
+                title: "Pre-Construction & Approvals",
+                description: "We handle the necessary documentation, permits, and approvals to ensure the construction is legally sound and ready to begin without delays."
               },
               {
                 step: "04",
-                title: "Coordination with Consultants",
-                description: "Integration of structural, mechanical, electrical, and other specialized engineering systems into the architectural design."
+                title: "Construction Execution",
+                description: "Our expert team begins the physical construction, managing timelines, materials, and workforce to bring your structure to life with quality and precision."
               },
               {
                 step: "05",
-                title: "Construction Administration",
-                description: "Oversight during the construction phase to ensure the project is built according to design intent and quality standards."
+                title: "Final Inspection & Handover",
+                description: "We perform thorough inspections, address finishing touches, and hand over the completed project—ready for use and built to last."
               }
             ].map((process, index) => (
               <motion.div
@@ -243,4 +243,4 @@ const ArchitecturePage = () => {
   );
 };
 
-export default ArchitecturePage;
+export default BuildingConstructionPage;

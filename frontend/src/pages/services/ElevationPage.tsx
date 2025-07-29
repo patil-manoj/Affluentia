@@ -78,7 +78,7 @@ const ElevationPage = () => {
           >
             <div className="aspect-[4/3] overflow-hidden rounded-2xl shadow-luxury">
               <img 
-                src="https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                src="https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934697/vecteezy_beautiful-modern-house-exterior-with-carport-modern_26599169_xzei4z.jpg"
                 alt="Elevation Design" 
                 className="w-full h-full object-cover"
               />

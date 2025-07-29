@@ -158,9 +158,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Experience the fusion of visionary architecture and bespoke interior design. Our 
-            expert team transforms spaces into inspiring environments that reflect your unique 
-            style, needs, and aspirations.
+            Experience the difference of transformative design that seamlessly integrates architecture and interiors. At Affluenta, we collaborate with our clients to craft bespoke environments that not only inspire visually but also enrich daily living. Our approach fuses innovative architectural solutions with sophisticated interior details, ensuring each space embodies functionality, elegance, and enduring value.
           </motion.p>
 
           <motion.div 
