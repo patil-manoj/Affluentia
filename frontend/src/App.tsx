@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
+import ScrollToTop from './components/ScrollToTop'
 
 // Import pages
 import HomePage from './pages/HomePage'
@@ -35,6 +36,7 @@ const App = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <AnimatePresence mode="wait">
         {isLoading ? (
           <LoadingScreen 
