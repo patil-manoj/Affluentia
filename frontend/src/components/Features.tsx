@@ -157,17 +157,6 @@ export default function Features() {
                     >
                       {feature.description}
                     </motion.p>
-
-                    <motion.a
-                      href="#"
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-white/90 hover:text-white group/link w-fit"
-                      whileHover={{ x: 5 }}
-                    >
-                      Learn more
-                      <span className="transition-transform duration-300 group-hover/link:translate-x-1">
-                        →
-                      </span>
-                    </motion.a>
                   </div>
 
                   {/* Decorative Elements */}
