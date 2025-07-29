@@ -48,10 +48,10 @@ const ArchitecturePage = () => {
               <BuildingOfficeIcon className="w-5 h-5" />
               <span className="font-medium">Architecture</span>
             </div>
-            <h1 className="font-serif text-5xl font-bold text-primary-900 mb-6">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary-900 mb-6">
               Creative Architectural Design
             </h1>
-            <p className="text-xl text-primary-700 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-primary-700 mb-8 leading-relaxed">
               Comprehensive architectural services from concept to construction, blending creativity, 
               functionality, and sustainability to create spaces that inspire and endure.
             </p>
@@ -89,7 +89,7 @@ const ArchitecturePage = () => {
         {/* Features & Benefits */}
         <div className="mb-24">
           <motion.h2 
-            className="font-serif text-3xl font-bold text-primary-900 mb-12 text-center"
+            className="font-serif text-2xl sm:text-3xl font-bold text-primary-900 mb-12 text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -132,7 +132,7 @@ const ArchitecturePage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <h3 className="text-xl font-bold text-primary-900 mb-4">{feature.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-primary-900 mb-4">{feature.title}</h3>
                 <p className="text-primary-700">{feature.description}</p>
               </motion.div>
             ))}
@@ -142,7 +142,7 @@ const ArchitecturePage = () => {
         {/* Process */}
         <div className="mb-24">
           <motion.h2 
-            className="font-serif text-3xl font-bold text-primary-900 mb-12 text-center"
+            className="font-serif text-2xl sm:text-3xl font-bold text-primary-900 mb-12 text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -190,7 +190,7 @@ const ArchitecturePage = () => {
                   {process.step}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-primary-900 mb-2">{process.title}</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-primary-900 mb-2">{process.title}</h3>
                   <p className="text-primary-700">{process.description}</p>
                 </div>
               </motion.div>
@@ -215,10 +215,10 @@ const ArchitecturePage = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 to-primary-800/70" />
           </div>
           <div className="relative z-10 p-12 md:p-16 text-white max-w-3xl">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
               Ready to Transform Your Architectural Vision?
             </h2>
-            <p className="text-white/90 text-lg mb-8">
+            <p className="text-white/90 text-base sm:text-lg mb-8">
               Let our expert architects help you create spaces that blend beauty, functionality, and sustainability.
             </p>
             <div className="flex flex-wrap gap-4">

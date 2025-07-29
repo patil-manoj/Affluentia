@@ -48,7 +48,7 @@ const BuildingPlanningPage = () => {
               <HomeIcon className="w-5 h-5" />
               <span className="font-medium">Building Planning</span>
             </div>
-            <h1 className="font-serif text-5xl font-bold text-primary-900 mb-6">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary-900 mb-6">
               Strategic Building Planning Solutions
             </h1>
             <p className="text-xl text-primary-700 mb-8 leading-relaxed">

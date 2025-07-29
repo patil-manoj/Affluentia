@@ -140,10 +140,10 @@ const HomePage = () => {
               Ready to Transform Your Space?
             </motion.div>
             
-            <h2 className="font-serif text-4xl md:text-6xl font-bold text-stone-900 mb-6">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-stone-900 mb-6">
               Let's Create Something <span className="text-gradient">Extraordinary</span>
             </h2>
-            <p className="text-xl text-stone-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-stone-600 mb-8 max-w-2xl mx-auto">
               Our team is ready to bring your vision to life with innovative design, meticulous attention to detail, and uncompromising quality.
             </p>
             

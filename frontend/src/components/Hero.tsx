@@ -136,7 +136,7 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2 }}
           className="max-w-4xl mx-auto"
         >          <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-[0.9] mb-8 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-[0.9] mb-8 tracking-tight"
             style={{
               textShadow: '0 8px 32px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.4)'
             }}
@@ -150,7 +150,7 @@ const Hero = () => {
           </motion.h1>
           
           <motion.p 
-            className="text-xl md:text-2xl text-primary-50 font-body leading-relaxed mb-12 max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary-50 font-body leading-relaxed mb-12 max-w-3xl mx-auto"
             style={{
               textShadow: '0 2px 10px rgba(0,0,0,0.3)'
             }}
@@ -158,7 +158,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Experience the difference of transformative design that seamlessly integrates architecture and interiors. At Affluenta, we collaborate with our clients to craft bespoke environments that not only inspire visually but also enrich daily living. Our approach fuses innovative architectural solutions with sophisticated interior details, ensuring each space embodies functionality, elegance, and enduring value.
+            Experience the difference of transformative design that seamlessly integrates architecture and interiors. At Affluenta, we collaborate with our clients to craft bespoke environments that not only inspire visually but also enrich daily living.
           </motion.p>
 
           <motion.div 

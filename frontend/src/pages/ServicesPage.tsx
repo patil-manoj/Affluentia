@@ -77,10 +77,10 @@ const ServicesPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="font-serif text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 drop-shadow-lg">
               Our <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-accent-300 to-accent-100">Services</span>
             </h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto drop-shadow">
+            <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow">
               From concept to completion, we offer comprehensive design services that transform your vision into reality. Experience our full-service approach to exceptional design.
             </p>
             
@@ -124,10 +124,10 @@ const ServicesPage = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="font-serif text-3xl md:text-5xl font-bold text-primary-900 mb-4">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary-900 mb-4">
                 Exceptional <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-600">Design Solutions</span>
               </h2>
-              <p className="text-lg text-primary-700 max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base md:text-lg text-primary-700 max-w-2xl mx-auto">
                 Explore our comprehensive range of design services tailored to meet your unique needs and vision.
               </p>
             </motion.div>
@@ -177,7 +177,7 @@ const ServicesPage = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <div className="p-8">
-                    <h3 className="font-serif text-2xl font-bold text-primary-800 mb-3">{service.title}</h3>
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-primary-800 mb-3">{service.title}</h3>
                     <p className="text-primary-600 mb-6">{service.description}</p>
                     <motion.div
                       whileHover={{ x: 5 }}
@@ -224,7 +224,7 @@ const ServicesPage = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <div className="p-8">
-                    <h3 className="font-serif text-2xl font-bold text-primary-800 mb-3">{service.title}</h3>
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-primary-800 mb-3">{service.title}</h3>
                     <p className="text-primary-600 mb-6">{service.description}</p>
                     <motion.div
                       whileHover={{ x: 5 }}
@@ -259,7 +259,7 @@ const ServicesPage = () => {
             >
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="md:col-span-1">
-                  <h3 className="font-serif text-3xl font-bold text-primary-900 mb-4">Our Design Process</h3>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-primary-900 mb-4">Our Design Process</h3>
                   <p className="text-primary-700">We follow a structured, collaborative approach to ensure your vision becomes reality.</p>
                 </div>
                 <div className="md:col-span-2">
@@ -300,7 +300,7 @@ const ServicesPage = () => {
                           </span>
                         </div>
                         <div>
-                          <h4 className="font-serif text-xl font-bold text-primary-900 mb-2">{step.title}</h4>
+                          <h4 className="font-serif text-lg sm:text-xl font-bold text-primary-900 mb-2">{step.title}</h4>
                           <p className="text-primary-700">{step.description}</p>
                         </div>
                       </motion.div>
@@ -369,10 +369,10 @@ const ServicesPage = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >              
-              <h2 className="font-serif text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-md">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-6 drop-shadow-md">
                 Ready to <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-accent-300 to-accent-100">Transform</span> Your Space?
               </h2>
-              <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto drop-shadow">
+              <p className="text-base sm:text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto drop-shadow">
                 Contact us today to discuss your project requirements and learn how our expert team can help you achieve your design goals.
               </p>
               
