@@ -146,11 +146,11 @@ export default function Features() {
                         className="h-8 w-8 flex-none"
                         aria-hidden="true"
                       />
-                      <h3 className="text-2xl font-bold">{feature.name}</h3>
+                      <h3 className="text-2xl text-primary-50 font-bold">{feature.name}</h3>
                     </motion.div>
 
                     <motion.p
-                      className="text-lg text-white/90 mb-4"
+                      className="text-lg text-primary-50 mb-4"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}

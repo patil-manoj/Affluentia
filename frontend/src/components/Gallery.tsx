@@ -213,8 +213,8 @@ const Gallery = () => {
                     className="absolute inset-0 p-6 flex flex-col justify-end text-white"
                     variants={contentVariants}
                   >
-                    <h3 className="text-xl font-semibold">{image.title}</h3>
-                    <p className="text-white/80 text-sm mt-2">{image.category}</p>
+                    <h3 className="text-xl text-primary-50 font-semibold">{image.title}</h3>
+                    <p className="text-primary-50 text-sm mt-2">{image.category}</p>
                   </motion.div>
                 </motion.div>
               </motion.div>
