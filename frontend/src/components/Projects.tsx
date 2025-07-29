@@ -80,6 +80,39 @@ const projects: Project[] = [
     year: "2023",
     status: "Completed",
     tags: ["Japanese", "Zen", "Pavilion"]
+  },
+  {
+    id: 7,
+    title: "Zen Garden Pavilion",
+    category: "Hospitality",
+    description: "A meditation retreat that harmonizes tradition with architectural principles.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
+    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
+    year: "2023",
+    status: "Completed",
+    tags: ["Japanese", "Zen", "Pavilion"]
+  },
+  {
+    id: 8,
+    title: "Zen Garden Pavilion",
+    category: "Hospitality",
+    description: "A meditation retreat that harmonizes tradition with architectural principles.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
+    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
+    year: "2023",
+    status: "Completed",
+    tags: ["Japanese", "Zen", "Pavilion"]
+  },
+  {
+    id: 9,
+    title: "Zen Garden Pavilion",
+    category: "Hospitality",
+    description: "A meditation retreat that harmonizes tradition with architectural principles.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
+    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
+    year: "2023",
+    status: "Completed",
+    tags: ["Japanese", "Zen", "Pavilion"]
   }
 ];
 
@@ -142,28 +175,7 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
           </span>
         </div>
 
-        {/* Hover Content */}
-        <motion.div
-          className="absolute inset-0 flex items-end p-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ 
-            opacity: isHovered ? 1 : 0,
-            y: isHovered ? 0 : 20
-          }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
-          <div className="text-white">
-            <h3 className="font-serif text-2xl font-bold mb-2">{project.title}</h3>
-            <p className="text-white/90 mb-4 line-clamp-2">{project.description}</p>
-            <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag, i) => (
-                <span key={i} className="px-2 py-1 bg-white/20 rounded-full text-xs">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+        
       </div>
 
       {/* Content */}
