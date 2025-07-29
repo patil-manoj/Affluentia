@@ -162,18 +162,6 @@ const Showcase = () => {
                             }
                           }}
                         >
-                          <motion.span
-                            className="px-6 py-3 bg-white text-primary-600 rounded-full font-semibold text-sm"
-                            variants={{
-                              hover: {
-                                y: 0,
-                                scale: 1
-                              }
-                            }}
-                            initial={{ y: 20, scale: 0.9 }}
-                          >
-                            View Details
-                          </motion.span>
                         </motion.div>
                       </motion.div>
                     </div>
