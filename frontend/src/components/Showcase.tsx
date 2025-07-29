@@ -36,13 +36,11 @@ const LazyImage = ({ src, alt, className, onLoad }: {
 const showcaseProjects = [
   {
     title: "Modern Minimalist Villa",
-    description: "A stunning blend of contemporary design and natural elements, featuring open spaces and seamless indoor-outdoor living.",
-    image: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800",
-    thumbnailUrl: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=400",
+    description: "Experience the pinnacle of refined living. Our Modern Minimalist Villa seamlessly blends contemporary elegance with the tranquility of nature, creating expansive open spaces and a harmonious indoor-outdoor flow. Recognized as an Award Winner, this 3,500 sq ft masterpiece features custom Italian marble flooring, stunning floor-to-ceiling windows, smart home integration, and sustainable materials—all meticulously crafted in just 4 months to elevate your lifestyle.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934535/WhatsApp_Image_2024-10-05_at_10.20.46_AM_1_nagwz3.jpg",
+    thumbnailUrl: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934535/WhatsApp_Image_2024-10-05_at_10.20.46_AM_1_nagwz3.jpg",
     stats: [
       { label: "Area", value: "3,500 sq ft" },
-      { label: "Duration", value: "4 months" },
-      { label: "Recognition", value: "Award Winner" }
     ],
     details: [
       "Custom Italian marble flooring",
@@ -53,13 +51,11 @@ const showcaseProjects = [
   },
   {
     title: "Urban Loft Renovation",
-    description: "Converting industrial space into luxurious living quarters while preserving the building's historic character.",
-    image: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800",
-    thumbnailUrl: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=400",
+    description: "Reimagine urban living with sophisticated industrial charm. Our Urban Loft Renovation transforms raw industrial spaces into luxurious living quarters while meticulously preserving the building's rich historic character. This 2,200 sq ft Featured Project, completed in 3 months, boasts exposed brick walls, custom steel fixtures, polished concrete floors, and original beam preservation, offering a unique blend of heritage and modern comfort.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934625/lissete-laverde-KqClq7f8ofw-unsplash_oieofa.jpg",
+    thumbnailUrl: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934625/lissete-laverde-KqClq7f8ofw-unsplash_oieofa.jpg",
     stats: [
       { label: "Area", value: "2,200 sq ft" },
-      { label: "Duration", value: "3 months" },
-      { label: "Status", value: "Featured Project" }
     ],
     details: [
       "Exposed brick walls",
@@ -70,13 +66,11 @@ const showcaseProjects = [
   },
   {
     title: "Coastal Retreat",
-    description: "Harmonizing indoor comfort with oceanfront views, creating a perfect balance of luxury and natural beauty.",
-    image: "https://images.pexels.com/photos/3935350/pexels-photo-3935350.jpeg?auto=compress&cs=tinysrgb&w=800",
-    thumbnailUrl: "https://images.pexels.com/photos/3935350/pexels-photo-3935350.jpeg?auto=compress&cs=tinysrgb&w=400",
+    description: "Immerse yourself in unparalleled luxury where the ocean meets elegant design. Our Coastal Retreat masterfully harmonizes indoor comfort with breathtaking panoramic ocean views, creating a perfect balance of luxury and natural beauty. Spanning 4,800 sq ft, this innovative home features a natural ventilation system, integrated solar power, and indigenous landscaping, ensuring a serene escape that is both sophisticated and sustainable.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934572/allison-huang-_u8KhAZRGHs-unsplash_vjlr7n.jpg",
+    thumbnailUrl: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934572/allison-huang-_u8KhAZRGHs-unsplash_vjlr7n.jpg",
     stats: [
-      { label: "Area", value: "4,800 sq ft" },
-      { label: "Duration", value: "6 months" },
-      { label: "Feature", value: "Sustainable Design" }
+      { label: "Area", value: "7,800 sq ft" },
     ],
     details: [
       "Panoramic ocean views",

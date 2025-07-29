@@ -141,22 +141,66 @@ const ServicesPage = () => {
                 },
                 {
                   title: "Building Planning",
-                  description: "Transforming interiors into beautiful, comfortable, and functional spaces that reflect your unique style and needs.",
-                  image: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800",
+                  description: "Transforming your space with thoughtful building planning that blends style, comfort, and functionality.",
+                  image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934184/11_dsnnlr.png",
                   link: "/services/building-planning"
                 },
                 {
                   title: "Elevation",
                   description: "Crafting stunning building facades and exteriors that make a bold statement through innovative materials and architectural details.",
-                  image: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800",
+                  image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934698/vecteezy_beautiful-modern-house-exterior-with-carport-modern_26615064_zft3ax.jpg",
                   link: "/services/elevation"
                 },
                 {
                   title: "Landscaping",
                   description: "Transforming outdoor spaces with lush gardens, water features, and sustainable designs that harmonize with the natural environment.",
-                  image: "https://images.pexels.com/photos/462235/pexels-photo-462235.jpeg?auto=compress&cs=tinysrgb&w=800",
+                  image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
                   link: "/services/landscaping"
                 }
+              ].map((service, index) => (
+                <motion.div 
+                  key={service.title}
+                  className="group bg-white rounded-2xl shadow-soft overflow-hidden"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                >
+                  <div className="relative h-64 md:h-80 overflow-hidden">
+                    <img 
+                      src={service.image} 
+                      alt={service.title} 
+                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                  <div className="p-8">
+                    <h3 className="font-serif text-2xl font-bold text-primary-800 mb-3">{service.title}</h3>
+                    <p className="text-primary-600 mb-6">{service.description}</p>
+                    <motion.a
+                      href={service.link}
+                      className="inline-flex items-center text-accent-600 font-medium group/link"
+                      whileHover={{ x: 5 }}
+                    >
+                      Learn more 
+                      <svg className="w-5 h-5 ml-2 transition-transform group-hover/link:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </motion.a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              {[
+                {
+                  title: "Building Construction",
+                  description: "Building construction that combines visual appeal with practical design for lasting residential and commercial spaces.",
+                  image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934679/naksha-banwao-QSXDXnYE8WQ-unsplash_uozaql.jpg",
+                  link: "/services/building-construction"
+                },
               ].map((service, index) => (
                 <motion.div 
                   key={service.title}

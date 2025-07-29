@@ -10,8 +10,6 @@ interface Project {
   image: string;
   thumbnailUrl: string;
   year: string;
-  location: string;
-  area: string;
   status: string;
   tags: string[];
 }
@@ -21,12 +19,10 @@ const projects: Project[] = [
     id: 1,
     title: "Serenity Residence",
     category: "Residential",
-    description: "A modern minimalist home that seamlessly blends with its natural surroundings, featuring floor-to-ceiling windows and sustainable materials.",
+    description: "A modern minimalist home that seamlessly blends with its natural surroundings.",
     image: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200",
     thumbnailUrl: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600",
     year: "2024",
-    location: "Malibu, CA",
-    area: "4,500 sq ft",
     status: "Completed",
     tags: ["Modern", "Sustainable", "Minimalist"]
   },
@@ -34,12 +30,10 @@ const projects: Project[] = [
     id: 2,
     title: "Urban Oasis Tower",
     category: "Commercial",
-    description: "A 40-story mixed-use development that redefines urban living with integrated green spaces and innovative facade design.",
-    image: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    description: "A mixed-use development that redefines urban living with integrated green spaces.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934680/nastuh-abootalebi-eHD8Y1Znfpk-unsplash_akbted.jpg",
     thumbnailUrl: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=600",
     year: "2023",
-    location: "Manhattan, NY",
-    area: "850,000 sq ft",
     status: "Completed",
     tags: ["High-rise", "Mixed-use", "Green Building"]
   },
@@ -47,12 +41,10 @@ const projects: Project[] = [
     id: 3,
     title: "Coastal Retreat",
     category: "Residential",
-    description: "An oceanfront villa designed to maximize natural light and panoramic views while maintaining privacy and comfort.",
-    image: "https://images.pexels.com/photos/3935350/pexels-photo-3935350.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    description: "An oceanfront villa designed to maximize natural light and panoramic views.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934572/allison-huang-_u8KhAZRGHs-unsplash_vjlr7n.jpg",
     thumbnailUrl: "https://images.pexels.com/photos/3935350/pexels-photo-3935350.jpeg?auto=compress&cs=tinysrgb&w=600",
     year: "2024",
-    location: "Monterey, CA",
-    area: "6,200 sq ft",
     status: "In Progress",
     tags: ["Oceanfront", "Luxury", "Contemporary"]
   },
@@ -60,12 +52,10 @@ const projects: Project[] = [
     id: 4,
     title: "Innovation Hub",
     category: "Commercial",
-    description: "A tech campus designed to foster creativity and collaboration through flexible spaces and biophilic design principles.",
-    image: "https://images.pexels.com/photos/6207827/pexels-photo-6207827.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    description: "A tech campus designed to foster creativity and collaboration through flexible spaces.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934591/hammer-group-bEBLQQPhqi8-unsplash_rhax5w.jpg",
     thumbnailUrl: "https://images.pexels.com/photos/6207827/pexels-photo-6207827.jpeg?auto=compress&cs=tinysrgb&w=600",
     year: "2023",
-    location: "Austin, TX",
-    area: "320,000 sq ft",
     status: "Completed",
     tags: ["Tech Campus", "Biophilic", "Flexible"]
   },
@@ -73,12 +63,10 @@ const projects: Project[] = [
     id: 5,
     title: "Heritage Restoration",
     category: "Restoration",
-    description: "Careful restoration of a 19th-century mansion, preserving historical elements while integrating modern amenities.",
-    image: "https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    description: "Careful restoration of a 19th-century mansion, preserving history.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934572/antonio-araujo-WQLIxSEczSA-unsplash_npviuw.jpg",
     thumbnailUrl: "https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg?auto=compress&cs=tinysrgb&w=600",
     year: "2024",
-    location: "Charleston, SC",
-    area: "8,900 sq ft",
     status: "In Progress",
     tags: ["Historic", "Restoration", "Heritage"]
   },
@@ -86,12 +74,10 @@ const projects: Project[] = [
     id: 6,
     title: "Zen Garden Pavilion",
     category: "Hospitality",
-    description: "A meditation retreat center that harmonizes traditional Japanese aesthetics with contemporary architectural principles.",
-    image: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    description: "A meditation retreat that harmonizes tradition with architectural principles.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
     thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
     year: "2023",
-    location: "Kyoto, Japan",
-    area: "2,800 sq ft",
     status: "Completed",
     tags: ["Japanese", "Zen", "Pavilion"]
   }
@@ -189,16 +175,8 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
         </div>
           <p className="text-primary-700 mb-4 line-clamp-2">{project.description}</p>
         
-        <div className="grid grid-cols-2 gap-4 text-sm">
-          <div>
-            <span className="text-primary-600">Location:</span>
-            <p className="font-medium text-primary-900">{project.location}</p>
-          </div>
-          <div>
-            <span className="text-primary-600">Area:</span>
-            <p className="font-medium text-primary-900">{project.area}</p>
-          </div>
-        </div>
+
+        
       </div>
     </motion.div>
   );

@@ -78,7 +78,7 @@ const LandscapingPage = () => {
           >
             <div className="aspect-[4/3] overflow-hidden rounded-2xl shadow-luxury">
               <img 
-                src="https://images.pexels.com/photos/450035/pexels-photo-450035.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                src="https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934623/komarov-egor-jzWQlIio8ks-unsplash_ajdpdj.jpg" 
                 alt="Landscaping Service" 
                 className="w-full h-full object-cover"
               />

@@ -78,7 +78,7 @@ const BuildingPlanningPage = () => {
           >
             <div className="aspect-[4/3] overflow-hidden rounded-2xl shadow-luxury">
               <img 
-                src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                src="https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934685/nwar-igbariah-AteFNIFVGdo-unsplash_l3zdlh.jpg" 
                 alt="Building Planning Service" 
                 className="w-full h-full object-cover"
               />
