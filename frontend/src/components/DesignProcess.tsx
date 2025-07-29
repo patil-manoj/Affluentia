@@ -130,15 +130,7 @@ const DesignProcess = () => {
               >                {/* Step Card */}
                 <div className="architectural-card p-10 h-full bg-white/98 backdrop-blur-sm border border-primary-200/30 group-hover:shadow-2xl transition-all duration-500 transform-gpu">
                   {/* Step Number with enhanced styling */}
-                  <motion.div 
-                    className="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 text-white font-bold text-xl mb-8 shadow-lg"
-                    whileHover={{ 
-                      scale: 1.05,
-                      transition: { type: "spring", stiffness: 400, damping: 25 }
-                    }}
-                  >
-                    {step.step}
-                  </motion.div>                  {/* Icon with enhanced styling */}
+                                    {/* Icon with enhanced styling */}
                   <motion.div 
                     className="mb-8 relative"
                     whileHover={{ 
@@ -207,45 +199,7 @@ const DesignProcess = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-        >          <motion.button
-            className="inline-flex items-center gap-3 bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-architectural transition-all duration-300 group"
-            whileHover={{ 
-              scale: 1.05,
-              y: -2,
-              boxShadow: "0px 20px 50px rgba(42, 54, 37, 0.3), 0px 10px 20px rgba(42, 54, 37, 0.2)",
-              background: "linear-gradient(135deg, rgb(42, 54, 37) 0%, rgb(29, 37, 26) 100%)",
-              transition: { type: "spring", stiffness: 300, damping: 25 }
-            }}
-            whileTap={{ 
-              scale: 0.95,
-              y: 0,
-              transition: { duration: 0.1 }
-            }}
-          >
-            <motion.span
-              whileHover={{ x: 3 }}
-              transition={{ type: "spring", stiffness: 400 }}
-            >
-              Learn More About Our Process
-            </motion.span>
-            <motion.div
-              whileHover={{ x: 5, rotate: 15 }}
-              transition={{ type: "spring", stiffness: 400 }}
-              className="w-5 h-5"
-            >
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </motion.div>
-          </motion.button>
-        </motion.div>
+        
       </div>
     </section>
   );
