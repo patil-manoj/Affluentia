@@ -106,7 +106,7 @@ const AboutPage = () => {
               About <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-accent-300 to-accent-100">Affluentia</span>
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto drop-shadow">
-              Meet the passionate team behind exceptional design. Learn about our journey, values, and unwavering commitment to creating extraordinary spaces that inspire.
+            Founded on the belief that exceptional architecture can transform lives, Affluentia has been creating inspiring spaces that blend innovation, sustainability, and timeless design for over a decade. Our passion for excellence drives us to push boundaries and redefine what's possible in modern architecture.
             </p>
             
             {/* Added call-to-action buttons */}

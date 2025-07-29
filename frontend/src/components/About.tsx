@@ -99,31 +99,6 @@ const About = () => {
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >          <motion.h2 
-            className="font-serif text-4xl md:text-6xl font-bold text-primary-900 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            About <span className="text-gradient">Affluentia</span>
-          </motion.h2>          <motion.p 
-            className="text-xl text-primary-700 max-w-4xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Founded on the belief that exceptional architecture can transform lives, Affluentia has been creating 
-            inspiring spaces that blend innovation, sustainability, and timeless design for over a decade. 
-            Our passion for excellence drives us to push boundaries and redefine what's possible in modern architecture.
-          </motion.p>
-        </motion.div>
 
         {/* Stats */}
         <motion.div
