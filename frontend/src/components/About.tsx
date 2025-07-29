@@ -1,24 +1,22 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { 
-  UserGroupIcon, 
-  AcademicCapIcon, 
+import {  
   TrophyIcon,
   CalendarIcon,
   MapPinIcon,
   HeartIcon,
 } from '@heroicons/react/24/outline';
 
-interface TeamMember {
-  id: number;
-  name: string;
-  role: string;
-  bio: string;
-  image: string;
-  education: string[];
-  specialties: string[];
-  experience: string;
-}
+// interface TeamMember {
+//   id: number;
+//   name: string;
+//   role: string;
+//   bio: string;
+//   image: string;
+//   education: string[];
+//   specialties: string[];
+//   experience: string;
+// }
 
 interface Stat {
   value: string;
@@ -31,49 +29,6 @@ const stats: Stat[] = [
   { value: '15+', label: 'Years Experience', icon: CalendarIcon },
   { value: '50+', label: 'Happy Clients', icon: HeartIcon },
   { value: '12', label: 'Cities Worldwide', icon: MapPinIcon },
-];
-
-const teamMembers: TeamMember[] = [
-  {
-    id: 1,
-    name: 'lol',
-    role: 'Principal Architect',
-    bio: 'lol bio',
-    image: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?auto=format&fit=crop&w=400&q=80',
-    education: ['lol from MIT', 'lol Certified'],
-    specialties: ['Sustainable Design', 'Commercial Architecture', 'Urban Planning'],
-    experience: '15+ years'
-  },
-  // {
-  //   id: 2,
-  //   name: 'Marcus Rodriguez',
-  //   role: 'Creative Director',
-  //   bio: 'Marcus brings artistic vision to every project, specializing in luxury residential design and innovative interior solutions.',
-  //   image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80',
-  //   education: ['M.Design from Parsons', 'NCIDQ Certified'],
-  //   specialties: ['Interior Design', 'Luxury Residential', 'Custom Furniture'],
-  //   experience: '12+ years'
-  // },
-  // {
-  //   id: 3,
-  //   name: 'Elena Kowalski',
-  //   role: 'Project Manager',
-  //   bio: 'Elena ensures every project runs smoothly from conception to completion, with expertise in construction management and client relations.',
-  //   image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80',
-  //   education: ['MBA in Construction Management', 'PMP Certified'],
-  //   specialties: ['Project Management', 'Construction Administration', 'Client Relations'],
-  //   experience: '10+ years'
-  // },
-  // {
-  //   id: 4,
-  //   name: 'David Kim',
-  //   role: 'Technical Director',
-  //   bio: 'David oversees technical implementation and ensures all designs meet the highest engineering standards and building codes.',
-  //   image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
-  //   education: ['M.Eng in Structural Engineering', 'PE Licensed'],
-  //   specialties: ['Structural Engineering', 'Building Systems', 'Code Compliance'],
-  //   experience: '13+ years'
-  // }
 ];
 
 const values = [
@@ -120,59 +75,6 @@ const StatCard = ({ stat, index }: { stat: Stat; index: number }) => (
       {stat.value}
     </motion.div>
     <p className="text-primary-700 font-medium">{stat.label}</p>
-  </motion.div>
-);
-
-const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => (
-  <motion.div
-    className="luxury-card group text-center"
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8, delay: index * 0.1 }}
-    viewport={{ once: true }}
-  >
-    <div className="relative mb-6">
-      <div className="w-32 h-32 mx-auto rounded-full overflow-hidden ring-4 ring-primary-100 group-hover:ring-primary-200 transition-all duration-300">
-        <img
-          src={member.image}
-          alt={member.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-        />
-      </div>
-      <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-sm font-medium">
-        {member.experience}
-      </div>
-    </div>    <h3 className="font-serif text-xl font-bold text-primary-900 mb-1">{member.name}</h3>
-    <p className="text-primary-600 font-medium mb-4">{member.role}</p>
-    <p className="text-primary-700 text-sm leading-relaxed mb-6">{member.bio}</p>
-
-    <div className="space-y-4">
-      <div>
-        <h4 className="font-medium text-primary-900 mb-2 flex items-center justify-center gap-2">
-          <AcademicCapIcon className="w-4 h-4" />
-          Education
-        </h4>
-        <div className="space-y-1">
-          {member.education.map((edu, i) => (
-            <p key={i} className="text-xs text-primary-700">{edu}</p>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <h4 className="font-medium text-primary-900 mb-2">Specialties</h4>
-        <div className="flex flex-wrap gap-1 justify-center">
-          {member.specialties.map((specialty, i) => (
-            <span
-              key={i}
-              className="px-2 py-1 bg-primary-50 text-primary-700 rounded-full text-xs font-medium"
-            >
-              {specialty}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
   </motion.div>
 );
 
@@ -305,30 +207,6 @@ const About = () => {
                 <div className="text-4xl mb-4">{value.icon}</div>                <h4 className="font-serif text-xl font-bold text-primary-900 mb-3">{value.title}</h4>
                 <p className="text-primary-700 text-sm leading-relaxed">{value.description}</p>
               </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Team */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >          <div className="text-center mb-12">
-            <h3 className="font-serif text-3xl font-bold text-primary-900 mb-4 flex items-center justify-center gap-3">
-              <UserGroupIcon className="w-8 h-8 text-primary-600" />
-              Meet Our Team
-            </h3>
-            <p className="text-lg text-primary-700 max-w-2xl mx-auto">
-              Our diverse team of experts brings together decades of experience in architecture, 
-              design, and construction management.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <TeamCard key={member.id} member={member} index={index} />
             ))}
           </div>
         </motion.div>

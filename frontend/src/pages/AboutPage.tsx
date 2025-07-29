@@ -116,13 +116,6 @@ const AboutPage = () => {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 bg-white text-primary-800 font-medium rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
               >
-                Our Team
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-transparent text-white font-medium rounded-full border border-white/50 hover:bg-white/10 transition-all duration-300"
-              >
                 Contact Us
               </motion.button>
             </div>
@@ -139,112 +132,7 @@ const AboutPage = () => {
           paddingTop: "6vh"
         }}
       >
-        {/* Company History Timeline */}
-        <section className="py-16 px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-serif text-3xl md:text-5xl font-bold text-primary-900 mb-4">
-                Our <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-600">Journey</span>
-              </h2>
-              <p className="text-lg text-primary-700 max-w-2xl mx-auto">
-                From our humble beginnings to industry leadership, discover the milestones that have shaped Affluentia.
-              </p>
-            </motion.div>
-            
-            {/* Timeline */}
-            <div className="relative">
-              {/* Vertical line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary-200 via-primary-300 to-accent-300 rounded-full" />
-              
-              {/* Timeline items */}
-              <div className="space-y-20">
-                {[
-                  {
-                    year: "2010",
-                    title: "The Beginning",
-                    description: "Affluentia was founded with a vision to transform the architectural landscape with innovative designs.",
-                    image: "https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    isLeft: true
-                  },
-                  {
-                    year: "2015",
-                    title: "Expanding Horizons",
-                    description: "We expanded our services to include interior design and landscape architecture, becoming a full-service design firm.",
-                    image: "https://images.pexels.com/photos/1109541/pexels-photo-1109541.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    isLeft: false
-                  },
-                  {
-                    year: "2020",
-                    title: "Award Recognition",
-                    description: "Our commitment to excellence was recognized with multiple industry awards for our innovative designs.",
-                    image: "https://images.pexels.com/photos/2467236/pexels-photo-2467236.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    isLeft: true
-                  },
-                  {
-                    year: "2025",
-                    title: "Leading Innovation",
-                    description: "Today, we're at the forefront of sustainable design, using cutting-edge technology to create spaces for the future.",
-                    image: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=800",
-                    isLeft: false
-                  }
-                ].map((item) => (
-                  <div key={item.year} className="relative">
-                    {/* Timeline marker */}
-                    <motion.div
-                      className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full border-4 border-primary-500 z-10"
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 15, delay: 0.3 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-primary-700">
-                        {item.year}
-                      </div>
-                    </motion.div>
-                    
-                    {/* Content */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      {/* Text column - conditionally ordered based on left/right positioning */}
-                      <motion.div 
-                        className={`md:text-${item.isLeft ? "right pr-16" : "left pl-16"} md:order-${item.isLeft ? 1 : 2} px-12 md:px-0`}
-                        initial={{ opacity: 0, x: item.isLeft ? -30 : 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        viewport={{ once: true }}
-                      >
-                        <h3 className="text-2xl font-serif font-bold text-primary-800 mb-3">{item.title}</h3>
-                        <p className="text-primary-600">{item.description}</p>
-                      </motion.div>
-                      
-                      {/* Image column - conditionally ordered based on left/right positioning */}
-                      <motion.div 
-                        className={`md:order-${item.isLeft ? 2 : 1}`}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                      >
-                        <div className={`rounded-2xl overflow-hidden shadow-luxury ${item.isLeft ? "md:ml-8" : "md:mr-8"}`}>
-                          <img 
-                            src={item.image} 
-                            alt={item.title} 
-                            className="w-full h-64 md:h-72 object-cover"
-                          />
-                        </div>
-                      </motion.div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        
       
         <Suspense fallback={<LoadingSpinner />}>
           <About />
@@ -307,29 +195,7 @@ const AboutPage = () => {
                   />
                 </div>
                 <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl opacity-20 blur-xl"></div>
-                <motion.div
-                  className="absolute -top-8 -left-8 bg-white rounded-lg shadow-xl p-4 flex items-center gap-3"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden">
-                        <img 
-                          src={`https://images.pexels.com/photos/${6000 + i * 200}/pexels-photo-${6000 + i * 200}.jpeg?auto=compress&cs=tinysrgb&w=200`} 
-                          alt={`Team member ${i}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div>
-                    <p className="text-primary-800 font-medium">Talented Team</p>
-                    <p className="text-xs text-primary-600">15+ Experts</p>
-                  </div>
-                </motion.div>
+                
               </motion.div>
             </div>
             
@@ -409,7 +275,7 @@ const AboutPage = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-8 text-white">
-                    <h3 className="text-3xl font-serif font-bold mb-2">Meet Our Team</h3>
+                    <h3 className="text-3xl text-white/80 font-serif font-bold mb-2">Meet Our Team</h3>
                     <p className="text-white/80 max-w-xs">A diverse group of passionate designers, architects and visionaries</p>
                   </div>
                 </div>
@@ -440,13 +306,7 @@ const AboutPage = () => {
                       </motion.li>
                     ))}
                   </ul>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-8 px-6 py-3 bg-primary-600 text-white font-medium rounded-lg shadow-md hover:bg-primary-700 transition-all duration-300"
-                  >
-                    Join Our Team
-                  </motion.button>
+                  
                 </div>
               </div>
             </motion.div>
