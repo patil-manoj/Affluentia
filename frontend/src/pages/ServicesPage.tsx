@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
 const ServicesPage = () => {
   const { scrollYProgress } = useScroll();
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
@@ -178,16 +179,19 @@ const ServicesPage = () => {
                   <div className="p-8">
                     <h3 className="font-serif text-2xl font-bold text-primary-800 mb-3">{service.title}</h3>
                     <p className="text-primary-600 mb-6">{service.description}</p>
-                    <motion.a
-                      href={service.link}
-                      className="inline-flex items-center text-accent-600 font-medium group/link"
+                    <motion.div
                       whileHover={{ x: 5 }}
                     >
-                      Learn more 
-                      <svg className="w-5 h-5 ml-2 transition-transform group-hover/link:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </motion.a>
+                      <Link
+                        to={service.link}
+                        className="inline-flex items-center text-accent-600 font-medium group/link"
+                      >
+                        Learn more 
+                        <svg className="w-5 h-5 ml-2 transition-transform group-hover/link:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </Link>
+                    </motion.div>
                   </div>
                 </motion.div>
               ))}
@@ -222,16 +226,19 @@ const ServicesPage = () => {
                   <div className="p-8">
                     <h3 className="font-serif text-2xl font-bold text-primary-800 mb-3">{service.title}</h3>
                     <p className="text-primary-600 mb-6">{service.description}</p>
-                    <motion.a
-                      href={service.link}
-                      className="inline-flex items-center text-accent-600 font-medium group/link"
+                    <motion.div
                       whileHover={{ x: 5 }}
                     >
-                      Learn more 
-                      <svg className="w-5 h-5 ml-2 transition-transform group-hover/link:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </motion.a>
+                      <Link
+                        to={service.link}
+                        className="inline-flex items-center text-accent-600 font-medium group/link"
+                      >
+                        Learn more 
+                        <svg className="w-5 h-5 ml-2 transition-transform group-hover/link:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </Link>
+                    </motion.div>
                   </div>
                 </motion.div>
               ))}
