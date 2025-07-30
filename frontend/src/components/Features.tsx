@@ -135,22 +135,22 @@ export default function Features() {
                   />
 
                   {/* Content Overlay */}
-                  <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
+                  <div className="absolute inset-0 p-4 sm:p-6 lg:p-8 flex flex-col justify-end text-white">
                     <motion.div
-                      className="flex items-center gap-3 mb-4"
+                      className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-4"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                     >
                       <feature.icon
-                        className="h-8 w-8 flex-none"
+                        className="h-6 w-6 sm:h-8 sm:w-8 flex-none"
                         aria-hidden="true"
                       />
-                      <h3 className="text-2xl text-primary-50 font-bold">{feature.name}</h3>
+                      <h3 className="text-lg sm:text-xl lg:text-2xl text-primary-50 font-bold leading-tight">{feature.name}</h3>
                     </motion.div>
 
                     <motion.p
-                      className="text-lg text-primary-50 mb-4"
+                      className="text-sm sm:text-base lg:text-lg text-primary-50 mb-2 sm:mb-4 leading-relaxed"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
@@ -161,13 +161,13 @@ export default function Features() {
 
                   {/* Decorative Elements */}
                   <motion.div
-                    className="absolute top-4 right-4 w-24 h-24 border border-white/20 rounded-full"
+                    className="absolute top-2 right-2 sm:top-4 sm:right-4 w-16 h-16 sm:w-24 sm:h-24 border border-white/20 rounded-full"
                     initial={{ scale: 0, rotate: -180 }}
                     whileInView={{ scale: 1, rotate: 0 }}
                     transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
                   />
                   <motion.div
-                    className="absolute bottom-4 left-4 w-16 h-16 border border-white/20 rounded-full"
+                    className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 w-12 h-12 sm:w-16 sm:h-16 border border-white/20 rounded-full"
                     initial={{ scale: 0, rotate: 180 }}
                     whileInView={{ scale: 1, rotate: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
