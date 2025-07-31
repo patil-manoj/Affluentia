@@ -14,12 +14,6 @@ const footerNavigation = {
     { name: 'Services', href: '/services' },
     { name: 'Contact', href: '/contact' },
   ],
-  resources: [
-    { name: 'Design Process', href: '#' },
-    { name: 'Portfolio', href: '/projects' },
-    { name: 'Testimonials', href: '#' },
-    { name: 'Blog', href: '#' },
-  ],
   legal: [
     { name: 'Privacy Policy', href: '#' },
     { name: 'Terms of Service', href: '#' },
@@ -163,21 +157,6 @@ export default function Footer() {
               </div>
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm font-semibold leading-6 text-primary-100 font-display">Resources</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {footerNavigation.resources.map((item) => (
-                    <li key={item.name}>
-                      <Link 
-                        to={item.href} 
-                        className="text-sm leading-6 text-primary-200 hover:text-primary-100 transition-colors duration-200 font-body"
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
               <div className="mt-10 md:mt-0">
                 <h3 className="text-sm font-semibold leading-6 text-primary-100 font-display">Legal</h3>
                 <ul role="list" className="mt-6 space-y-4">
