@@ -86,20 +86,18 @@ const ServicesPage = () => {
             
             {/* Added call-to-action buttons */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
+              
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-white text-primary-800 font-medium rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
               >
-                Explore All Services
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-transparent text-white font-medium rounded-full border border-white/50 hover:bg-white/10 transition-all duration-300"
-              >
-                Request Consultation
-              </motion.button>
+                <Link
+                  to="/contact"
+                  className="inline-block px-8 py-3 bg-transparent text-white font-medium rounded-full border border-white/50 hover:bg-white/10 transition-all duration-300"
+                >
+                  Request Consultation
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         </div>

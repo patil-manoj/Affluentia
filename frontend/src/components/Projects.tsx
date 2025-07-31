@@ -113,6 +113,50 @@ const projects: Project[] = [
     year: "2023",
     status: "Completed",
     tags: ["Japanese", "Zen", "Pavilion"]
+  },
+  {
+    id: 10,
+    title: "Zen Garden Pavilion",
+    category: "Hospitality",
+    description: "A meditation retreat that harmonizes tradition with architectural principles.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
+    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
+    year: "2023",
+    status: "Completed",
+    tags: ["Japanese", "Zen", "Pavilion"]
+  },
+  {
+    id: 11,
+    title: "Zen Garden Pavilion",
+    category: "Hospitality",
+    description: "A meditation retreat that harmonizes tradition with architectural principles.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
+    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
+    year: "2023",
+    status: "Completed",
+    tags: ["Japanese", "Zen", "Pavilion"]
+  },
+  {
+    id: 12,
+    title: "Zen Garden Pavilion",
+    category: "Hospitality",
+    description: "A meditation retreat that harmonizes tradition with architectural principles.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
+    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
+    year: "2023",
+    status: "Completed",
+    tags: ["Japanese", "Zen", "Pavilion"]
+  },
+  {
+    id: 13,
+    title: "Zen Garden Pavilion",
+    category: "Hospitality",
+    description: "A meditation retreat that harmonizes tradition with architectural principles.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
+    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
+    year: "2023",
+    status: "Completed",
+    tags: ["Japanese", "Zen", "Pavilion"]
   }
 ];
 
