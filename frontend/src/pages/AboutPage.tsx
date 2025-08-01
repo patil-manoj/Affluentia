@@ -344,22 +344,19 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                quote: "Affluentia transformed our space beyond our expectations. Their attention to detail and innovative approach resulted in a home we're proud to show off.",
-                author: "Sarah Johnson",
+                quote: "Working with Affluentia transformed our living space into a true Indian haven. Their attention to traditional details and creative modern twists resulted in a home that’s both warm and inviting. Our guests are always impressed by the soothing colours and custom woodwork.",
+                author: "Priya Mehra",
                 position: "Homeowner",
-                image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200"
               },
               {
-                quote: "Working with the team was seamless from concept to completion. They listened to our needs and delivered a design that perfectly balances functionality and aesthetics.",
-                author: "Michael Chen",
+                quote: "From start to finish, the team demonstrated exceptional understanding of our needs. They artfully balanced our desire for openness with privacy, using Indian hardwood and handloom textiles to create a living-dining space that connects us to nature and family traditions.",
+                author: "Rahul Bansal",
                 position: "Restaurant Owner",
-                image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200"
               },
               {
-                quote: "The innovative solutions they brought to our office redesign have dramatically improved workflow and employee satisfaction. A truly visionary team.",
-                author: "Emma Rodriguez",
+                quote: "Affluentia brought our vision of an efficient, modern Indian office to life. Their understanding of traditional values combined with cutting-edge design created a space where our team feels motivated and clients feel welcome. The blend of natural greenery, Vastu-compliant layouts, and flexible meeting zones has transformed our daily workflow and enhanced our brand image.",
+                author: "Ananya Gupta",
                 position: "CEO, TechVision Inc.",
-                image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=200"
               }
             ].map((testimonial, index) => (
               <motion.div
@@ -376,13 +373,6 @@ const AboutPage = () => {
                 </svg>
                 <p className="text-white/90 italic mb-6">"{testimonial.quote}"</p>
                 <div className="flex items-center">
-                  <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.author}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
                   <div>
                     <h4 className="text-white font-medium">{testimonial.author}</h4>
                     <p className="text-white/60 text-sm">{testimonial.position}</p>

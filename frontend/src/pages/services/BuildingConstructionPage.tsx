@@ -78,7 +78,7 @@ const BuildingConstructionPage = () => {
           >
             <div className="aspect-[4/3] overflow-hidden rounded-2xl shadow-luxury">
               <img 
-                src="https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628934/gonzz-ndG1YdTQBOk-unsplash_1_aehjjr.jpg" 
+                src="https://res.cloudinary.com/dwvh4dmer/image/upload/v1754035874/mayur-tripathi-kNzqXxlvmE4-unsplash_luk003.jpg" 
                 alt="Architecture Service" 
                 className="w-full h-full object-cover"
               />
