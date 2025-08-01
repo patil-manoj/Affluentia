@@ -21,14 +21,14 @@ import {
 interface Stat {
   value: string;
   label: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
 const stats: Stat[] = [
-  { value: '200+', label: 'Projects Completed', icon: TrophyIcon },
-  { value: '15+', label: 'Years Experience', icon: CalendarIcon },
+  { value: '50+', label: 'Projects Completed', icon: TrophyIcon },
+  { value: '5+', label: 'Years Experience', icon: CalendarIcon },
   { value: '50+', label: 'Happy Clients', icon: HeartIcon },
-  { value: '12', label: 'Cities Worldwide', icon: MapPinIcon },
+  { value: '8+', label: 'Awards', icon: MapPinIcon },
 ];
 
 const values = [
