@@ -137,7 +137,6 @@ const ProjectsPage = () => {
       <motion.div
         className="relative z-10 bg-primary-50/80 backdrop-blur-sm"
         style={{
-          clipPath: "polygon(0 3%, 100% 0, 100% 97%, 0 100%)",
           marginTop: "0",
           paddingTop: "6vh"
         }}
@@ -151,7 +150,6 @@ const ProjectsPage = () => {
       <motion.div
         className="relative z-10 bg-white/90 backdrop-blur-sm"
         style={{
-          clipPath: "polygon(0 5%, 100% 0, 100% 100%, 0 95%)",
           marginTop: "-5vh",
           paddingTop: "10vh"
         }}
