@@ -8,9 +8,6 @@ interface Project {
   category: string;
   description: string;
   image: string;
-  thumbnailUrl: string;
-  year: string;
-  status: string;
   tags: string[];
 }
 
@@ -21,9 +18,6 @@ const projects: Project[] = [
     category: "Residential",
     description: "A modern minimalist home that seamlessly blends with its natural surroundings.",
     image: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    thumbnailUrl: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2024",
-    status: "Completed",
     tags: ["Modern", "Sustainable", "Minimalist"]
   },
   {
@@ -32,9 +26,6 @@ const projects: Project[] = [
     category: "Commercial",
     description: "A mixed-use development that redefines urban living with integrated green spaces.",
     image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934680/nastuh-abootalebi-eHD8Y1Znfpk-unsplash_akbted.jpg",
-    thumbnailUrl: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2023",
-    status: "Completed",
     tags: ["High-rise", "Mixed-use", "Green Building"]
   },
   {
@@ -43,9 +34,6 @@ const projects: Project[] = [
     category: "Residential",
     description: "An oceanfront villa designed to maximize natural light and panoramic views.",
     image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934572/allison-huang-_u8KhAZRGHs-unsplash_vjlr7n.jpg",
-    thumbnailUrl: "https://images.pexels.com/photos/3935350/pexels-photo-3935350.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2024",
-    status: "In Progress",
     tags: ["Oceanfront", "Luxury", "Contemporary"]
   },
   {
@@ -54,108 +42,117 @@ const projects: Project[] = [
     category: "Commercial",
     description: "A tech campus designed to foster creativity and collaboration through flexible spaces.",
     image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934591/hammer-group-bEBLQQPhqi8-unsplash_rhax5w.jpg",
-    thumbnailUrl: "https://images.pexels.com/photos/6207827/pexels-photo-6207827.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2023",
-    status: "Completed",
     tags: ["Tech Campus", "Biophilic", "Flexible"]
   },
   {
     id: 5,
-    title: "Heritage Restoration",
-    category: "Restoration",
+    title: "Heritage Garden",
+    category: "Landscaping",
     description: "Careful restoration of a 19th-century mansion, preserving history.",
-    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934572/antonio-araujo-WQLIxSEczSA-unsplash_npviuw.jpg",
-    thumbnailUrl: "https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2024",
-    status: "In Progress",
-    tags: ["Historic", "Restoration", "Heritage"]
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934572/antonio-araujo-WQLIxSEczSA-unsplash_npviuw.jpg",    tags: ["Historic", "Restoration", "Heritage"]
   },
   {
     id: 6,
     title: "Zen Garden Pavilion",
-    category: "Hospitality",
+    category: "Landscaping",
     description: "A meditation retreat that harmonizes tradition with architectural principles.",
     image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
-    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2023",
-    status: "Completed",
     tags: ["Japanese", "Zen", "Pavilion"]
   },
   {
     id: 7,
-    title: "Zen Garden Pavilion",
-    category: "Hospitality",
-    description: "A meditation retreat that harmonizes tradition with architectural principles.",
-    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
-    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2023",
-    status: "Completed",
+    title: "Green Workspace Hub",
+    category: "Commercial",
+    description: "A collaborative office featuring a biophilic design with living plant walls and ergonomic workstations, merging productivity with nature for a healthier work environment.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1754035165/uneebo-office-design-UgYT5nkXdK4-unsplash_wyxzpt.jpg",
     tags: ["Japanese", "Zen", "Pavilion"]
   },
   {
     id: 8,
-    title: "Zen Garden Pavilion",
-    category: "Hospitality",
-    description: "A meditation retreat that harmonizes tradition with architectural principles.",
-    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
-    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2023",
-    status: "Completed",
+    title: "Sunlit Studio Offices",
+    category: "Commercial",
+    description: "A bright, modern open-plan office with floor-to-ceiling windows and integrated greenery, promoting focus, creativity, and workplace well-being.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1754035176/mahmoud-azmy-hLM702Wwj8I-unsplash_lu3vmo.jpg",
     tags: ["Japanese", "Zen", "Pavilion"]
   },
   {
     id: 9,
-    title: "Zen Garden Pavilion",
-    category: "Hospitality",
-    description: "A meditation retreat that harmonizes tradition with architectural principles.",
-    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
-    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2023",
-    status: "Completed",
+    title: "Modern Innovation Center",
+    category: "Commercial",
+    description: "A sleek, contemporary office reception with minimalist design and ample natural light, offering a professional and welcoming first impression.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934573/bernd-dittrich-pYlBAu3de0w-unsplash_xxbhpw.jpg",
     tags: ["Japanese", "Zen", "Pavilion"]
   },
   {
     id: 10,
-    title: "Zen Garden Pavilion",
-    category: "Hospitality",
-    description: "A meditation retreat that harmonizes tradition with architectural principles.",
-    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
-    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2023",
-    status: "Completed",
+    title: "Urban Cozy Lounge",
+    category: "Commercial",
+    description: "A stylish commercial lounge incorporating vertical gardens and natural textures, creating an inviting space for relaxation or informal meetings.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1754035420/hammer-group-_ruJH-BVPbo-unsplash_ixhtkd.jpg",
     tags: ["Japanese", "Zen", "Pavilion"]
   },
   {
     id: 11,
-    title: "Zen Garden Pavilion",
-    category: "Hospitality",
-    description: "A meditation retreat that harmonizes tradition with architectural principles.",
-    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
-    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2023",
-    status: "Completed",
+    title: "Metropolitan Residences Build",
+    category: "Construction",
+    description: "A busy multi-building construction zone in progress, representing city expansion and multifamily residential development.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1753628689/eve2_jphdna.jpg",
     tags: ["Japanese", "Zen", "Pavilion"]
   },
   {
     id: 12,
-    title: "Zen Garden Pavilion",
-    category: "Hospitality",
-    description: "A meditation retreat that harmonizes tradition with architectural principles.",
-    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
-    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2023",
-    status: "Completed",
+    title: "Skyline Tower",
+    category: "Construction",
+    description: "A large-scale high-rise construction site with cranes in action, showcasing the ongoing structural development of a modern urban tower.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1754035859/parth-savani-nZz9i0YxEQw-unsplash_od6evp.jpg",
     tags: ["Japanese", "Zen", "Pavilion"]
   },
   {
     id: 13,
-    title: "Zen Garden Pavilion",
-    category: "Hospitality",
+    title: "High-Rise Crane Works",
+    category: "Construction",
+    description: "A partially completed skyscraper with a tower crane on site, emphasizing the rapid transformation and vertical growth of city architecture.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1754036187/prajwal-hiremath-W05EYgNSPgE-unsplash_qanigi.jpg",
+    tags: ["Japanese", "Zen", "Pavilion"]
+  },
+  {
+    id: 14,
+    title: "Contemporary Retreat Living Room",
+    category: "Residential",
+    description: "A sophisticated, modern living area with warm accents and unique wall décor, designed for comfort, style, and peaceful living.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934184/11_dsnnlr.png",
+    tags: ["Japanese", "Zen", "Pavilion"]
+  },
+  {
+    id: 15,
+    title: " Luxe Suite Lounge ",
+    category: "Residential",
+    description: "A plush residential lounge with elegant furniture, gold accent trims, and calming aesthetics, perfect for serene evenings and social gatherings.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934181/7_rwuqvl.png",
+    tags: ["Japanese", "Zen", "Pavilion"]
+  },
+  {
+    id: 16,
+    title: "Serenity Loft Living Room",
+    category: "Residential",
     description: "A meditation retreat that harmonizes tradition with architectural principles.",
-    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934622/komarov-egor-DDUNMLGq2Kc-unsplash_cn2olp.jpg",
-    thumbnailUrl: "https://images.pexels.com/photos/6489118/pexels-photo-6489118.jpeg?auto=compress&cs=tinysrgb&w=600",
-    year: "2023",
-    status: "Completed",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934244/living_5_s3y5gu.png",
+    tags: ["Japanese", "Zen", "Pavilion"]
+  },
+  {
+    id: 17,
+    title: "Forest View Living",
+    category: "Residential",
+    description: "A peaceful, contemporary living room featuring a suspended sofa, warm wood accents, and minimalist décor—crafted to provide a tranquil retreat for relaxation and mindful living.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1752934573/clay-banks-zGRQYKuNa2E-unsplash_zw9ytr.jpg",
+    tags: ["Japanese", "Zen", "Pavilion"]
+  },
+  {
+    id: 18,
+    title: "Elegance Living Room",
+    category: "Residential",
+    description: "A stylish city living room with a neutral palette, modern furnishing, and artistic lighting—combining comfort with refined metropolitan aesthetics for everyday enjoyment.",
+    image: "https://res.cloudinary.com/dwvh4dmer/image/upload/v1753626165/living_3_1_eyfyvf.jpg",
     tags: ["Japanese", "Zen", "Pavilion"]
   }
 ];
@@ -201,17 +198,6 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
           transition={{ duration: 0.3 }}
         />
 
-        {/* Status Badge */}
-        <div className="absolute top-4 right-4">
-          <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-            project.status === 'Completed' 
-              ? 'bg-green-100 text-green-800'
-              : 'bg-yellow-100 text-yellow-800'
-          }`}>
-            {project.status}
-          </span>
-        </div>
-
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
           <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/90 text-stone-800">
@@ -227,7 +213,6 @@ const ProjectCard = ({ project, index }: { project: Project, index: number }) =>
         <div className="flex items-center justify-between mb-3">          <h3 className="font-serif text-xl font-bold text-primary-900 group-hover:text-primary-600 transition-colors">
             {project.title}
           </h3>
-          <span className="text-sm text-primary-600">{project.year}</span>
         </div>
           <p className="text-primary-700 mb-4 line-clamp-2">{project.description}</p>
         
@@ -321,7 +306,7 @@ const Projects = () => {  const [selectedCategory, setSelectedCategory] = useSta
 
         {/* Projects Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5"
           layout
         >
           {filteredProjects.map((project, index) => (
