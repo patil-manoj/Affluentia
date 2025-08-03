@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { MagnifyingGlassIcon, FunnelIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 interface Project {
   id: number;
@@ -271,21 +271,9 @@ const Projects = () => {  const [selectedCategory, setSelectedCategory] = useSta
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
         >
-          {/* Search */}
-          <div className="relative flex-1 max-w-md mx-auto lg:mx-0">
-            <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-stone-400" />
-            <input
-              type="text"
-              placeholder="Search projects..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-full border border-stone-200 focus:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:outline-none transition-all duration-300"
-            />
-          </div>
 
           {/* Category Filter */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2">
-            <FunnelIcon className="w-5 h-5 text-stone-400 flex-shrink-0" />
             {categories.map((category) => (
               <motion.button
                 key={category}

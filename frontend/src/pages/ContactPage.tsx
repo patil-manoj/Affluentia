@@ -157,7 +157,6 @@ const ContactPage = () => {
       <motion.div
         className="relative z-10 bg-white/95 backdrop-blur-sm"
         style={{
-          clipPath: "polygon(0 3%, 100% 0, 100% 97%, 0 100%)",
           marginTop: "-3vh",
           paddingTop: "6vh"
         }}
@@ -171,7 +170,6 @@ const ContactPage = () => {
       <motion.div
         className="relative z-10 bg-white/90 backdrop-blur-sm"
         style={{
-          clipPath: "polygon(0 5%, 100% 0, 100% 100%, 0 95%)",
           marginTop: "-5vh",
           paddingTop: "10vh"
         }}
