@@ -265,7 +265,7 @@ const Projects = () => {  const [selectedCategory, setSelectedCategory] = useSta
 
         {/* Filters */}
         <motion.div
-          className="flex flex-col lg:flex-row gap-6 mb-12"
+          className="flex flex-col lg:flex-row gap-6 mb-12 items-center justify-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -273,20 +273,20 @@ const Projects = () => {  const [selectedCategory, setSelectedCategory] = useSta
         >
 
           {/* Category Filter */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2">
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 justify-center w-full">
             {categories.map((category) => (
               <motion.button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap ${
-                  selectedCategory === category
-                    ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-luxury'
-                    : 'bg-white text-primary-700 border border-primary-200 hover:border-primary-300 hover:text-primary-600'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+          key={category}
+          onClick={() => setSelectedCategory(category)}
+          className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+            selectedCategory === category
+              ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-luxury'
+              : 'bg-white text-primary-700 border border-primary-200 hover:border-primary-300 hover:text-primary-600'
+          }`}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
               >
-                {category}
+          {category}
               </motion.button>
             ))}
           </div>
